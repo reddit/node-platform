@@ -28,7 +28,7 @@ var compiler = webpack({
     path: path.join(__dirname),
     filename: "[name].js",
     library: "[name].js",
-    libraryTarget: "commonjs",
+    libraryTarget: "commonjs2",
   },
   resolve: {
     extensions: ['', '.js'],
