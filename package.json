@@ -1,0 +1,25 @@
+{
+  "name": "@r/platform",
+  "version": "0.0.1",
+  "description": "A set of tools to enable easy universal rendering and page navigation on a React + Redux stack",
+  "main": "platform.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nramadas/r-platform.git"
+  },
+  "keywords": [
+    "reddit",
+    "platform",
+    "universal",
+    "isomorphic"
+  ],
+  "author": "nramadas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nramadas/r-platform/issues"
+  },
+  "homepage": "https://github.com/nramadas/r-platform#readme"
+}
