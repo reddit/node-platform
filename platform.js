@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Server.js"), require("./Client.js"));
+		module.exports = factory(require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Server.js"), require("./Client.js"), require("./navigationMiddleware.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./reducer.js", "./actions.js", "./router.js", "./Server.js", "./Client.js"], factory);
+		define(["./reducer.js", "./actions.js", "./router.js", "./Server.js", "./Client.js", "./navigationMiddleware.js"], factory);
 	else if(typeof exports === 'object')
-		exports["platform.js"] = factory(require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Server.js"), require("./Client.js"));
+		exports["platform.js"] = factory(require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Server.js"), require("./Client.js"), require("./navigationMiddleware.js"));
 	else
-		root["platform.js"] = factory(root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Server.js"], root["./Client.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__) {
+		root["platform.js"] = factory(root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Server.js"], root["./Client.js"], root["./navigationMiddleware.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.router = exports.reducer = exports.actions = exports.Client = exports.Server = undefined;
+	exports.navigationMiddleware = exports.router = exports.reducer = exports.actions = exports.Client = exports.Server = undefined;
 
 	var _Server = __webpack_require__(15);
 
@@ -69,10 +69,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _Client2 = _interopRequireDefault(_Client);
 
-	var _actions = __webpack_require__(7);
-
-	var actions = _interopRequireWildcard(_actions);
-
 	var _reducer = __webpack_require__(6);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
@@ -80,6 +76,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _router = __webpack_require__(13);
 
 	var _router2 = _interopRequireDefault(_router);
+
+	var _navigationMiddleware = __webpack_require__(17);
+
+	var _navigationMiddleware2 = _interopRequireDefault(_navigationMiddleware);
+
+	var _actions = __webpack_require__(7);
+
+	var actions = _interopRequireWildcard(_actions);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -90,12 +94,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.actions = actions;
 	exports.reducer = _reducer2.default;
 	exports.router = _router2.default;
+	exports.navigationMiddleware = _navigationMiddleware2.default;
 	exports.default = {
 	  Server: _Server2.default,
 	  Client: _Client2.default,
 	  actions: actions,
 	  reducer: _reducer2.default,
-	  router: _router2.default
+	  router: _router2.default,
+	  navigationMiddleware: _navigationMiddleware2.default
 	};
 
 /***/ },
@@ -138,6 +144,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
 
 /***/ }
 /******/ ])
