@@ -43,6 +43,7 @@
     "react-dom": "15.0.0-rc.2",
     "redux": "3.4.0",
     "reselect": "2.4.0",
-    "lodash": "4.11.1"
+    "lodash": "4.11.1",
+    "@r/middleware": "^0.5.1"
   }
 }

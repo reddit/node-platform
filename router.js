@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./Server.js"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["./Server.js"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["platform.js"] = factory(require("./Server.js"));
+		exports["router.js"] = factory();
 	else
-		root["platform.js"] = factory(root["./Server.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_10__) {
+		root["router.js"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,35 +50,44 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Server = undefined;
 
-	var _Server = __webpack_require__(10);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	var _Server2 = _interopRequireDefault(_Server);
+	var METHODS = exports.METHODS = {
+	  GET: 'get',
+	  POST: 'post',
+	  PUT: 'put',
+	  PATCH: 'patch',
+	  DELETE: 'delete'
+	};
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams) {
+	  _classCallCheck(this, BaseHandler);
 
-	exports.Server = _Server2.default;
+	  this.originalUrl = originalUrl;
+	  this.urlParams = urlParams;
+	  this.queryParams = queryParams;
+	  this.hashParams = hashParams;
+	  this.bodyParams = bodyParams;
+	};
 
-/***/ },
+	;
 
-/***/ 10:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
+	exports.default = {
+	  METHODS: METHODS,
+	  BaseHandler: BaseHandler
+	};
 
 /***/ }
-
-/******/ })
+/******/ ])
 });
 ;

@@ -16,6 +16,7 @@ var SUB_MODULE_EXTERNALS = fs.readdirSync('lib/modules')
   .reduce(function(prev, modName) {
     var modules = _.extend({}, prev);
     modules['./modules/' + modName.replace('.js', '')] = './' + modName;
+    modules['./' + modName.replace('.js', '')] = './' + modName;
     return modules;
   }, {});
 
@@ -46,7 +47,6 @@ var compiler = webpack({
           ],
           plugins: [
             'transform-class-properties',
-            'transform-runtime',
           ],
         },
       },
@@ -60,8 +60,11 @@ var compiler = webpack({
     'react': 'commonjs react',
     'react-dom': 'commonjs react-dom',
     'react-redux': 'commonjs react-redux',
+    'redux': 'commonjs redux',
     'reselect': 'commonjs reselect',
     'lodash/object': 'commonjs lodash/object',
+    'path-to-regexp': 'commonjs path-to-regexp',
+    '@r/middleware': 'commonjs @r/middleware',
   }, SUB_MODULE_EXTERNALS),
 });
 
