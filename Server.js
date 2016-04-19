@@ -133,7 +133,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              reducers = (0, _redux.combineReducers)(_extends({}, reduxReducers, {
 	                platform: _reducer2.default
 	              }));
-	              store = createStore(reducers, {}, applyMiddleware(thunk, well.middleware));
+	              store = (0, _redux.createStore)(reducers, {}, (0, _redux.applyMiddleware)(thunk, well.middleware));
 
 
 	              store.dispatch(_actions2.default.navigateToUrl(routes, ctx.request.method.toLowerCase(), ctx.path, {
