@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["router.js"] = factory();
-	else
-		root["router.js"] = factory();
-})(this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+exports["router.js"] =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -88,6 +79,4 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ }
-/******/ ])
-});
-;
+/******/ ]);

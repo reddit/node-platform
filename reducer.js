@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"));
-	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js"], factory);
-	else if(typeof exports === 'object')
-		exports["reducer.js"] = factory(require("./actions.js"));
-	else
-		root["reducer.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__) {
-return /******/ (function(modules) { // webpackBootstrap
+exports["reducer.js"] =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -115,10 +106,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 8:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+	module.exports = require("./actions.js");
 
 /***/ }
 
-/******/ })
-});
-;
+/******/ });

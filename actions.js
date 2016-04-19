@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("path-to-regexp"));
-	else if(typeof define === 'function' && define.amd)
-		define(["path-to-regexp"], factory);
-	else if(typeof exports === 'object')
-		exports["actions.js"] = factory(require("path-to-regexp"));
-	else
-		root["actions.js"] = factory(root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_9__) {
-return /******/ (function(modules) { // webpackBootstrap
+exports["actions.js"] =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -243,6 +234,4 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }
 
-/******/ })
-});
-;
+/******/ });
