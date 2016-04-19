@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"));
+	else if(typeof define === 'function' && define.amd)
+		define(["koa", "koa-router", "koa-bodyparser", "koa-static", "redux", "@r/middleware", "./reducer.js", "./actions.js"], factory);
+	else if(typeof exports === 'object')
+		exports["Server.js"] = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"));
+	else
+		root["Server.js"] = factory(root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["redux"], root["@r/middleware"], root["./reducer.js"], root["./actions.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -216,7 +225,7 @@ module.exports =
 
 	  return function () {
 	    server.listen(port, function () {
-	      console.log('App launching on port ' + PORT);
+	      console.log('App launching on port ' + port);
 	    });
 	  };
 	};
@@ -261,13 +270,15 @@ module.exports =
 /* 7 */
 /***/ function(module, exports) {
 
-	module.exports = require("./reducer.js");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = require("./actions.js");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ }
-/******/ ]);
+/******/ ])
+});
+;

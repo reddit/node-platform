@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("path-to-regexp"));
+	else if(typeof define === 'function' && define.amd)
+		define(["path-to-regexp"], factory);
+	else if(typeof exports === 'object')
+		exports["actions.js"] = factory(require("path-to-regexp"));
+	else
+		root["actions.js"] = factory(root["path-to-regexp"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_9__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 
@@ -225,6 +234,15 @@ module.exports =
 	  }();
 	};
 
+	exports.default = {
+	  SET_PAGE: SET_PAGE,
+	  GOTO_PAGE_INDEX: GOTO_PAGE_INDEX,
+	  NAVIGATE_TO_COMMENTS: NAVIGATE_TO_COMMENTS,
+	  setPage: setPage,
+	  gotoPageIndex: gotoPageIndex,
+	  navigateToUrl: navigateToUrl
+	};
+
 /***/ },
 
 /***/ 9:
@@ -234,4 +252,6 @@ module.exports =
 
 /***/ }
 
-/******/ });
+/******/ })
+});
+;
