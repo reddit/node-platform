@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"));
+		module.exports = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"), require("lodash/object"));
 	else if(typeof define === 'function' && define.amd)
-		define(["koa", "koa-router", "koa-bodyparser", "koa-static", "redux", "@r/middleware", "./reducer.js", "./actions.js"], factory);
+		define(["koa", "koa-router", "koa-bodyparser", "koa-static", "redux", "@r/middleware", "./reducer.js", "./actions.js", "lodash/object"], factory);
 	else if(typeof exports === 'object')
-		exports["Server.js"] = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"));
+		exports["Server.js"] = factory(require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("redux"), require("@r/middleware"), require("./reducer.js"), require("./actions.js"), require("lodash/object"));
 	else
-		root["Server.js"] = factory(root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["redux"], root["@r/middleware"], root["./reducer.js"], root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
+		root["Server.js"] = factory(root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["redux"], root["@r/middleware"], root["./reducer.js"], root["./actions.js"], root["lodash/object"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_12__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -81,6 +81,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _koaStatic2 = _interopRequireDefault(_koaStatic);
 
 	var _redux = __webpack_require__(5);
+
+	var _object = __webpack_require__(12);
 
 	var _middleware = __webpack_require__(6);
 
@@ -176,7 +178,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _iteratorError2 = undefined;
 
 	      try {
-	        for (var _iterator2 = values(METHODS)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	        for (var _iterator2 = (0, _object.values)(METHODS)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
 	          var method = _step2.value;
 
 	          if (handler.prototype[method]) {
@@ -277,6 +279,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ },
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ function(module, exports) {
+
+	module.exports = require("lodash/object");
 
 /***/ }
 /******/ ])
