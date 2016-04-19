@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _actions = __webpack_require__(8);
+	var _actions = __webpack_require__(7);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -112,10 +112,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 7:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 /***/ }
 
