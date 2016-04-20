@@ -93,7 +93,7 @@ client();
 ```
 
 ## Creating Routes
-r/platform's router differs from most traditional routers. Instead of handlers returning html, they use Redux's dispatch calls to help define a state blob. Methods on the handler are HTTP verbs. Specifically, they are one of 'get', 'post', 'put', 'patch', and 'delete'. These methods MUST return promises.
+r/platform's router differs from most traditional routers. Instead of handlers returning html, they use Redux's dispatch calls to help define a state blob. Methods on the handler are HTTP verbs. Specifically, they are one of `get`, `post`, `put`, `patch`, and `delete`. These methods MUST return promises.
 
 All methods have access to the following properties:
 
@@ -103,7 +103,7 @@ All methods have access to the following properties:
 0. `this.hashParams`: a dictionary of hash params
 0. `this.bodyParams`: a dictionary of data that would appear in the request body
 
-Each method is also called with the following argument:
+Each method is also called with the following arguments:
 
 0. `dispatch`: a function used to dispatch Redux actions
 0. `getState`: a function that (when called) returns a snapshot of state in the Redux store
@@ -151,15 +151,19 @@ export default [
 There are a few additional goodies in r/platform
 
 **Reducer**
+
 r/platform exports a Redux reducer (`@r/platform/reducer`). This reducer get auto added when using the `Client` and `Server` functions, so you should never need to import this directly.
 
 **Actions**
+
 r/platform exposes a few Redux actions you can use to navigate through the app. They are:
+
 0. `setPage(pageType, component, url)`: pushes a new page onto the navigation stack.
 0. `gotoPageIndex(pageIndex)`: navigates to a particular page on the navigation stack.
-0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams})`: navigate to a url.
+0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams })`: navigate to a url.
 
 **Router**
+
 r/platform doesn't use a traditional router. So instead, the router exports a Handler and some http verbs.
 ```es6
 import { BaseHandler, METHODS } from '@r/platform/router';
