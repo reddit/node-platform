@@ -146,3 +146,31 @@ export default [
   ['/', Frontpage],
 ];
 ```
+
+## Additional Tools
+There are a few additional goodies in r/platform
+
+**Reducer**
+r/platform exports a Redux reducer (`@r/platform/reducer`). This reducer get auto added when using the `Client` and `Server` functions, so you should never need to import this directly.
+
+**Actions**
+r/platform exposes a few Redux actions you can use to navigate through the app. They are:
+0. `setPage(pageType, component, url)`: pushes a new page onto the navigation stack.
+0. `gotoPageIndex(pageIndex)`: navigates to a particular page on the navigation stack.
+0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams})`: navigate to a url.
+
+**Router**
+r/platform doesn't use a traditional router. So instead, the router exports a Handler and some http verbs.
+```es6
+import { BaseHandler, METHODS } from '@r/platform/router';
+
+console.log(METHODS); // {
+                      //   GET: 'get',
+                      //   POST: 'post',
+                      //   PUT: 'put',
+                      //   PATCH: 'patch',
+                      //   DELETE: 'delete',
+                      // }
+
+console.log(BaseHandler); // Described in the previous section on creating routes.
+```

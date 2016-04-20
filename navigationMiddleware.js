@@ -124,7 +124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams);
 
 	                  return {
-	                    v: next(h[method])
+	                    v: next(h[method].bind(h))
 	                  };
 	                }
 	              };
