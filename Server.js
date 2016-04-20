@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("redux"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("./router.js"), require("./navigationMiddleware.js"));
+		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "redux", "./reducer.js", "./actions.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "./router.js", "./navigationMiddleware.js"], factory);
+		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("./router.js"), require("./navigationMiddleware.js"));
+		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("./router.js"));
 	else
-		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./reducer.js"], root["./actions.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["./router.js"], root["./navigationMiddleware.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_17__) {
+		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["./router.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -66,39 +66,39 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _middleware = __webpack_require__(1);
 
-	var _koa = __webpack_require__(8);
+	var _koa = __webpack_require__(9);
 
 	var _koa2 = _interopRequireDefault(_koa);
 
-	var _koaRouter = __webpack_require__(9);
+	var _koaRouter = __webpack_require__(10);
 
 	var _koaRouter2 = _interopRequireDefault(_koaRouter);
 
-	var _koaBodyparser = __webpack_require__(10);
+	var _koaBodyparser = __webpack_require__(11);
 
 	var _koaBodyparser2 = _interopRequireDefault(_koaBodyparser);
 
-	var _koaStatic = __webpack_require__(11);
+	var _koaStatic = __webpack_require__(12);
 
 	var _koaStatic2 = _interopRequireDefault(_koaStatic);
 
 	var _redux = __webpack_require__(4);
 
-	var _object = __webpack_require__(12);
+	var _object = __webpack_require__(13);
 
-	var _navigationMiddleware = __webpack_require__(17);
+	var _navigationMiddleware = __webpack_require__(6);
 
 	var _navigationMiddleware2 = _interopRequireDefault(_navigationMiddleware);
 
-	var _reducer = __webpack_require__(6);
+	var _reducer = __webpack_require__(7);
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _actions = __webpack_require__(7);
+	var _actions = __webpack_require__(8);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _router = __webpack_require__(13);
+	var _router = __webpack_require__(14);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -153,7 +153,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              state = store.getState();
 
 
-	              ctx.body = template(state);
+	              ctx.body = template(state, store);
 
 	            case 10:
 	            case 'end':
@@ -270,46 +270,43 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-router");
+	module.exports = require("koa");
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-bodyparser");
+	module.exports = require("koa-router");
 
 /***/ },
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-static");
+	module.exports = require("koa-bodyparser");
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/object");
+	module.exports = require("koa-static");
 
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
+	module.exports = require("lodash/object");
 
 /***/ },
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+/* 14 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ }
 /******/ ])
