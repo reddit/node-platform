@@ -7,7 +7,7 @@
 		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("path-to-regexp"));
 	else
 		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_15__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_16__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _pathToRegexp = __webpack_require__(15);
+	var _pathToRegexp = __webpack_require__(16);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -170,7 +170,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

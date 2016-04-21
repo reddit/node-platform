@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"));
+		module.exports = factory(require("./actions.js"), require("./merge.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js"], factory);
+		define(["./actions.js", "./merge.js"], factory);
 	else if(typeof exports === 'object')
-		exports["reducer.js"] = factory(require("./actions.js"));
+		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
-		root["reducer.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__) {
+		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_19__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,13 +61,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	var _merge = __webpack_require__(19);
+
+	var _merge2 = _interopRequireDefault(_merge);
 
 	var _actions = __webpack_require__(8);
 
 	var actions = _interopRequireWildcard(_actions);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var DEFAULT = {
 	  currentPageIndex: -1,
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var pageIndex = action.payload.pageIndex;
 
 
-	        return _extends({}, state, {
+	        return (0, _merge2.default)(state, {
 	          currentPageIndex: pageIndex,
 	          currentPage: state.history[pageIndex]
 	        });
@@ -116,6 +120,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ },
+
+/***/ 19:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
 
 /***/ }
 

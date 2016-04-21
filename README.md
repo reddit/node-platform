@@ -147,6 +147,25 @@ export default [
 ];
 ```
 
+## Keeping the Url in Sync
+In addition to routing, it is important that the url is kept in sync with the store state. It is also important that when a popstate event is fired, the state updates to reflect. To that effect, r/platform exports a React component that manages the url. To use it, just drop the component into your app anywhere it won't get unmounted.
+
+```es6
+import React from 'react';
+import { UrlSync } from '@r/platform/components';
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <div>
+        {/* many components */}
+        <UrlSync/>
+      </div>
+    )
+  }
+}
+```
+
 ## Additional Tools
 There are a few additional goodies in r/platform
 
@@ -177,4 +196,30 @@ console.log(METHODS); // {
                       // }
 
 console.log(BaseHandler); // Described in the previous section on creating routes.
+```
+
+**merge**
+
+r/platform includes a helpful utility method for "modifying" state while maintaining the immutability that Redux expects.
+```es6
+import merge from '@r/platform/merge';
+import * as actions from '@r/platform/actions';
+
+// reducer
+export default function(state={}, action={}) {
+  switch(action.type) {
+    case actions.GOTO_PAGE_INDEX: {
+      const { pageIndex } = action.payload;
+
+      // `merge` lets you just deal with state diffs. just merge your
+      // diff with state and `merge` will preserve immutability.
+      return merge(state, {
+        currentPageIndex: pageIndex,
+        currentPage: state.history[pageIndex],
+      });
+    }
+    default: return state;
+  }
+}
+
 ```

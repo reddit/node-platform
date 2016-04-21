@@ -63,6 +63,7 @@ var compiler = webpack({
     'redux': 'commonjs redux',
     'reselect': 'commonjs reselect',
     'lodash/object': 'commonjs lodash/object',
+    'lodash/lang': 'commonjs lodash/lang',
     'path-to-regexp': 'commonjs path-to-regexp',
     '@r/middleware': 'commonjs @r/middleware',
   }, SUB_MODULE_EXTERNALS),

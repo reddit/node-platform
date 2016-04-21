@@ -7,7 +7,7 @@
 		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Server.js"), require("./Client.js"));
 	else
 		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Server.js"], root["./Client.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,11 +61,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.navigationMiddleware = exports.router = exports.reducer = exports.actions = exports.Client = exports.Server = undefined;
 
-	var _Server = __webpack_require__(16);
+	var _Server = __webpack_require__(17);
 
 	var _Server2 = _interopRequireDefault(_Server);
 
-	var _Client = __webpack_require__(17);
+	var _Client = __webpack_require__(18);
 
 	var _Client2 = _interopRequireDefault(_Client);
 
@@ -140,16 +140,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 15 */,
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
-
-/***/ },
+/* 16 */,
 /* 17 */
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
 
 /***/ }
 /******/ ])
