@@ -7,7 +7,7 @@
 		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("path-to-regexp"));
 	else
 		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_16__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -67,7 +67,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _pathToRegexp = __webpack_require__(16);
+	var _pathToRegexp = __webpack_require__(17);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -95,11 +95,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var bodyParams = _action$payload.bodyParams;
 	            var dispatch = store.dispatch;
 	            var getState = store.getState;
-
-	            // let the action bubble down
-
-	            next(action);
-
 	            var _iteratorNormalCompletion = true;
 	            var _didIteratorError = false;
 	            var _iteratorError = undefined;
@@ -121,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
 	                  }, {});
 
-	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams);
+	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
 
 	                  return {
 	                    v: next(h[method].bind(h))
@@ -170,7 +165,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 16:
+/***/ 17:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

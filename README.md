@@ -21,7 +21,7 @@ import Server from '@r/platform/Server';
 const server = Server({
   reducers={},                    // Reducers for the Redux store.
 
-  routes=[],                      // A list of touples that maps
+  routes=[],                      // A list of lists that maps
                                   // routes to handlers. For example:
                                   //
                                   // [
@@ -57,7 +57,7 @@ import Client from '@r/platform/Client';
 const client = Client({
   reducers={},                    // Reducers for the Redux store.
 
-  routes=[],                      // A list of touples that maps
+  routes=[],                      // A list of lists that maps
                                   // routes to handlers. For example:
                                   //
                                   // [
@@ -93,7 +93,7 @@ client();
 ```
 
 ## Creating Routes
-r/platform's router differs from most traditional routers. Instead of handlers returning html, they use Redux's dispatch calls to help define a state blob. Methods on the handler are HTTP verbs. Specifically, they are one of `get`, `post`, `put`, `patch`, and `delete`. These methods MUST return promises.
+r/platform's router differs from most traditional routers. Instead of handlers returning html, they use Redux's dispatch calls to help define a state blob. Methods on the handler are HTTP verbs. Specifically, they are one of `get`, `post`, `put`, `patch`, and `delete`. These methods MUST return promises. The easiest way to enforce this is to declare the methods as es7 async functions.
 
 All methods have access to the following properties:
 
@@ -112,17 +112,19 @@ Each method is also called with the following arguments:
 ### Example
 ```es6
 // routes.es6.js
-import { BaseHandler } from '@r/platform/router';
+import { BaseHandler, METHODS } from '@r/platform/router';
 import * as actions from '@r/platform/actions';
 
 // Create a handler
-class Frontpage extends BaseHandler {
-  async get(dispatch, getState, { waitForState, waitForAction }) {
+class Frontpage extends BaseHandler {  
+  async [METHODS.GET](dispatch, getState, { waitForState, waitForAction }) {
     // pull out params if necessary
     const { foo } = this.queryParams;
 
     // dispatch certain actions synchronously
-    dispatch(actions.setPage('frontpage', '', '/'));
+    // use helper method this.setPage(pageType) – this pushes a new page onto
+    // the history stack
+    this.setPage('%%frontpage');
 
     // if needed, wait on certain tasks to complete before dispatching further.
     // on the Server side, the Server will wait for the entire function to
@@ -165,21 +167,43 @@ export default class App extends React.Component {
   }
 }
 ```
+## Easy routing
+Sometimes, routing to a page might happen by clicking an anchor tag. Instead of manually connecting the anchor tag to a dispatch action, @r/platform exports a pre-connected anchor tag component:
+
+```es6
+import React from 'react';
+import { Anchor } from '@r/platform/components';
+
+export default class Foo extends React.Component {
+  render() {
+    return (
+      <div className='Foo'>
+        <Anchor
+          href='/foo?stuff=yeah'
+          className='Foo__anchor'
+        >
+          Click me!
+        </Anchor>
+      </div>
+    );
+  }
+}
+```
 
 ## Additional Tools
 There are a few additional goodies in r/platform
 
 **Reducer**
 
-r/platform exports a Redux reducer (`@r/platform/reducer`). This reducer get auto added when using the `Client` and `Server` functions, so you should never need to import this directly.
+r/platform exports a Redux reducer (`@r/platform/reducer`). This reducer gets auto added when using the `Client` and `Server` functions, so you should never need to import this directly.
 
 **Actions**
 
 r/platform exposes a few Redux actions you can use to navigate through the app. They are:
 
-0. `setPage(pageType, component, url)`: pushes a new page onto the navigation stack.
+0. `setPage(pageType, url, { urlParams, queryParams, hashParams })`: pushes a new page onto the navigation stack. Note: there are no bodyParams represented here, as routes that contain a body should not update the url.
 0. `gotoPageIndex(pageIndex)`: navigates to a particular page on the navigation stack.
-0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams })`: navigate to a url.
+0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams })`: navigate to a url. Note: there is no need to independently include the urlParams here. Simply pass along the url.
 
 **Router**
 

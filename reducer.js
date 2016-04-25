@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_19__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_20__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _merge = __webpack_require__(19);
+	var _merge = __webpack_require__(20);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -89,14 +89,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var _action$payload = action.payload;
 	        var pageType = _action$payload.pageType;
 	        var url = _action$payload.url;
-	        var component = _action$payload.component;
+	        var urlParams = _action$payload.urlParams;
+	        var queryParams = _action$payload.queryParams;
+	        var hashParams = _action$payload.hashParams;
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
 
 	        return {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: relevantHistory.concat([{ url: url, component: component, page: pageType }]),
-	          currentPage: { url: url, component: component, page: pageType }
+	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, page: pageType }]),
+	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, page: pageType }
 	        };
 	      }
 	    case actions.GOTO_PAGE_INDEX:
@@ -123,10 +125,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 19:
+/***/ 20:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_19__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
 
 /***/ }
 

@@ -63,10 +63,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	var GOTO_PAGE_INDEX = exports.GOTO_PAGE_INDEX = 'PLATFORM__GOTO_PAGE_INDEX';
 	var NAVIGATE_TO_URL = exports.NAVIGATE_TO_URL = 'PLATFORM__NAVIGATE_TO_URL';
 
-	var setPage = exports.setPage = function setPage(pageType, component, url) {
+	var setPage = exports.setPage = function setPage(pageType, url) {
+	  var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
+	  var _ref$urlParams = _ref.urlParams;
+	  var urlParams = _ref$urlParams === undefined ? {} : _ref$urlParams;
+	  var _ref$queryParams = _ref.queryParams;
+	  var queryParams = _ref$queryParams === undefined ? {} : _ref$queryParams;
+	  var _ref$hashParams = _ref.hashParams;
+	  var hashParams = _ref$hashParams === undefined ? {} : _ref$hashParams;
 	  return {
 	    type: SET_PAGE,
-	    payload: { pageType: pageType, component: component, url: url }
+	    payload: { pageType: pageType, url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
 	  };
 	};
 
@@ -78,14 +86,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var navigateToUrl = exports.navigateToUrl = function navigateToUrl(method, pathName) {
-	  var _ref = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+	  var _ref2 = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
-	  var _ref$queryParams = _ref.queryParams;
-	  var queryParams = _ref$queryParams === undefined ? {} : _ref$queryParams;
-	  var _ref$hashParams = _ref.hashParams;
-	  var hashParams = _ref$hashParams === undefined ? {} : _ref$hashParams;
-	  var _ref$bodyParams = _ref.bodyParams;
-	  var bodyParams = _ref$bodyParams === undefined ? {} : _ref$bodyParams;
+	  var _ref2$queryParams = _ref2.queryParams;
+	  var queryParams = _ref2$queryParams === undefined ? {} : _ref2$queryParams;
+	  var _ref2$hashParams = _ref2.hashParams;
+	  var hashParams = _ref2$hashParams === undefined ? {} : _ref2$hashParams;
+	  var _ref2$bodyParams = _ref2.bodyParams;
+	  var bodyParams = _ref2$bodyParams === undefined ? {} : _ref2$bodyParams;
 	  return {
 	    type: NAVIGATE_TO_URL,
 	    payload: { method: method, pathName: pathName, queryParams: queryParams, hashParams: hashParams, bodyParams: bodyParams }
