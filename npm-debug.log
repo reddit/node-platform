@@ -1,0 +1,137 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/5.3.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.8.7
+3 info using node@v5.3.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/niranjan.ramadas/Documents/r-platform',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package.tgz not in flight; packing
+9 verbose correctMkdir /Users/niranjan.ramadas/.npm correctMkdir not in flight; initializing
+10 info lifecycle @r/platform@0.0.18~prepublish: @r/platform@0.0.18
+11 silly lifecycle @r/platform@0.0.18~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package.tgz',
+12 verbose tar pack   '/Users/niranjan.ramadas/Documents/r-platform' ]
+13 verbose tarball /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package.tgz
+14 verbose folder /Users/niranjan.ramadas/Documents/r-platform
+15 verbose addLocalTarball adding from inside cache /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package.tgz
+16 verbose correctMkdir /Users/niranjan.ramadas/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd @r/platform@0.0.18
+18 verbose afterAdd /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package/package.json not in flight; writing
+19 verbose correctMkdir /Users/niranjan.ramadas/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package/package.json written
+21 silly publish { name: '@r/platform',
+21 silly publish   version: '0.0.18',
+21 silly publish   description: 'A set of tools to enable easy universal rendering and page navigation on a React + Redux stack',
+21 silly publish   main: 'platform.js',
+21 silly publish   scripts:
+21 silly publish    { lint: 'eslint lib',
+21 silly publish      test: 'echo "Error: no test specified" && exit 1',
+21 silly publish      start: 'node server.js' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/nramadas/r-platform.git' },
+21 silly publish   keywords: [ 'reddit', 'platform', 'universal', 'isomorphic' ],
+21 silly publish   author: { name: 'nramadas' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/nramadas/r-platform/issues' },
+21 silly publish   homepage: 'https://github.com/nramadas/r-platform#readme',
+21 silly publish   devDependencies:
+21 silly publish    { 'babel-core': '6.7.6',
+21 silly publish      'babel-eslint': '^6.0.4',
+21 silly publish      'babel-loader': '6.2.4',
+21 silly publish      'babel-plugin-transform-class-properties': '6.6.0',
+21 silly publish      'babel-plugin-transform-runtime': '6.7.5',
+21 silly publish      'babel-polyfill': '6.7.4',
+21 silly publish      'babel-preset-es2015': '6.6.0',
+21 silly publish      'babel-preset-react': '6.5.0',
+21 silly publish      'babel-preset-stage-2': '6.5.0',
+21 silly publish      eslint: '^2.8.0',
+21 silly publish      'eslint-plugin-babel': '^3.2.0',
+21 silly publish      'node-notifier': '4.5.0',
+21 silly publish      webpack: '1.13.0' },
+21 silly publish   peerDependencies:
+21 silly publish    { koa: '^2.x',
+21 silly publish      'koa-bodyparser': '^3.x',
+21 silly publish      'koa-router': '^7.x',
+21 silly publish      'koa-static': '^3.x',
+21 silly publish      react: '^15.x',
+21 silly publish      'react-redux': '^4.x',
+21 silly publish      'react-dom': '^15.x',
+21 silly publish      redux: '^3.x',
+21 silly publish      reselect: '^2.x',
+21 silly publish      lodash: '^4.x',
+21 silly publish      '@r/middleware': '^x' },
+21 silly publish   readme: '# r/platform\nA set of tools to enable easy universal rendering and page navigation on a React + Redux stack.\n\n## Installation\nCurrently, just use NPM.\n```\nnpm install -S @r/platform\n```\n\nYou also need to install its peer dependencies. For example:\n```\nnpm install koa@2.0.0 koa-bodyparser@3.0.0 koa-router@7.0.1 koa-static@3.0.0 react@15.0.1 react-redux@4.4.5 react-dom@15.0.0-rc.2 redux@3.4.0 reselect@2.4.0 lodash@4.11.1 @r/middleware@0.5.1\n```\n\n## Usage\n### Server\n```es6\n// Server.es6.js\nimport Server from \'@r/platform/Server\';\n\nconst server = Server({\n  reducers={},                    // Reducers for the Redux store.\n\n  routes=[],                      // A list of lists that maps\n                                  // routes to handlers. For example:\n                                  //\n                                  // [\n                                  //   [\'/\', Frontpage],\n                                  //   [\'/r/:subredditName\', Subreddit],\n                                  // ]\n\n  template=function(data) {...},  // a template function that returns a\n                                  // string (likely an HTML string).\n\n  port=8888,                      // OPTIONAL. port for your server.\n\n  preRouteServerMiddleware=[],    // OPTIONAL. Koa middleware to run\n                                  // before a route is handled\n\n  postRouteServerMiddleware=[],   // OPTIONAL. Koa middleware to run\n                                  // after a route is handled\n\n  reduxMiddleware=[],             // OPTIONAL. Additional Redux middleware.\n                                  // Middleware defined here will run\n                                  // before r/platform\'s middleware runs.\n});\n\n// start the server\nserver();\n```\n\n### Client\n```es6\n// Client.es6.js\nimport Client from \'@r/platform/Client\';\n\nconst client = Client({\n  reducers={},                    // Reducers for the Redux store.\n\n  routes=[],                      // A list of lists that maps\n                                  // routes to handlers. For example:\n                                  //\n                                  // [\n                                  //   [\'/\', Frontpage],\n                                  //   [\'/r/:subredditName\', Subreddit],\n                                  // ]\n\n  appComponent=<div/>             // The React component that\n                                  // represents the app.\n\n  container=\'container\',          // OPTIONAL. Id of the DOM element\n                                  // the Client App will be rendered into.\n\n  dataEl=\'data\',                  // OPTIONAL. Id of the script tab that\n                                  // holds the JSON blob the store is\n                                  // initialized with.\n\n  modifyData=function(data) {...} // OPTIONAL. A function that mutates the\n                                  // data object before it is loaded\n                                  // into the client side store.\n\n  reduxMiddleware=[],             // OPTIONAL. Additional Redux middleware.\n                                  // Middleware defined here will run\n                                  // before r/platform\'s middleware runs.\n\n  debug=false,                    // OPTIONAL. Setting debug to true will\n                                  // cause redux actions to be logged\n                                  // in the console.\n});\n\n// run the client\nclient();\n```\n\n## Creating Routes\nr/platform\'s router differs from most traditional routers. Instead of handlers returning html, they use Redux\'s dispatch calls to help define a state blob. Methods on the handler are HTTP verbs. Specifically, they are one of `get`, `post`, `put`, `patch`, and `delete`. These methods MUST return promises. The easiest way to enforce this is to declare the methods as es7 async functions.\n\nAll methods have access to the following properties:\n\n0. `this.originalUrl`: the url that spawned this handler\n0. `this.urlParams`: a dictionary of route defined params. e.g. if \'/bar\' matches \'/:foo\', urlParams would look like `{ foo: \'bar\' }`.\n0. `this.queryParams`: a dictionary of query params\n0. `this.hashParams`: a dictionary of hash params\n0. `this.bodyParams`: a dictionary of data that would appear in the request body\n\nEach method is also called with the following arguments:\n\n0. `dispatch`: a function used to dispatch Redux actions\n0. `getState`: a function that (when called) returns a snapshot of state in the Redux store\n0. `utils`: a dictionary of helper methods. Currently contains two methods, `waitForState` and `waitForAction`. Visit [r/middleware](https://github.com/nramadas/r-middleware) for more details on how these operate.\n\n### Example\n```es6\n// routes.es6.js\nimport { BaseHandler, METHODS } from \'@r/platform/router\';\nimport * as actions from \'@r/platform/actions\';\n\n// Create a handler\nclass Frontpage extends BaseHandler {  \n  async [METHODS.GET](dispatch, getState, { waitForState, waitForAction }) {\n    // pull out params if necessary\n    const { foo } = this.queryParams;\n\n    // dispatch certain actions synchronously\n    // use helper method this.setPage(pageType) – this pushes a new page onto\n    // the history stack\n    this.setPage(\'%%frontpage\');\n\n    // if needed, wait on certain tasks to complete before dispatching further.\n    // on the Server side, the Server will wait for the entire function to\n    // complete before responding to the request with html.\n    const importantThing = await importantAsyncFunction();\n\n    // use the utility methods to wait on something in state\n    await waitForState(\n      state => state.foo === \'foo\', // the condition\n      state => dispatch(/* something */) // the callback if condition is met\n    );\n\n    // further synchronous dispatches are possible. Thanks to es6/7, these won\'t\n    // fire until the previous asynchronous action has completed.\n    dispatch(/* something else */);\n  }\n}\n\n// Export the routes\nexport default [\n  [\'/\', Frontpage],\n];\n```\n\n## Keeping the Url in Sync\nIn addition to routing, it is important that the url is kept in sync with the store state. It is also important that when a popstate event is fired, the state updates to reflect. To that effect, r/platform exports a React component that manages the url. To use it, just drop the component into your app anywhere it won\'t get unmounted.\n\n```es6\nimport React from \'react\';\nimport { UrlSync } from \'@r/platform/components\';\n\nexport default class App extends React.Component {\n  render() {\n    return (\n      <div>\n        {/* many components */}\n        <UrlSync/>\n      </div>\n    )\n  }\n}\n```\n## Easy routing\nSometimes, routing to a page might happen by clicking an anchor tag. Instead of manually connecting the anchor tag to a dispatch action, @r/platform exports a pre-connected anchor tag component:\n\n```es6\nimport React from \'react\';\nimport { Anchor } from \'@r/platform/components\';\n\nexport default class Foo extends React.Component {\n  render() {\n    return (\n      <div className=\'Foo\'>\n        <Anchor\n          href=\'/foo?stuff=yeah\'\n          className=\'Foo__anchor\'\n        >\n          Click me!\n        </Anchor>\n      </div>\n    );\n  }\n}\n```\n\n## Additional Tools\nThere are a few additional goodies in r/platform\n\n**Reducer**\n\nr/platform exports a Redux reducer (`@r/platform/reducer`). This reducer gets auto added when using the `Client` and `Server` functions, so you should never need to import this directly.\n\n**Actions**\n\nr/platform exposes a few Redux actions you can use to navigate through the app. They are:\n\n0. `setPage(pageType, url, { urlParams, queryParams, hashParams })`: pushes a new page onto the navigation stack. Note: there are no bodyParams represented here, as routes that contain a body should not update the url.\n0. `gotoPageIndex(pageIndex)`: navigates to a particular page on the navigation stack.\n0. `navigateToUrl(method, pathName, { queryParams, hashParams, bodyParams })`: navigate to a url. Note: there is no need to independently include the urlParams here. Simply pass along the url.\n\n**Router**\n\nr/platform doesn\'t use a traditional router. So instead, the router exports a Handler and some http verbs.\n```es6\nimport { BaseHandler, METHODS } from \'@r/platform/router\';\n\nconsole.log(METHODS); // {\n                      //   GET: \'get\',\n                      //   POST: \'post\',\n                      //   PUT: \'put\',\n                      //   PATCH: \'patch\',\n                      //   DELETE: \'delete\',\n                      // }\n\nconsole.log(BaseHandler); // Described in the previous section on creating routes.\n```\n\n**merge**\n\nr/platform includes a helpful utility method for "modifying" state while maintaining the immutability that Redux expects.\n```es6\nimport merge from \'@r/platform/merge\';\nimport * as actions from \'@r/platform/actions\';\n\n// reducer\nexport default function(state={}, action={}) {\n  switch(action.type) {\n    case actions.GOTO_PAGE_INDEX: {\n      const { pageIndex } = action.payload;\n\n      // `merge` lets you just deal with state diffs. just merge your\n      // diff with state and `merge` will preserve immutability.\n      return merge(state, {\n        currentPageIndex: pageIndex,\n        currentPage: state.history[pageIndex],\n      });\n    }\n    default: return state;\n  }\n}\n\n```\n',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'ea3d9bf28e4f26f77700eb4ca358d4e5c405a2a2',
+21 silly publish   _id: '@r/platform@0.0.18',
+21 silly publish   _shasum: 'd0ab498d13b9dd66d364803662c5bdb64700234d',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name @r/platform
+24 silly mapToRegistry scope (from package name) @r
+25 verbose mapToRegistry no registry URL found in name for scope @r
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: '@r/platform',
+28 silly mapToRegistry   scope: '@r',
+28 silly mapToRegistry   name: '@r/platform',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag' }
+29 silly mapToRegistry uri https://registry.npmjs.org/@r%2fplatform
+30 verbose publish registryBase https://registry.npmjs.org/
+31 silly publish uploading /Users/niranjan.ramadas/.npm/@r/platform/0.0.18/package.tgz
+32 verbose request uri https://registry.npmjs.org/@r%2fplatform
+33 verbose request sending authorization for write operation
+34 info attempt registry request try #1 at 6:03:19 PM
+35 verbose request using bearer token for auth
+36 verbose request id 6a0d11e9430bd6f0
+37 http request PUT https://registry.npmjs.org/@r%2fplatform
+38 http 403 https://registry.npmjs.org/@r%2fplatform
+39 verbose headers { 'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=0',
+39 verbose headers   'content-length': '96',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   date: 'Tue, 26 Apr 2016 01:03:21 GMT',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   connection: 'keep-alive',
+39 verbose headers   'x-served-by': 'cache-iad2136-IAD',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1461632600.062660,VS0,VE1513' }
+40 verbose request invalidating /Users/niranjan.ramadas/.npm/registry.npmjs.org/_40r_252fplatform on PUT
+41 error publish Failed PUT 403
+42 verbose stack Error: "You cannot publish over the previously published version 0.0.18." : @r/platform
+42 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+42 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+42 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+42 verbose stack     at emitTwo (events.js:87:13)
+42 verbose stack     at Request.emit (events.js:172:7)
+42 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1041:10)
+42 verbose stack     at emitOne (events.js:82:20)
+42 verbose stack     at Request.emit (events.js:169:7)
+42 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:968:12)
+43 verbose statusCode 403
+44 verbose pkgid @r/platform
+45 verbose cwd /Users/niranjan.ramadas/Documents/r-platform
+46 error Darwin 15.2.0
+47 error argv "/usr/local/Cellar/node/5.3.0/bin/node" "/usr/local/bin/npm" "publish"
+48 error node v5.3.0
+49 error npm  v3.8.7
+50 error code E403
+51 error "You cannot publish over the previously published version 0.0.18." : @r/platform
+52 error If you need help, you may report this error at:
+52 error     <https://github.com/npm/npm/issues>
+53 verbose exit [ 1, true ]
