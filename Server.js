@@ -121,6 +121,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var routes = _config$routes === undefined ? [] : _config$routes;
 	  var _config$template = config.template;
 	  var template = _config$template === undefined ? function () {} : _config$template;
+	  var _config$handleCookies = config.handleCookies;
+	  var handleCookies = _config$handleCookies === undefined ? function () {} : _config$handleCookies;
 
 
 	  var server = new _koa2.default();
@@ -141,21 +143,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	              store = (0, _redux.createStore)(r, {}, _redux.applyMiddleware.apply(undefined, _toConsumableArray(reduxMiddleware).concat([nav, thunk, well.middleware])));
 
 
+	              handleCookies(ctx.request.headers.cookie, store.dispatch, store.getState);
+
 	              store.dispatch(_actions2.default.navigateToUrl(ctx.request.method.toLowerCase(), ctx.path, {
 	                queryParams: ctx.request.query,
 	                bodyParams: ctx.request.body
 	              }));
 
-	              _context.next = 8;
+	              _context.next = 9;
 	              return well.onComplete();
 
-	            case 8:
+	            case 9:
 	              state = store.getState();
 
 
 	              ctx.body = template(state, store);
 
-	            case 10:
+	            case 11:
 	            case 'end':
 	              return _context.stop();
 	          }
