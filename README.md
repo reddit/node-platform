@@ -19,30 +19,36 @@ npm install koa@2.0.0 koa-bodyparser@3.0.0 koa-router@7.0.1 koa-static@3.0.0 rea
 import Server from '@r/platform/Server';
 
 const server = Server({
-  reducers={},                    // Reducers for the Redux store.
+  reducers={},                            // Reducers for the Redux store.
 
-  routes=[],                      // A list of lists that maps
-                                  // routes to handlers. For example:
-                                  //
-                                  // [
-                                  //   ['/', Frontpage],
-                                  //   ['/r/:subredditName', Subreddit],
-                                  // ]
+  routes=[],                              // A list of lists that maps
+                                          // routes to handlers. For example:
+                                          //
+                                          // [
+                                          //   ['/', Frontpage],
+                                          //   ['/r/:subredditName', Subreddit],
+                                          // ]
 
-  template=function(data) {...},  // a template function that returns a
-                                  // string (likely an HTML string).
+  template=function(data) {...},          // a template function that returns a
+                                          // string (likely an HTML string).
 
-  port=8888,                      // OPTIONAL. port for your server.
+  port=8888,                              // OPTIONAL. port for your server.
 
-  preRouteServerMiddleware=[],    // OPTIONAL. Koa middleware to run
-                                  // before a route is handled
+  preRouteServerMiddleware=[],            // OPTIONAL. Koa middleware to run
+                                          // before a route is handled
 
-  postRouteServerMiddleware=[],   // OPTIONAL. Koa middleware to run
-                                  // after a route is handled
+  postRouteServerMiddleware=[],           // OPTIONAL. Koa middleware to run
+                                          // after a route is handled
 
-  reduxMiddleware=[],             // OPTIONAL. Additional Redux middleware.
-                                  // Middleware defined here will run
-                                  // before r/platform's middleware runs.
+  reduxMiddleware=[],                     // OPTIONAL. Additional Redux
+                                          // middleware. Middleware defined here
+                                          // will run before r/platform's
+                                          // middleware runs.
+
+  dispatchBeforeNavigation=async (koaCtx, dispatch, getState, utils) => {},
+                                          // OPTIONAL. Dispatch additional
+                                          // actions before the navigation
+                                          // fires.
 });
 
 // start the server

@@ -121,8 +121,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var routes = _config$routes === undefined ? [] : _config$routes;
 	  var _config$template = config.template;
 	  var template = _config$template === undefined ? function () {} : _config$template;
-	  var _config$handleCookies = config.handleCookies;
-	  var handleCookies = _config$handleCookies === undefined ? function () {} : _config$handleCookies;
+	  var _config$dispatchBefor = config.dispatchBeforeNavigation;
+	  var dispatchBeforeNavigation = _config$dispatchBefor === undefined ? _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
+	    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+	      while (1) {
+	        switch (_context3.prev = _context3.next) {
+	          case 0:
+	          case 'end':
+	            return _context3.stop();
+	        }
+	      }
+	    }, _callee3, undefined);
+	  })) : _config$dispatchBefor;
 
 
 	  var server = new _koa2.default();
@@ -130,11 +140,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, next) {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
 	      var nav, well, thunk, r, store, state;
-	      return regeneratorRuntime.wrap(function _callee$(_context) {
+	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
-	          switch (_context.prev = _context.next) {
+	          switch (_context2.prev = _context2.next) {
 	            case 0:
 	              nav = _navigationMiddleware2.default.create(routes);
 	              well = _middleware.PromiseWell.create();
@@ -143,14 +153,34 @@ return /******/ (function(modules) { // webpackBootstrap
 	              store = (0, _redux.createStore)(r, {}, _redux.applyMiddleware.apply(undefined, _toConsumableArray(reduxMiddleware).concat([nav, thunk, well.middleware])));
 
 
-	              handleCookies(ctx.request.headers.cookie, store.dispatch, store.getState);
+	              store.dispatch(function () {
+	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
+	                  return regeneratorRuntime.wrap(function _callee$(_context) {
+	                    while (1) {
+	                      switch (_context.prev = _context.next) {
+	                        case 0:
+	                          _context.next = 2;
+	                          return dispatchBeforeNavigation(ctx, dispatch, getState, utils);
+
+	                        case 2:
+	                        case 'end':
+	                          return _context.stop();
+	                      }
+	                    }
+	                  }, _callee, undefined);
+	                }));
+
+	                return function (_x3, _x4, _x5) {
+	                  return ref.apply(this, arguments);
+	                };
+	              }());
 
 	              store.dispatch(_actions2.default.navigateToUrl(ctx.request.method.toLowerCase(), ctx.path, {
 	                queryParams: ctx.request.query,
 	                bodyParams: ctx.request.body
 	              }));
 
-	              _context.next = 9;
+	              _context2.next = 9;
 	              return well.onComplete();
 
 	            case 9:
@@ -161,10 +191,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            case 11:
 	            case 'end':
-	              return _context.stop();
+	              return _context2.stop();
 	          }
 	        }
-	      }, _callee, undefined);
+	      }, _callee2, undefined);
 	    }));
 
 	    return function handleRoute(_x, _x2) {
