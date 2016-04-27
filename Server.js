@@ -119,6 +119,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var reducers = _config$reducers === undefined ? {} : _config$reducers;
 	  var _config$routes = config.routes;
 	  var routes = _config$routes === undefined ? [] : _config$routes;
+	  var _config$getServerRout = config.getServerRouter;
+	  var getServerRouter = _config$getServerRout === undefined ? function () {} : _config$getServerRout;
 	  var _config$template = config.template;
 	  var template = _config$template === undefined ? function () {} : _config$template;
 	  var _config$dispatchBefor = config.dispatchBeforeNavigation;
@@ -256,6 +258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 
+	  getServerRouter(router);
 	  preRouteServerMiddleware.forEach(function (m) {
 	    return server.use(m);
 	  });

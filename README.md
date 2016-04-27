@@ -49,6 +49,9 @@ const server = Server({
                                           // OPTIONAL. Dispatch additional
                                           // actions before the navigation
                                           // fires.
+
+  getServerRouter=(router) => {},         // OPTIONAL. Return the Koa router if
+                                          // needed.
 });
 
 // start the server
@@ -190,6 +193,29 @@ export default class Foo extends React.Component {
         >
           Click me!
         </Anchor>
+      </div>
+    );
+  }
+}
+```
+
+You might want to do the same with Form. @r/platform exports a pre-connected form as well:
+
+```es6
+import React from 'react';
+import { Form } from '@r/platform/components';
+
+export default class Foo extends React.Component {
+  render() {
+    return (
+      <div className='Foo'>
+        <Form
+          action='/login'
+          className='Foo__form'
+        >
+          <input name='username'/>
+          <input name='password' type='password'/>
+        </Form>
       </div>
     );
   }

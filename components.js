@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UrlSync = exports._UrlSync = exports.Anchor = exports._Anchor = undefined;
+	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.Anchor = exports._Anchor = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -167,10 +167,112 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Anchor = exports.Anchor = (0, _reactRedux.connect)(null, anchorDispatcher)(_Anchor);
 
+	// ****** Form
+	var getValues = function getValues(form) {
+	  if (!form || form.nodeName.toLowerCase() !== 'form') {
+	    return {};
+	  }
+
+	  return Array.from(form.elements).reduce(function (values, el) {
+	    if (el.name) {
+	      switch (el.type) {
+	        case 'checkbox':
+	          {
+	            if (!values[el.name]) values[el.name] = [];
+	            if (el.value) values[el.name].push(el.value);
+	            break;
+	          }
+	        case 'select-multiple':
+	          {
+	            values[el.name] = Array.from(el.options).map(function (o) {
+	              return o.value;
+	            });
+	          }
+	        default:
+	          {
+	            values[el.name] = el.value;
+	            break;
+	          }
+	      }
+	    }
+	    return values;
+	  }, {});
+	};
+
+	var _Form = exports._Form = function (_React$Component2) {
+	  _inherits(_Form, _React$Component2);
+
+	  function _Form() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this2, _ret2;
+
+	    _classCallCheck(this, _Form);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(_Form)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.handleSubmit = function (e) {
+	      e.preventDefault();
+
+	      var form = e.target;
+	      _this2.props.onSubmit(_this2.props.action, _this2.props.method, getValues(form));
+	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+	  }
+
+	  _createClass(_Form, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props;
+	      var className = _props2.className;
+	      var action = _props2.action;
+	      var method = _props2.method;
+	      var children = _props2.children;
+
+
+	      return _react2.default.createElement(
+	        'form',
+	        {
+	          className: className,
+	          action: action,
+	          method: method,
+	          onSubmit: this.handleSubmit
+	        },
+	        children
+	      );
+	    }
+	  }]);
+
+	  return _Form;
+	}(_react2.default.Component);
+
+	_Form.propTypes = {
+	  action: T.string.isRequired,
+	  method: T.oneOf([_router.METHODS.POST, _router.METHODS.PUT, _router.METHODS.DELETE, _router.METHODS.PATCH]),
+	  className: T.string,
+	  onSubmit: T.func
+	};
+	_Form.defaultProps = {
+	  method: _router.METHODS.POST,
+	  onSubmit: function onSubmit() {}
+	};
+
+
+	var formDispatcher = function formDispatcher(dispatch) {
+	  return {
+	    onSubmit: function onSubmit(url, method, bodyParams) {
+	      return dispatch(navigationActions.navigateToUrl(method, url, { bodyParams: bodyParams }));
+	    }
+	  };
+	};
+
+	var Form = exports.Form = (0, _reactRedux.connect)(null, formDispatcher)(_Form);
+
 	// ****** UrlSync
 
-	var _UrlSync = exports._UrlSync = function (_React$Component2) {
-	  _inherits(_UrlSync, _React$Component2);
+	var _UrlSync = exports._UrlSync = function (_React$Component3) {
+	  _inherits(_UrlSync, _React$Component3);
 
 	  function _UrlSync() {
 	    _classCallCheck(this, _UrlSync);
@@ -181,7 +283,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_UrlSync, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this3 = this;
+	      var _this4 = this;
 
 	      var handlePopstate = function handlePopstate() {
 	        var pathname = self.location.pathname;
@@ -189,8 +291,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
 
-	        for (var i = _this3.props.history.length - 1; i >= 0; i--) {
-	          var hist = _this3.props.history[i];
+	        for (var i = _this4.props.history.length - 1; i >= 0; i--) {
+	          var hist = _this4.props.history[i];
 	          if (hist.url === pathname && (0, _lang.isEqual)(hist.query, currentQuery)) {
 	            pageIndex = i;
 	            break;
@@ -198,10 +300,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pageIndex > -1) {
-	          _this3.props.gotoPageIndex(pageIndex);
+	          _this4.props.gotoPageIndex(pageIndex);
 	        } else {
 	          // can't find the url, just navigate
-	          _this3.props.navigateToPage(pathname, currentQuery, currentHash);
+	          _this4.props.navigateToPage(pathname, currentQuery, currentHash);
 	        }
 	      };
 
