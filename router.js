@@ -79,8 +79,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams, dispatch, getState) {
-	  var _this = this;
-
 	  _classCallCheck(this, BaseHandler);
 
 	  this.originalUrl = originalUrl;
@@ -88,14 +86,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.queryParams = queryParams;
 	  this.hashParams = hashParams;
 	  this.bodyParams = bodyParams;
-
-	  this.setPage = function (pageType) {
-	    dispatch(actions.setPage(pageType, _this.originalUrl, {
-	      urlParams: urlParams,
-	      queryParams: queryParams,
-	      hashParams: hashParams
-	    }));
-	  };
 	};
 
 	;

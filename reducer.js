@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_20__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_21__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,7 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _merge = __webpack_require__(20);
+	var _merge = __webpack_require__(21);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -76,7 +76,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DEFAULT = {
 	  currentPageIndex: -1,
 	  history: [],
-	  currentPage: null
+	  currentPage: {}
 	};
 
 	exports.default = function () {
@@ -87,7 +87,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    case actions.SET_PAGE:
 	      {
 	        var _action$payload = action.payload;
-	        var pageType = _action$payload.pageType;
 	        var url = _action$payload.url;
 	        var urlParams = _action$payload.urlParams;
 	        var queryParams = _action$payload.queryParams;
@@ -97,8 +96,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        return {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, page: pageType }]),
-	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, page: pageType }
+	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }]),
+	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
 	        };
 	      }
 	    case actions.GOTO_PAGE_INDEX:
@@ -125,10 +124,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 20:
+/***/ 21:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_20__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
 
 /***/ }
 

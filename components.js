@@ -7,7 +7,7 @@
 		exports["components.js"] = factory(require("react"), require("react-redux"), require("./actions.js"), require("./router.js"), require("reselect"), require("lodash/lang"), require("./query.js"));
 	else
 		root["components.js"] = factory(root["react"], root["react-redux"], root["./actions.js"], root["./router.js"], root["reselect"], root["lodash/lang"], root["./query.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_21__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -79,7 +79,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _router = __webpack_require__(14);
 
-	var _query = __webpack_require__(21);
+	var _query = __webpack_require__(17);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -126,6 +126,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _props = this.props;
 	      var href = _props.href;
 	      var className = _props.className;
+	      var style = _props.style;
 	      var children = _props.children;
 
 
@@ -134,6 +135,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        {
 	          href: href,
 	          className: className,
+	          style: style,
 	          onClick: this.handleClick
 	        },
 	        children
@@ -148,6 +150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  href: T.string,
 	  noop: T.bool,
 	  className: T.string,
+	  style: T.object,
 	  navigateToPage: T.func
 	};
 	_Anchor.defaultProps = {
@@ -228,6 +231,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var className = _props2.className;
 	      var action = _props2.action;
 	      var method = _props2.method;
+	      var style = _props2.style;
 	      var children = _props2.children;
 
 
@@ -237,6 +241,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	          className: className,
 	          action: action,
 	          method: method,
+	          style: style,
 	          onSubmit: this.handleSubmit
 	        },
 	        children
@@ -251,6 +256,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  action: T.string.isRequired,
 	  method: T.oneOf([_router.METHODS.POST, _router.METHODS.PUT, _router.METHODS.DELETE, _router.METHODS.PATCH]),
 	  className: T.string,
+	  style: T.object,
 	  onSubmit: T.func
 	};
 	_Form.defaultProps = {
@@ -422,14 +428,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = require("lodash/lang");
 
 /***/ },
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */
+/* 17 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
 
 /***/ }
 /******/ ])

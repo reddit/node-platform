@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"), require("path-to-regexp"));
+		module.exports = factory(require("./actions.js"), require("./router.js"), require("path-to-regexp"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js", "path-to-regexp"], factory);
+		define(["./actions.js", "./router.js", "path-to-regexp"], factory);
 	else if(typeof exports === 'object')
-		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("path-to-regexp"));
+		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("./router.js"), require("path-to-regexp"));
 	else
-		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_17__) {
+		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["./router.js"], root["path-to-regexp"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -67,9 +67,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _pathToRegexp = __webpack_require__(17);
+	var _pathToRegexp = __webpack_require__(18);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
+
+	var _router = __webpack_require__(14);
 
 	var _actions = __webpack_require__(8);
 
@@ -115,6 +117,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  var urlParams = reg.keys.reduce(function (prev, cur, index) {
 	                    return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
 	                  }, {});
+
+	                  if (method === _router.METHODS.GET) {
+	                    dispatch(actions.setPage(pathName, {
+	                      urlParams: urlParams,
+	                      queryParams: queryParams,
+	                      hashParams: hashParams
+	                    }));
+	                  }
 
 	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
 
@@ -165,7 +175,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 17:
+/***/ 14:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+
+/***/ },
+
+/***/ 18:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

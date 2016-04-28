@@ -123,6 +123,7 @@ Each method is also called with the following arguments:
 // routes.es6.js
 import { BaseHandler, METHODS } from '@r/platform/router';
 import * as actions from '@r/platform/actions';
+import * as otherActions from './otherActions';
 
 // Create a handler
 class Frontpage extends BaseHandler {  
@@ -131,9 +132,7 @@ class Frontpage extends BaseHandler {
     const { foo } = this.queryParams;
 
     // dispatch certain actions synchronously
-    // use helper method this.setPage(pageType) – this pushes a new page onto
-    // the history stack
-    this.setPage('%%frontpage');
+    dispatch(otherActions.doSomething());
 
     // if needed, wait on certain tasks to complete before dispatching further.
     // on the Server side, the Server will wait for the entire function to
@@ -176,6 +175,29 @@ export default class App extends React.Component {
   }
 }
 ```
+
+## Rendering pages
+Often, you would like to render certain components based on the url state. To do so, you can use the `<PageSelector>` component:
+
+```es6
+import React from 'react';
+import { PageSelector, Page } from '@r/platform/page';
+
+export default class Foo extends React.Component {
+  render() {
+    return (
+      <div>
+        <PageSelector>
+          <Page url='/'>Hello!</Page>
+          <Page url='/r/:subredditName'>Subreddit!</Page>
+        </PageSelector>
+      </div>
+    );
+  }
+}
+```
+
+
 ## Easy routing
 Sometimes, routing to a page might happen by clicking an anchor tag. Instead of manually connecting the anchor tag to a dispatch action, @r/platform exports a pre-connected anchor tag component:
 
