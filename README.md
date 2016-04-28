@@ -188,8 +188,24 @@ export default class Foo extends React.Component {
     return (
       <div>
         <PageSelector>
-          <Page url='/'>Hello!</Page>
-          <Page url='/r/:subredditName'>Subreddit!</Page>
+          <Page
+            url='/'
+            component={ pageData => <div/> }
+          />
+          <Page
+            url='/r/:subredditName'
+            component={ pageData => (
+              <div>
+                { pageData.urlParams.subredditName }
+              </div>
+            ) }
+          />
+          <Page
+            url='*' // catch all
+            component={ pageData => (
+              <div/>
+            ) }
+          />
         </PageSelector>
       </div>
     );
