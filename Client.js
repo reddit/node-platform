@@ -136,7 +136,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      data = {};
 	    }
 
-	    var store = (0, _redux.createStore)(reds, data, _redux.applyMiddleware.apply(undefined, _toConsumableArray(wares)));
+	    var store = (0, _redux.createStore)(reds, data, (0, _redux.compose)(_redux.applyMiddleware.apply(undefined, _toConsumableArray(wares)), window.devToolsExtension ? window.devToolsExtension() : function (f) {
+	      return f;
+	    }));
 
 	    _reactDom2.default.render(_react2.default.createElement(
 	      _reactRedux.Provider,

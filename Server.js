@@ -143,7 +143,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var handleRoute = function () {
 	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
-	      var nav, well, thunk, r, store, state;
+	      var nav, well, thunk, r, store, state, currentUrl;
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
 	          switch (_context2.prev = _context2.next) {
@@ -188,10 +188,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            case 9:
 	              state = store.getState();
 
+	              // check for redirects
 
-	              ctx.body = template(state, store);
+	              currentUrl = state.platform.currentPage.url;
 
-	            case 11:
+	              if (currentUrl !== ctx.path) {
+	                if (currentUrl) {
+	                  ctx.redirect(currentUrl);
+	                } else {
+	                  ctx.redirect('/');
+	                }
+	              } else {
+	                ctx.body = template(state, store);
+	              }
+
+	            case 12:
 	            case 'end':
 	              return _context2.stop();
 	          }
