@@ -80,9 +80,8 @@ const client = Client({
   container='container',          // OPTIONAL. Id of the DOM element
                                   // the Client App will be rendered into.
 
-  dataEl='data',                  // OPTIONAL. Id of the script tab that
-                                  // holds the JSON blob the store is
-                                  // initialized with.
+  dataVar='___r',                 // OPTIONAL. A key on the 'window' object
+                                  // where the data will be written into.
 
   modifyData=function(data) {...} // OPTIONAL. A function that mutates the
                                   // data object before it is loaded

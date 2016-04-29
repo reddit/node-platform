@@ -95,8 +95,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.default = function (config) {
 	  var _config$container = config.container;
 	  var container = _config$container === undefined ? 'container' : _config$container;
-	  var _config$dataEl = config.dataEl;
-	  var dataEl = _config$dataEl === undefined ? 'data' : _config$dataEl;
+	  var _config$dataVar = config.dataVar;
+	  var dataVar = _config$dataVar === undefined ? '___r' : _config$dataVar;
 	  var _config$modifyData = config.modifyData;
 	  var modifyData = _config$modifyData === undefined ? function (data) {
 	    return data;
@@ -126,11 +126,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  return function () {
 	    var $container = document.getElementById(container);
-	    var $dataEl = document.getElementById(dataEl);
 
 	    var data = void 0;
 	    try {
-	      var temp = JSON.parse($dataEl.innerHTML);
+	      var temp = window[dataVar];
 	      data = modifyData(temp);
 	    } catch (e) {
 	      data = {};
