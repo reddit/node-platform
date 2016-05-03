@@ -23,8 +23,16 @@
     "url": "https://github.com/nramadas/r-platform/issues"
   },
   "homepage": "https://github.com/nramadas/r-platform#readme",
+  "dependencies": {
+    "chai": "3.5.0",
+    "chai-enzyme": "0.4.2",
+    "enzyme": "2.2.0",
+    "mocha": "2.4.5",
+    "react-addons-test-utils": "15.0.1",
+    "sinon": "1.17.3",
+    "sinon-chai": "2.8.0"
+  },
   "devDependencies": {
-    "babel-core": "6.7.6",
     "babel-eslint": "^6.0.4",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-class-properties": "6.6.0",
@@ -39,6 +47,7 @@
     "webpack": "1.13.0"
   },
   "peerDependencies": {
+    "babel-core": "6.7.6",
     "koa": "^2.x",
     "koa-bodyparser": "^3.x",
     "koa-router": "^7.x",

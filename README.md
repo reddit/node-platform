@@ -316,3 +316,46 @@ export default function(state={}, action={}) {
 }
 
 ```
+
+## Testing
+r/platform provides some hooks to make it easier to create tests. Primarily, it exports a test creator that lets you easily set up a test for a component:
+
+`createTest([storeOptions,] testFn)`
+
+`storeOptions` are optional and are used to make the store more representative of the actual store the component is wrapped with. It has three optional keys on it:
+
+0. `reducers: object`: A dictionary of any reducers the store should contain
+0. `middleware: array`: A list of middleware to be added to the store
+0. `routes: array`: A routes list
+
+The `testFn` is called with a dictionary of helpers: `{ shallow, mount, render, expect, getStore, sinon }`.
+
+0. `shallow: function`: Shallow renders your React components. Good for testing the rendering of the component and checking that certain elements exist within in. [more info](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)
+0. `mount: function`: Mounts the component on a jsdom document. Use this to test interactions like clicking, hover, etc. [more info](https://github.com/airbnb/enzyme/blob/master/docs/api/mount.md)
+0. `render: function`: Renders to static html. [more info](https://github.com/airbnb/enzyme/blob/master/docs/api/render.md)
+0. `expect: function`: Assertion function.
+0. `getStore: function`: Returns a store and a wrapper. Useful to testing components that depend on redux.
+0. `sinon: object`: The entirety of sinon to help generate spies, stubs, and mocks. [more info](http://sinonjs.org/)
+
+### Using createTest
+```es6
+import createTest from '@r/platform/createTest';
+import Foo from './Foo';
+
+// testing with a connected component
+createTest(({ mount, getStore, expect }) => {
+  describe('<Foo/>', () => {
+    it('should change state when clicked', () => {
+      const { store, StoreWrapper } = getStore();
+      const container = mount(
+        <StoreWrapper>
+          <Foo/>
+        </StoreWrapper>
+      );
+
+      container.find(Foo).simulate('click');
+      expect(store.getState().fooValue).to.equal('foo');
+    });
+  });
+});
+```

@@ -66,6 +66,18 @@ var compiler = webpack({
     'lodash/lang': 'commonjs lodash/lang',
     'path-to-regexp': 'commonjs path-to-regexp',
     '@r/middleware': 'commonjs @r/middleware',
+    'chai': 'commonjs chai',
+    'chai-enzyme': 'commonjs chai-enzyme',
+    'enzyme': 'commonjs enzyme',
+    'mocha': 'commonjs mocha',
+    'react-addons-test-utils': 'commonjs react-addons-test-utils',
+    'sinon': 'commonjs sinon',
+    'sinon-chai': 'commonjs sinon-chai',
+    'child_process': 'commonjs child_process',
+    'fs': 'commonjs fs',
+    'path': 'commonjs path',
+    'babel-core': 'commonjs babel-core',
+    'jsdom': 'commonjs jsdom',
   }, SUB_MODULE_EXTERNALS),
 });
 

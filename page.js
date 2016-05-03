@@ -7,7 +7,7 @@
 		exports["page.js"] = factory(require("react"), require("react-redux"), require("reselect"), require("path-to-regexp"));
 	else
 		root["page.js"] = factory(root["react"], root["react-redux"], root["reselect"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_18__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_315__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -72,7 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reselect = __webpack_require__(15);
 
-	var _pathToRegexp = __webpack_require__(18);
+	var _pathToRegexp = __webpack_require__(315);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -133,7 +133,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var pages = Array.isArray(children) ? children : [children];
 
-	      var defaultPage = null;
 	      var resultPage = null;
 
 	      var _iteratorNormalCompletion = true;
@@ -145,10 +144,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          var page = _step.value;
 	          var url = page.props.url;
 
-
-	          if (url === '*' && !defaultPage) {
-	            defaultPage = page;
-	          }
 
 	          var reg = (0, _pathToRegexp2.default)(url);
 	          var result = reg.exec(currentPage.url);
@@ -172,8 +167,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	          }
 	        }
 	      }
-
-	      resultPage = resultPage || defaultPage;
 
 	      if (resultPage) {
 	        return _react2.default.cloneElement(resultPage, { pageProperties: currentPage });
@@ -221,7 +214,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 18:
+/***/ 315:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");
