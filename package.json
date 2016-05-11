@@ -47,7 +47,7 @@
     "webpack": "1.13.0"
   },
   "peerDependencies": {
-    "babel-core": "6.7.6",
+    "babel-core": "^6.x",
     "koa": "^2.x",
     "koa-bodyparser": "^3.x",
     "koa-router": "^7.x",

@@ -170,6 +170,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (resultPage) {
 	        return _react2.default.cloneElement(resultPage, { pageProperties: currentPage });
+	      } else {
+	        return false;
 	      }
 	    }
 	  }]);
