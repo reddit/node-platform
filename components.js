@@ -240,6 +240,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	              return o.value;
 	            });
 	          }
+	        case 'radio':
+	          {
+	            if (el.checked) values[el.name] = el.value;
+	          }
 	        default:
 	          {
 	            values[el.name] = el.value;
