@@ -236,7 +236,9 @@ export default class Foo extends React.Component {
 }
 ```
 
-You might want to do the same with Form. @r/platform exports a pre-connected form as well:
+@r/platform also includes a `<BackAnchor/>` component. The `<BackAnchor/>` check to see if the linked url is the previous url in history. If it is, it calls `history.back()` (if the history API exists) instead of adding the destination to the browser's history. This makes links that say 'back' actually go back.
+
+@r/platform exports a pre-connected form as well:
 
 ```es6
 import React from 'react';

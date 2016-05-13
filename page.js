@@ -7,7 +7,7 @@
 		exports["page.js"] = factory(require("react"), require("react-redux"), require("reselect"), require("path-to-regexp"));
 	else
 		root["page.js"] = factory(root["react"], root["react-redux"], root["reselect"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_315__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_315__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactRedux = __webpack_require__(5);
 
-	var _reselect = __webpack_require__(15);
+	var _reselect = __webpack_require__(17);
 
 	var _pathToRegexp = __webpack_require__(315);
 
@@ -209,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 17:
 /***/ function(module, exports) {
 
 	module.exports = require("reselect");

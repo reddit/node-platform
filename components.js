@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-redux"), require("./actions.js"), require("./router.js"), require("reselect"), require("lodash/lang"), require("./query.js"));
+		module.exports = factory(require("react"), require("react-redux"), require("./actions.js"), require("lodash/lang"), require("./query.js"), require("./router.js"), require("reselect"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-redux", "./actions.js", "./router.js", "reselect", "lodash/lang", "./query.js"], factory);
+		define(["react", "react-redux", "./actions.js", "lodash/lang", "./query.js", "./router.js", "reselect"], factory);
 	else if(typeof exports === 'object')
-		exports["components.js"] = factory(require("react"), require("react-redux"), require("./actions.js"), require("./router.js"), require("reselect"), require("lodash/lang"), require("./query.js"));
+		exports["components.js"] = factory(require("react"), require("react-redux"), require("./actions.js"), require("lodash/lang"), require("./query.js"), require("./router.js"), require("reselect"));
 	else
-		root["components.js"] = factory(root["react"], root["react-redux"], root["./actions.js"], root["./router.js"], root["reselect"], root["lodash/lang"], root["./query.js"]);
+		root["components.js"] = factory(root["react"], root["react-redux"], root["./actions.js"], root["lodash/lang"], root["./query.js"], root["./router.js"], root["reselect"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.Anchor = exports._Anchor = undefined;
+	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -69,17 +69,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactRedux = __webpack_require__(5);
 
-	var _reselect = __webpack_require__(15);
+	var _reselect = __webpack_require__(17);
 
-	var _lang = __webpack_require__(16);
+	var _lang = __webpack_require__(14);
 
 	var _actions = __webpack_require__(8);
 
 	var navigationActions = _interopRequireWildcard(_actions);
 
-	var _router = __webpack_require__(14);
+	var _router = __webpack_require__(16);
 
-	var _query = __webpack_require__(17);
+	var _query = __webpack_require__(15);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -160,6 +160,52 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	;
 
+	var _BackAnchor = exports._BackAnchor = function (_Anchor2) {
+	  _inherits(_BackAnchor, _Anchor2);
+
+	  function _BackAnchor() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this2, _ret2;
+
+	    _classCallCheck(this, _BackAnchor);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(_BackAnchor)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.handleClick = function (e) {
+	      e.stopPropagation();
+	      e.preventDefault();
+
+	      var urlHistory = _this2.props.urlHistory;
+	      var url = _this2.props.href.split('?')[0];
+	      var queryParams = (0, _query.extractQuery)(_this2.props.href);
+	      var existsHistoryAPI = typeof history !== 'undefined' && history.back;
+	      var existsUrlHistory = urlHistory && urlHistory.length > 1;
+
+	      if (existsHistoryAPI && existsUrlHistory) {
+	        var prevHist = urlHistory[urlHistory.length - 2];
+	        if ((0, _lang.isEqual)(prevHist.url, url) && (0, _lang.isEqual)(prevHist.queryParams, queryParams)) {
+	          history.back();
+	        } else {
+	          _this2.props.navigateToPage(url, queryParams);
+	        }
+	      }
+	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+	  }
+
+	  return _BackAnchor;
+	}(_Anchor);
+
+	;
+
+	var anchorSelector = (0, _reselect.createSelector)(function (state) {
+	  return state.platform.history;
+	}, function (urlHistory) {
+	  return { urlHistory: urlHistory };
+	});
+
 	var anchorDispatcher = function anchorDispatcher(dispatch) {
 	  return {
 	    navigateToPage: function navigateToPage(url, queryParams) {
@@ -169,6 +215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var Anchor = exports.Anchor = (0, _reactRedux.connect)(null, anchorDispatcher)(_Anchor);
+	var BackAnchor = exports.BackAnchor = (0, _reactRedux.connect)(anchorSelector, anchorDispatcher)(_BackAnchor);
 
 	// ****** Form
 	var getValues = function getValues(form) {
@@ -206,22 +253,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _inherits(_Form, _React$Component2);
 
 	  function _Form() {
-	    var _Object$getPrototypeO2;
+	    var _Object$getPrototypeO3;
 
-	    var _temp2, _this2, _ret2;
+	    var _temp3, _this3, _ret3;
 
 	    _classCallCheck(this, _Form);
 
-	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-	      args[_key2] = arguments[_key2];
+	    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	      args[_key3] = arguments[_key3];
 	    }
 
-	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(_Form)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.handleSubmit = function (e) {
+	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(_Form)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.handleSubmit = function (e) {
 	      e.preventDefault();
 
 	      var form = e.target;
-	      _this2.props.onSubmit(_this2.props.action, _this2.props.method, getValues(form));
-	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
+	      _this3.props.onSubmit(_this3.props.action, _this3.props.method, getValues(form));
+	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
 	  }
 
 	  _createClass(_Form, [{
@@ -289,7 +336,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_UrlSync, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this4 = this;
+	      var _this5 = this;
 
 	      var handlePopstate = function handlePopstate() {
 	        var pathname = self.location.pathname;
@@ -297,8 +344,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
 
-	        for (var i = _this4.props.history.length - 1; i >= 0; i--) {
-	          var hist = _this4.props.history[i];
+	        for (var i = _this5.props.history.length - 1; i >= 0; i--) {
+	          var hist = _this5.props.history[i];
 	          if (hist.url === pathname && (0, _lang.isEqual)(hist.query, currentQuery)) {
 	            pageIndex = i;
 	            break;
@@ -306,10 +353,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pageIndex > -1) {
-	          _this4.props.gotoPageIndex(pageIndex);
+	          _this5.props.gotoPageIndex(pageIndex);
 	        } else {
 	          // can't find the url, just navigate
-	          _this4.props.navigateToPage(pathname, currentQuery, currentHash);
+	          _this5.props.navigateToPage(pathname, currentQuery, currentHash);
 	        }
 	      };
 
@@ -413,25 +460,25 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+	module.exports = require("lodash/lang");
 
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = require("reselect");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/lang");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
 
 /***/ },
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
+	module.exports = require("reselect");
 
 /***/ }
 /******/ ])
