@@ -181,7 +181,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var urlHistory = _this2.props.urlHistory;
 	      var url = _this2.props.href.split('?')[0];
 	      var queryParams = (0, _query.extractQuery)(_this2.props.href);
-	      var existsHistoryAPI = typeof history !== 'undefined' && history.back;
+	      var existsHistoryAPI = typeof history !== 'undefined' && history.back && history.state;
 	      var existsUrlHistory = urlHistory && urlHistory.length > 1;
 
 	      if (existsHistoryAPI && existsUrlHistory) {
@@ -191,6 +191,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        } else {
 	          _this2.props.navigateToPage(url, queryParams);
 	        }
+	      } else {
+	        _this2.props.navigateToPage(url, queryParams);
 	      }
 	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
 	  }
