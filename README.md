@@ -176,36 +176,35 @@ export default class App extends React.Component {
 ```
 
 ## Rendering pages
-Often, you would like to render certain components based on the url state. To do so, you can use the `<PageSelector>` component:
+Often, you would like to render certain components based on the url state. To do so, you can use the `<UrlSwitch>` component:
 
 ```es6
 import React from 'react';
-import { PageSelector, Page } from '@r/platform/page';
+import { UrlSwitch, Case, Page } from '@r/platform/url';
 
 export default class Foo extends React.Component {
   render() {
     return (
       <div>
-        <PageSelector>
-          <Page
+        <UrlSwitch>
+          <Case
+            // do something based on a url. this is the most generic way to use
+            // urlSwitch
             url='/'
-            component={ pageData => <div/> }
+            exec={ pageData => <div/> }
           />
           <Page
+            // as a convenience, if a specific component needs to be rendered,
+            // use the <Page/> component instead. this takes a 'component'
+            // instead of a function. the props of the component are pageData
             url='/r/:subredditName'
-            component={ pageData => (
-              <div>
-                { pageData.urlParams.subredditName }
-              </div>
-            ) }
+            component={ FooComponent }
           />
-          <Page
+          <Case
             url='*' // catch all
-            component={ pageData => (
-              <div/>
-            ) }
+            exec={ pageData => <div/> }
           />
-        </PageSelector>
+        </UrlSwitch>
       </div>
     );
   }

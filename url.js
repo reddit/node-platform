@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["react", "react-redux", "reselect", "path-to-regexp"], factory);
 	else if(typeof exports === 'object')
-		exports["page.js"] = factory(require("react"), require("react-redux"), require("reselect"), require("path-to-regexp"));
+		exports["url.js"] = factory(require("react"), require("react-redux"), require("reselect"), require("path-to-regexp"));
 	else
-		root["page.js"] = factory(root["react"], root["react-redux"], root["reselect"], root["path-to-regexp"]);
+		root["url.js"] = factory(root["react"], root["react-redux"], root["reselect"], root["path-to-regexp"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_315__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -60,7 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.PageSelector = exports._PageSelector = exports.Page = undefined;
+	exports.UrlSwitch = exports._UrlSwitch = exports.Page = exports.Case = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -86,8 +86,37 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var T = _react2.default.PropTypes;
 
-	var Page = exports.Page = function (_React$Component) {
-	  _inherits(Page, _React$Component);
+	var Case = exports.Case = function (_React$Component) {
+	  _inherits(Case, _React$Component);
+
+	  function Case() {
+	    _classCallCheck(this, Case);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Case).apply(this, arguments));
+	  }
+
+	  _createClass(Case, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var exec = _props.exec;
+	      var pageProperties = _props.pageProperties;
+
+	      return exec(pageProperties);
+	    }
+	  }]);
+
+	  return Case;
+	}(_react2.default.Component);
+
+	Case.propTypes = {
+	  url: T.string.isRequired,
+	  exec: T.func.isRequired,
+	  pageProperties: T.object
+	};
+
+	var Page = exports.Page = function (_React$Component2) {
+	  _inherits(Page, _React$Component2);
 
 	  function Page() {
 	    _classCallCheck(this, Page);
@@ -98,11 +127,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(Page, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var component = _props.component;
-	      var pageProperties = _props.pageProperties;
+	      var _props2 = this.props;
+	      var component = _props2.component;
+	      var pageProperties = _props2.pageProperties;
 
-	      return component(pageProperties);
+	      return _react2.default.createElement(component, pageProperties);
 	    }
 	  }]);
 
@@ -111,25 +140,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	Page.propTypes = {
 	  url: T.string.isRequired,
-	  component: T.func.isRequired,
 	  pageProperties: T.object
 	};
 
-	var _PageSelector = exports._PageSelector = function (_React$Component2) {
-	  _inherits(_PageSelector, _React$Component2);
+	var _UrlSwitch = exports._UrlSwitch = function (_React$Component3) {
+	  _inherits(_UrlSwitch, _React$Component3);
 
-	  function _PageSelector() {
-	    _classCallCheck(this, _PageSelector);
+	  function _UrlSwitch() {
+	    _classCallCheck(this, _UrlSwitch);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(_PageSelector).apply(this, arguments));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(_UrlSwitch).apply(this, arguments));
 	  }
 
-	  _createClass(_PageSelector, [{
+	  _createClass(_UrlSwitch, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props2 = this.props;
-	      var children = _props2.children;
-	      var currentPage = _props2.currentPage;
+	      var _props3 = this.props;
+	      var children = _props3.children;
+	      var currentPage = _props3.currentPage;
 
 	      var pages = Array.isArray(children) ? children : [children];
 
@@ -176,10 +204,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }]);
 
-	  return _PageSelector;
+	  return _UrlSwitch;
 	}(_react2.default.Component);
 
-	_PageSelector.propTypes = {
+	_UrlSwitch.propTypes = {
 	  children: T.oneOfType([T.arrayOf(T.element), T.object]),
 	  currentPage: T.object.isRequired
 	};
@@ -191,7 +219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return { currentPage: currentPage };
 	});
 
-	var PageSelector = exports.PageSelector = (0, _reactRedux.connect)(selector)(_PageSelector);
+	var UrlSwitch = exports.UrlSwitch = (0, _reactRedux.connect)(selector)(_UrlSwitch);
 
 /***/ },
 

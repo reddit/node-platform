@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./page.js"), require("./Server.js"));
+		module.exports = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./url.js"), require("./Server.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./navigationMiddleware.js", "./reducer.js", "./actions.js", "./router.js", "./Client.js", "./components.js", "./merge.js", "./page.js", "./Server.js"], factory);
+		define(["./navigationMiddleware.js", "./reducer.js", "./actions.js", "./router.js", "./Client.js", "./components.js", "./merge.js", "./url.js", "./Server.js"], factory);
 	else if(typeof exports === 'object')
-		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./page.js"), require("./Server.js"));
+		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./url.js"), require("./Server.js"));
 	else
-		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Client.js"], root["./components.js"], root["./merge.js"], root["./page.js"], root["./Server.js"]);
+		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Client.js"], root["./components.js"], root["./merge.js"], root["./url.js"], root["./Server.js"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_316__, __WEBPACK_EXTERNAL_MODULE_317__, __WEBPACK_EXTERNAL_MODULE_318__, __WEBPACK_EXTERNAL_MODULE_319__, __WEBPACK_EXTERNAL_MODULE_320__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -60,7 +60,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.Server = exports.router = exports.reducer = exports.page = exports.navigationMiddleware = exports.merge = exports.components = exports.Client = exports.actions = undefined;
+	exports.Server = exports.router = exports.reducer = exports.url = exports.navigationMiddleware = exports.merge = exports.components = exports.Client = exports.actions = undefined;
 
 	var _actions = __webpack_require__(8);
 
@@ -82,9 +82,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _navigationMiddleware2 = _interopRequireDefault(_navigationMiddleware);
 
-	var _page = __webpack_require__(319);
+	var _url = __webpack_require__(319);
 
-	var _page2 = _interopRequireDefault(_page);
+	var _url2 = _interopRequireDefault(_url);
 
 	var _reducer = __webpack_require__(7);
 
@@ -107,7 +107,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.components = _components2.default;
 	exports.merge = _merge2.default;
 	exports.navigationMiddleware = _navigationMiddleware2.default;
-	exports.page = _page2.default;
+	exports.url = _url2.default;
 	exports.reducer = _reducer2.default;
 	exports.router = _router2.default;
 	exports.Server = _Server2.default;
@@ -117,7 +117,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  components: _components2.default,
 	  merge: _merge2.default,
 	  navigationMiddleware: _navigationMiddleware2.default,
-	  page: _page2.default,
+	  url: _url2.default,
 	  reducer: _reducer2.default,
 	  router: _router2.default,
 	  Server: _Server2.default
