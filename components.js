@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-redux"), require("./actions.js"), require("lodash/lang"), require("./query.js"), require("./router.js"), require("reselect"));
+		module.exports = factory(require("react"), require("react-redux"), require("./actions.js"), require("./router.js"), require("lodash/lang"), require("./query.js"), require("reselect"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-redux", "./actions.js", "lodash/lang", "./query.js", "./router.js", "reselect"], factory);
+		define(["react", "react-redux", "./actions.js", "./router.js", "lodash/lang", "./query.js", "reselect"], factory);
 	else if(typeof exports === 'object')
-		exports["components.js"] = factory(require("react"), require("react-redux"), require("./actions.js"), require("lodash/lang"), require("./query.js"), require("./router.js"), require("reselect"));
+		exports["components.js"] = factory(require("react"), require("react-redux"), require("./actions.js"), require("./router.js"), require("lodash/lang"), require("./query.js"), require("reselect"));
 	else
-		root["components.js"] = factory(root["react"], root["react-redux"], root["./actions.js"], root["lodash/lang"], root["./query.js"], root["./router.js"], root["reselect"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
+		root["components.js"] = factory(root["react"], root["react-redux"], root["./actions.js"], root["./router.js"], root["lodash/lang"], root["./query.js"], root["reselect"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -71,15 +71,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reselect = __webpack_require__(17);
 
-	var _lang = __webpack_require__(14);
+	var _lang = __webpack_require__(15);
 
 	var _actions = __webpack_require__(8);
 
 	var navigationActions = _interopRequireWildcard(_actions);
 
-	var _router = __webpack_require__(16);
+	var _router = __webpack_require__(9);
 
-	var _query = __webpack_require__(15);
+	var _query = __webpack_require__(16);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -458,21 +458,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
 
 /***/ },
-/* 9 */,
+/* 9 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+
+/***/ },
 /* 10 */,
 /* 11 */,
 /* 12 */,
 /* 13 */,
-/* 14 */
-/***/ function(module, exports) {
-
-	module.exports = require("lodash/lang");
-
-/***/ },
+/* 14 */,
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
+	module.exports = require("lodash/lang");
 
 /***/ },
 /* 16 */
