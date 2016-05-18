@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"));
+		module.exports = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "react", "react-dom", "redux", "react-redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js", "./router.js"], factory);
+		define(["@r/middleware", "react", "react-dom", "redux", "react-redux", "./navigationMiddleware.js", "./reducer.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Client.js"] = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"));
+		exports["Client.js"] = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"));
 	else
-		root["Client.js"] = factory(root["@r/middleware"], root["react"], root["react-dom"], root["redux"], root["react-redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__) {
+		root["Client.js"] = factory(root["@r/middleware"], root["react"], root["react-dom"], root["redux"], root["react-redux"], root["./navigationMiddleware.js"], root["./reducer.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -84,12 +84,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _actions = __webpack_require__(8);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _router = __webpack_require__(9);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -147,11 +141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      appComponent
 	    ), $container);
 
-	    store.dispatch(_actions2.default.navigateToUrl(_router.METHODS.GET, data.platform.currentPage.url, {
-	      queryParams: data.platform.currentPage.queryParams,
-	      hashParams: data.platform.currentPage.hashParams,
-	      bodyParams: {}
-	    }));
+	    return store;
 	  };
 	};
 
@@ -196,18 +186,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
-
-/***/ },
-/* 8 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 
 /***/ }
 /******/ ])

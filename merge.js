@@ -7,7 +7,7 @@
 		exports["merge.js"] = factory(require("lodash/lang"));
 	else
 		root["merge.js"] = factory(root["lodash/lang"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_15__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.default = merge;
 
-	var _lang = __webpack_require__(15);
+	var _lang = __webpack_require__(13);
 
 	function merge(state, stateDiff) {
 	  var newState = _extends({}, state);
@@ -83,7 +83,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 13:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");

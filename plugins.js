@@ -4,9 +4,9 @@
 	else if(typeof define === 'function' && define.amd)
 		define(["./actions.js"], factory);
 	else if(typeof exports === 'object')
-		exports["router.js"] = factory(require("./actions.js"));
+		exports["plugins.js"] = factory(require("./actions.js"));
 	else
-		root["router.js"] = factory(root["./actions.js"]);
+		root["plugins.js"] = factory(root["./actions.js"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -60,39 +60,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.BaseHandler = exports.METHODS = undefined;
+	exports.dispatchInitialShell = undefined;
 
 	var _actions = __webpack_require__(14);
 
-	var actions = _interopRequireWildcard(_actions);
+	var _actions2 = _interopRequireDefault(_actions);
 
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var dispatchInitialShell = exports.dispatchInitialShell = function dispatchInitialShell(ctx, dispatch) {
+	  // If user is a bot, or if user has a "nojs" querystring or cookie, do full
+	  // server-side rendering. Otherwise, use logic to bypass API requests.
+	  var isBot = (ctx.headers['user-agent'] || '').indexOf('bot') > -1;
+	  var hasNoJsCookie = !!ctx.cookies.get('nojs');
+	  var hasNoJsQuerystring = !!ctx.query.nojs;
 
-	var METHODS = exports.METHODS = {
-	  GET: 'get',
-	  POST: 'post',
-	  PUT: 'put',
-	  PATCH: 'patch',
-	  DELETE: 'delete'
-	};
+	  // Use should get a shell if not a bot and has not asked for the no-js version
+	  // via querystring or cookie.
+	  var useShell = !(isBot || hasNoJsCookie || hasNoJsQuerystring);
 
-	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams, dispatch, getState) {
-	  _classCallCheck(this, BaseHandler);
+	  // If the user is a bot or has the querystring, but doesn't have a cookie, set
+	  // a cookie for next time for 30 days.
+	  if (!useShell && !hasNoJsCookie) {
+	    var expires = new Date();
+	    expires.setDate(expires.getDate() + 30);
 
-	  this.originalUrl = originalUrl;
-	  this.urlParams = urlParams;
-	  this.queryParams = queryParams;
-	  this.hashParams = hashParams;
-	  this.bodyParams = bodyParams;
-	};
+	    ctx.cookies.set('shell', 'false', {
+	      expires: expires
+	    });
+	  }
 
-	;
-
-	exports.default = {
-	  METHODS: METHODS,
-	  BaseHandler: BaseHandler
+	  dispatch(_actions2.default.setShell(useShell));
 	};
 
 /***/ },

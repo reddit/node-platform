@@ -318,6 +318,44 @@ export default function(state={}, action={}) {
 
 ```
 
+**plugins**
+
+You may wish to quickly render a shell of the page- such as a loading screen-
+and make API requests on the client, rather than the server.
+
+```es6
+import * as plugins from '@r/platform/plugins';
+import Server from '@r/platform/Server';
+
+const server = Server({
+  //...
+  dispatchBeforeNavigation: async (ctx, dispatch, getState, utils) => {
+    //...
+    plugins.dispatchInitialShell(ctx, dispatch);
+  }
+});
+```
+
+This will set state.shell to `true` or `false`. If you have a `nojs` cookie, a
+`nojs` querystring, or your user-agent contains the word `bot`, state.shell
+will be `false` during server request handling. Otherwise, it will be `true`.
+You can then check `state.shell` in your _handlers_ to determine whether or not
+to make API requests.
+
+You will also likely want to run `actions.activateClient` on the client side to
+ensure the navigation actions are re-fired client side, with `shell` set to
+`false`. (Otherwise, activateClient is unnecessary unless you need to re-run
+navigation handlers for some reason.)
+
+```es6
+import * as actions from '@r/platform/actions';
+import Client from '@r/platform/Client';
+
+const client = Client({ /* ... */ });
+client.dispatch(actions.activateClient);
+```
+
+
 ## Testing
 r/platform provides some hooks to make it easier to create tests. Primarily, it exports a test creator that lets you easily set up a test for a component:
 
