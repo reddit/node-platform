@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./query.js"));
+		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./query.js"), require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js", "./router.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "lodash/lang", "./query.js"], factory);
+		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "lodash/lang", "./query.js", "./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./query.js"));
+		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./query.js"), require("./router.js"));
 	else
-		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["lodash/lang"], root["./query.js"]);
+		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["lodash/lang"], root["./query.js"], root["./router.js"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -59,6 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.dispatchInitialShell = undefined;
 
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -66,27 +67,27 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _middleware = __webpack_require__(1);
 
-	var _koa = __webpack_require__(10);
+	var _koa = __webpack_require__(9);
 
 	var _koa2 = _interopRequireDefault(_koa);
 
-	var _koaRouter = __webpack_require__(11);
+	var _koaRouter = __webpack_require__(10);
 
 	var _koaRouter2 = _interopRequireDefault(_koaRouter);
 
-	var _koaBodyparser = __webpack_require__(12);
+	var _koaBodyparser = __webpack_require__(11);
 
 	var _koaBodyparser2 = _interopRequireDefault(_koaBodyparser);
 
-	var _koaStatic = __webpack_require__(13);
+	var _koaStatic = __webpack_require__(12);
 
 	var _koaStatic2 = _interopRequireDefault(_koaStatic);
 
 	var _redux = __webpack_require__(4);
 
-	var _object = __webpack_require__(14);
+	var _object = __webpack_require__(13);
 
-	var _lang = __webpack_require__(15);
+	var _lang = __webpack_require__(14);
 
 	var _navigationMiddleware = __webpack_require__(6);
 
@@ -100,15 +101,61 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _query = __webpack_require__(16);
+	var _query = __webpack_require__(15);
 
-	var _router = __webpack_require__(9);
+	var _router = __webpack_require__(16);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+
+	var dispatchInitialShell = exports.dispatchInitialShell = function () {
+	  var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, dispatch) {
+	    var isBot, hasNoJsCookie, hasNoJsQuerystring, useShell, expires;
+	    return regeneratorRuntime.wrap(function _callee$(_context) {
+	      while (1) {
+	        switch (_context.prev = _context.next) {
+	          case 0:
+	            // If user is a bot, or if user has a "nojs" querystring or cookie, do full
+	            // server-side rendering. Otherwise, use logic to bypass API requests.
+	            isBot = (ctx.headers['user-agent'] || '').indexOf('bot') > -1;
+	            hasNoJsCookie = !!ctx.cookies.get('nojs');
+	            hasNoJsQuerystring = !!ctx.query.nojs;
+
+	            // Use should get a shell if not a bot and has not asked for the no-js version
+	            // via querystring or cookie.
+
+	            useShell = !(isBot || hasNoJsCookie || hasNoJsQuerystring);
+
+	            // If the user is a bot or has the querystring, but doesn't have a cookie, set
+	            // a cookie for next time for 30 days.
+
+	            if (!useShell && !hasNoJsCookie) {
+	              expires = new Date();
+
+	              expires.setDate(expires.getDate() + 30);
+
+	              ctx.cookies.set('shell', 'false', {
+	                expires: expires
+	              });
+	            }
+
+	            dispatch(_actions2.default.setShell(useShell));
+
+	          case 6:
+	          case 'end':
+	            return _context.stop();
+	        }
+	      }
+	    }, _callee, undefined);
+	  }));
+
+	  return function dispatchInitialShell(_x, _x2) {
+	    return ref.apply(this, arguments);
+	  };
+	}();
 
 	exports.default = function (config) {
 	  var _config$port = config.port;
@@ -128,16 +175,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var _config$template = config.template;
 	  var template = _config$template === undefined ? function () {} : _config$template;
 	  var _config$dispatchBefor = config.dispatchBeforeNavigation;
-	  var dispatchBeforeNavigation = _config$dispatchBefor === undefined ? _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
-	    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+	  var dispatchBeforeNavigation = _config$dispatchBefor === undefined ? _asyncToGenerator(regeneratorRuntime.mark(function _callee4() {
+	    return regeneratorRuntime.wrap(function _callee4$(_context4) {
 	      while (1) {
-	        switch (_context3.prev = _context3.next) {
+	        switch (_context4.prev = _context4.next) {
 	          case 0:
 	          case 'end':
-	            return _context3.stop();
+	            return _context4.stop();
 	        }
 	      }
-	    }, _callee3, undefined);
+	    }, _callee4, undefined);
 	  })) : _config$dispatchBefor;
 
 
@@ -146,11 +193,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(ctx, next) {
 	      var nav, well, thunk, r, store, state, currentUrl, currentQuery, newUrl;
-	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+	      return regeneratorRuntime.wrap(function _callee3$(_context3) {
 	        while (1) {
-	          switch (_context2.prev = _context2.next) {
+	          switch (_context3.prev = _context3.next) {
 	            case 0:
 	              nav = _navigationMiddleware2.default.create(routes);
 	              well = _middleware.PromiseWell.create();
@@ -160,23 +207,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	              store.dispatch(function () {
-	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
-	                  return regeneratorRuntime.wrap(function _callee$(_context) {
+	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState, utils) {
+	                  return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	                    while (1) {
-	                      switch (_context.prev = _context.next) {
+	                      switch (_context2.prev = _context2.next) {
 	                        case 0:
-	                          _context.next = 2;
+	                          _context2.next = 2;
 	                          return dispatchBeforeNavigation(ctx, dispatch, getState, utils);
 
 	                        case 2:
 	                        case 'end':
-	                          return _context.stop();
+	                          return _context2.stop();
 	                      }
 	                    }
-	                  }, _callee, undefined);
+	                  }, _callee2, undefined);
 	                }));
 
-	                return function (_x3, _x4, _x5) {
+	                return function (_x5, _x6, _x7) {
 	                  return ref.apply(this, arguments);
 	                };
 	              }());
@@ -186,7 +233,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                bodyParams: ctx.request.body
 	              }));
 
-	              _context2.next = 9;
+	              _context3.next = 9;
 	              return well.onComplete();
 
 	            case 9:
@@ -213,13 +260,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            case 13:
 	            case 'end':
-	              return _context2.stop();
+	              return _context3.stop();
 	          }
 	        }
-	      }, _callee2, undefined);
+	      }, _callee3, undefined);
 	    }));
 
-	    return function handleRoute(_x, _x2) {
+	    return function handleRoute(_x3, _x4) {
 	      return ref.apply(this, arguments);
 	    };
 	  }();
@@ -333,43 +380,43 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+	module.exports = require("koa");
 
 /***/ },
 /* 10 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa");
+	module.exports = require("koa-router");
 
 /***/ },
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-router");
+	module.exports = require("koa-bodyparser");
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-bodyparser");
+	module.exports = require("koa-static");
 
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-static");
+	module.exports = require("lodash/object");
 
 /***/ },
 /* 14 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/object");
+	module.exports = require("lodash/lang");
 
 /***/ },
 /* 15 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/lang");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
 /* 16 */

@@ -7,7 +7,7 @@
 		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./url.js"), require("./Server.js"));
 	else
 		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Client.js"], root["./components.js"], root["./merge.js"], root["./url.js"], root["./Server.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_323__, __WEBPACK_EXTERNAL_MODULE_324__, __WEBPACK_EXTERNAL_MODULE_325__, __WEBPACK_EXTERNAL_MODULE_326__, __WEBPACK_EXTERNAL_MODULE_327__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_323__, __WEBPACK_EXTERNAL_MODULE_324__, __WEBPACK_EXTERNAL_MODULE_325__, __WEBPACK_EXTERNAL_MODULE_326__, __WEBPACK_EXTERNAL_MODULE_327__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -90,7 +90,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _router = __webpack_require__(9);
+	var _router = __webpack_require__(16);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -146,10 +146,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 9:
+/***/ 16:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
 
 /***/ },
 

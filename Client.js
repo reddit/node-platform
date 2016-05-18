@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"));
+		module.exports = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "react", "react-dom", "redux", "react-redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js", "./router.js"], factory);
+		define(["@r/middleware", "react", "react-dom", "redux", "react-redux", "./navigationMiddleware.js", "./reducer.js", "./actions.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Client.js"] = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"));
+		exports["Client.js"] = factory(require("@r/middleware"), require("react"), require("react-dom"), require("redux"), require("react-redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"));
 	else
-		root["Client.js"] = factory(root["@r/middleware"], root["react"], root["react-dom"], root["redux"], root["react-redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__) {
+		root["Client.js"] = factory(root["@r/middleware"], root["react"], root["react-dom"], root["redux"], root["react-redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_3__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -59,6 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.activateClient = undefined;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -88,11 +89,49 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _router = __webpack_require__(9);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+
+	var activateClient = exports.activateClient = function activateClient() {
+	  return function () {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
+	      var _getState, platform;
+
+	      return regeneratorRuntime.wrap(function _callee$(_context) {
+	        while (1) {
+	          switch (_context.prev = _context.next) {
+	            case 0:
+	              _getState = getState();
+	              platform = _getState.platform;
+
+	              if (platform.shell) {
+	                _context.next = 4;
+	                break;
+	              }
+
+	              return _context.abrupt('return');
+
+	            case 4:
+
+	              dispatch(_actions2.default.setShell(false));
+	              dispatch(_actions2.default.reroutePage());
+
+	            case 6:
+	            case 'end':
+	              return _context.stop();
+	          }
+	        }
+	      }, _callee, undefined);
+	    }));
+
+	    return function (_x, _x2) {
+	      return ref.apply(this, arguments);
+	    };
+	  }();
+	};
 
 	exports.default = function (config) {
 	  var _config$container = config.container;
@@ -147,11 +186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      appComponent
 	    ), $container);
 
-	    store.dispatch(_actions2.default.navigateToUrl(_router.METHODS.GET, data.platform.currentPage.url, {
-	      queryParams: data.platform.currentPage.queryParams,
-	      hashParams: data.platform.currentPage.hashParams,
-	      bodyParams: {}
-	    }));
+	    return store.dispatch;
 	  };
 	};
 
@@ -202,12 +237,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_9__;
 
 /***/ }
 /******/ ])

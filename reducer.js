@@ -61,6 +61,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _merge = __webpack_require__(325);
 
 	var _merge2 = _interopRequireDefault(_merge);
@@ -76,7 +78,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DEFAULT = {
 	  currentPageIndex: -1,
 	  history: [],
-	  currentPage: {}
+	  currentPage: {},
+	  shell: false
 	};
 
 	exports.default = function () {
@@ -94,11 +97,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
 
-	        return {
+	        return _extends({}, state, {
 	          currentPageIndex: state.currentPageIndex + 1,
 	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }]),
 	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
-	        };
+	        });
 	      }
 	    case actions.GOTO_PAGE_INDEX:
 	      {
@@ -108,6 +111,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (0, _merge2.default)(state, {
 	          currentPageIndex: pageIndex,
 	          currentPage: state.history[pageIndex]
+	        });
+	      }
+	    case actions.SET_SHELL:
+	      {
+	        return (0, _merge2.default)(state, {
+	          shell: action.shell
 	        });
 	      }
 	    default:
