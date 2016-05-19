@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_318__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_325__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,11 +61,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _merge = __webpack_require__(318);
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _merge = __webpack_require__(325);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
-	var _actions = __webpack_require__(8);
+	var _actions = __webpack_require__(14);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -76,7 +78,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var DEFAULT = {
 	  currentPageIndex: -1,
 	  history: [],
-	  currentPage: {}
+	  currentPage: {},
+	  shell: false
 	};
 
 	exports.default = function () {
@@ -94,11 +97,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
 
-	        return {
+	        return _extends({}, state, {
 	          currentPageIndex: state.currentPageIndex + 1,
 	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }]),
 	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
-	        };
+	        });
 	      }
 	    case actions.GOTO_PAGE_INDEX:
 	      {
@@ -110,6 +113,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	          currentPage: state.history[pageIndex]
 	        });
 	      }
+	    case actions.SET_SHELL:
+	      {
+	        return (0, _merge2.default)(state, {
+	          shell: action.shell
+	        });
+	      }
 	    default:
 	      return state;
 	  }
@@ -117,17 +126,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 14:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ },
 
-/***/ 318:
+/***/ 325:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_318__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_325__;
 
 /***/ }
 
