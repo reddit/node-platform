@@ -7,7 +7,7 @@
 		exports["router.js"] = factory(require("./actions.js"));
 	else
 		root["router.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_8__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_14__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.BaseHandler = exports.METHODS = undefined;
 
-	var _actions = __webpack_require__(8);
+	var _actions = __webpack_require__(14);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -97,10 +97,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 8:
+/***/ 14:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ }
 

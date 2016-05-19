@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./router.js"));
+		module.exports = factory(require("./actions.js"), require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./router.js"], factory);
+		define(["./actions.js", "./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["actions.js"] = factory(require("./router.js"));
+		exports["actions.js"] = factory(require("./actions.js"), require("./router.js"));
 	else
-		root["actions.js"] = factory(root["./router.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_16__) {
+		root["actions.js"] = factory(root["./actions.js"], root["./router.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -60,9 +60,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.reroutePage = exports.setShell = exports.navigateToUrl = exports.gotoPageIndex = exports.setPage = exports.REROUTE_PAGE = exports.SET_SHELL = exports.NAVIGATE_TO_URL = exports.GOTO_PAGE_INDEX = exports.SET_PAGE = undefined;
+	exports.activateClient = exports.reroutePage = exports.setShell = exports.navigateToUrl = exports.gotoPageIndex = exports.setPage = exports.REROUTE_PAGE = exports.SET_SHELL = exports.NAVIGATE_TO_URL = exports.GOTO_PAGE_INDEX = exports.SET_PAGE = undefined;
 
 	var _router = __webpack_require__(16);
+
+	var _actions = __webpack_require__(14);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
@@ -147,6 +153,44 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }();
 	};
 
+	var activateClient = exports.activateClient = function activateClient() {
+	  return function () {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
+	      var _getState2, platform;
+
+	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+	        while (1) {
+	          switch (_context2.prev = _context2.next) {
+	            case 0:
+	              _getState2 = getState();
+	              platform = _getState2.platform;
+
+	              if (platform.shell) {
+	                _context2.next = 4;
+	                break;
+	              }
+
+	              return _context2.abrupt('return');
+
+	            case 4:
+
+	              dispatch(setShell(false));
+	              dispatch(reroutePage());
+
+	            case 6:
+	            case 'end':
+	              return _context2.stop();
+	          }
+	        }
+	      }, _callee2, undefined);
+	    }));
+
+	    return function (_x5, _x6) {
+	      return ref.apply(this, arguments);
+	    };
+	  }();
+	};
+
 	exports.default = {
 	  SET_PAGE: SET_PAGE,
 	  GOTO_PAGE_INDEX: GOTO_PAGE_INDEX,
@@ -159,6 +203,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  setShell: setShell,
 	  reroutePage: reroutePage
 	};
+
+/***/ },
+
+/***/ 14:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ },
 
