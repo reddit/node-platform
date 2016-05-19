@@ -68,53 +68,30 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
+	var dispatchInitialShell = exports.dispatchInitialShell = function dispatchInitialShell(ctx, dispatch) {
+	  // If user is a bot, or if user has a "nojs" querystring or cookie, do full
+	  // server-side rendering. Otherwise, use logic to bypass API requests.
+	  var isBot = (ctx.headers['user-agent'] || '').indexOf('bot') > -1;
+	  var hasNoJsCookie = !!ctx.cookies.get('nojs');
+	  var hasNoJsQuerystring = !!ctx.query.nojs;
 
-	var dispatchInitialShell = exports.dispatchInitialShell = function () {
-	  var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(ctx, dispatch) {
-	    var isBot, hasNoJsCookie, hasNoJsQuerystring, useShell, expires;
-	    return regeneratorRuntime.wrap(function _callee$(_context) {
-	      while (1) {
-	        switch (_context.prev = _context.next) {
-	          case 0:
-	            // If user is a bot, or if user has a "nojs" querystring or cookie, do full
-	            // server-side rendering. Otherwise, use logic to bypass API requests.
-	            isBot = (ctx.headers['user-agent'] || '').indexOf('bot') > -1;
-	            hasNoJsCookie = !!ctx.cookies.get('nojs');
-	            hasNoJsQuerystring = !!ctx.query.nojs;
+	  // Use should get a shell if not a bot and has not asked for the no-js version
+	  // via querystring or cookie.
+	  var useShell = !(isBot || hasNoJsCookie || hasNoJsQuerystring);
 
-	            // Use should get a shell if not a bot and has not asked for the no-js version
-	            // via querystring or cookie.
+	  // If the user is a bot or has the querystring, but doesn't have a cookie, set
+	  // a cookie for next time for 30 days.
+	  if (!useShell && !hasNoJsCookie) {
+	    var expires = new Date();
+	    expires.setDate(expires.getDate() + 30);
 
-	            useShell = !(isBot || hasNoJsCookie || hasNoJsQuerystring);
+	    ctx.cookies.set('shell', 'false', {
+	      expires: expires
+	    });
+	  }
 
-	            // If the user is a bot or has the querystring, but doesn't have a cookie, set
-	            // a cookie for next time for 30 days.
-
-	            if (!useShell && !hasNoJsCookie) {
-	              expires = new Date();
-
-	              expires.setDate(expires.getDate() + 30);
-
-	              ctx.cookies.set('shell', 'false', {
-	                expires: expires
-	              });
-	            }
-
-	            dispatch(_actions2.default.setShell(useShell));
-
-	          case 6:
-	          case 'end':
-	            return _context.stop();
-	        }
-	      }
-	    }, _callee, undefined);
-	  }));
-
-	  return function dispatchInitialShell(_x, _x2) {
-	    return ref.apply(this, arguments);
-	  };
-	}();
+	  dispatch(_actions2.default.setShell(useShell));
+	};
 
 /***/ },
 
