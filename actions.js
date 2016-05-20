@@ -87,9 +87,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var queryParams = _ref$queryParams === undefined ? {} : _ref$queryParams;
 	  var _ref$hashParams = _ref.hashParams;
 	  var hashParams = _ref$hashParams === undefined ? {} : _ref$hashParams;
+	  var _ref$referrer = _ref.referrer;
+	  var referrer = _ref$referrer === undefined ? '' : _ref$referrer;
 	  return {
 	    type: SET_PAGE,
-	    payload: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
+	    payload: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, referrer: referrer }
 	  };
 	};
 
@@ -109,9 +111,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var hashParams = _ref2$hashParams === undefined ? {} : _ref2$hashParams;
 	  var _ref2$bodyParams = _ref2.bodyParams;
 	  var bodyParams = _ref2$bodyParams === undefined ? {} : _ref2$bodyParams;
+	  var _ref2$referrer = _ref2.referrer;
+	  var referrer = _ref2$referrer === undefined ? '' : _ref2$referrer;
 	  return {
 	    type: NAVIGATE_TO_URL,
-	    payload: { method: method, pathName: pathName, queryParams: queryParams, hashParams: hashParams, bodyParams: bodyParams }
+	    payload: { method: method, pathName: pathName, queryParams: queryParams, hashParams: hashParams, bodyParams: bodyParams, referrer: referrer }
 	  };
 	};
 
@@ -122,24 +126,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	var reroutePage = exports.reroutePage = function reroutePage() {
 	  return function () {
 	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
-	      var _getState, platform, currentPage;
-
+	      var currentPage;
 	      return regeneratorRuntime.wrap(function _callee$(_context) {
 	        while (1) {
 	          switch (_context.prev = _context.next) {
 	            case 0:
-	              _getState = getState();
-	              platform = _getState.platform;
-	              currentPage = platform.currentPage;
+	              currentPage = getState().platform.currentPage;
 
 
 	              dispatch(navigateToUrl(_router.METHODS.GET, currentPage.url, {
 	                queryParams: currentPage.queryParams,
 	                hashParams: currentPage.hashParams,
-	                bodyParams: {}
+	                bodyParams: {},
+	                referrer: currentPage.referrer
 	              }));
 
-	            case 4:
+	            case 2:
 	            case 'end':
 	              return _context.stop();
 	          }
@@ -156,14 +158,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	var activateClient = exports.activateClient = function activateClient() {
 	  return function () {
 	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
-	      var _getState2, platform;
+	      var _getState, platform;
 
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
 	          switch (_context2.prev = _context2.next) {
 	            case 0:
-	              _getState2 = getState();
-	              platform = _getState2.platform;
+	              _getState = getState();
+	              platform = _getState.platform;
 
 	              if (platform.shell) {
 	                _context2.next = 4;

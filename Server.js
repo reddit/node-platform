@@ -183,7 +183,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	              store.dispatch(_actions2.default.navigateToUrl(ctx.request.method.toLowerCase(), ctx.path, {
 	                queryParams: ctx.request.query,
-	                bodyParams: ctx.request.body
+	                bodyParams: ctx.request.body,
+	                referrer: ctx.headers.referer
 	              }));
 
 	              _context2.next = 9;

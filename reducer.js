@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"), require("./merge.js"));
+		module.exports = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js", "./merge.js"], factory);
+		define(["lodash/lang", "./actions.js", "./pageUtils.js", "./merge.js"], factory);
 	else if(typeof exports === 'object')
-		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
+		exports["reducer.js"] = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else
-		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_317__) {
+		root["reducer.js"] = factory(root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./merge.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_317__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,9 +63,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _lang = __webpack_require__(13);
+
 	var _merge = __webpack_require__(317);
 
 	var _merge2 = _interopRequireDefault(_merge);
+
+	var _pageUtils = __webpack_require__(15);
 
 	var _actions = __webpack_require__(14);
 
@@ -94,13 +98,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var urlParams = _action$payload.urlParams;
 	        var queryParams = _action$payload.queryParams;
 	        var hashParams = _action$payload.hashParams;
+	        var referrer = _action$payload.referrer;
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
+	        var referrerFromHistory = !(0, _lang.isEmpty)(state.currentPage) ? (0, _pageUtils.urlFromPage)(state.currentPage) : '';
+
+	        var pageData = {
+	          url: url,
+	          urlParams: urlParams,
+	          queryParams: queryParams,
+	          hashParams: hashParams,
+	          referrer: referrer || referrerFromHistory
+	        };
 
 	        return _extends({}, state, {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: relevantHistory.concat({ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }),
-	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
+	          history: relevantHistory.concat([pageData]),
+	          currentPage: pageData
 	        });
 	      }
 	    case actions.GOTO_PAGE_INDEX:
@@ -126,10 +140,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
+/***/ 13:
+/***/ function(module, exports) {
+
+	module.exports = require("lodash/lang");
+
+/***/ },
+
 /***/ 14:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+
+/***/ },
+
+/***/ 15:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
 

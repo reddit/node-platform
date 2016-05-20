@@ -171,8 +171,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	;
 
-	var _BackAnchor = exports._BackAnchor = function (_Anchor2) {
-	  _inherits(_BackAnchor, _Anchor2);
+	var _BackAnchor = exports._BackAnchor = function (_React$Component2) {
+	  _inherits(_BackAnchor, _React$Component2);
 
 	  function _BackAnchor() {
 	    var _Object$getPrototypeO2;
@@ -195,9 +195,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this2$props = _this2.props;
 	      var urlHistory = _this2$props.urlHistory;
 	      var currentIndex = _this2$props.currentIndex;
+	      var href = _this2$props.href;
+	      var referrer = _this2$props.referrer;
+	      var backupHref = _this2$props.backupHref;
 
-	      var url = _this2.props.href.split('?')[0];
-	      var queryParams = (0, _pageUtils.extractQuery)(_this2.props.href);
+
+	      var unParsedUrl = href === _BackAnchor.AUTO_ROUTE ? referrer || backupHref : href;
+	      var url = unParsedUrl.split('?')[0];
+	      var queryParams = (0, _pageUtils.extractQuery)(unParsedUrl);
 
 	      if ((0, _shouldGoBack2.default)(urlHistory, currentIndex, url, queryParams)) {
 	        history.back();
@@ -207,17 +212,62 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, _temp2), _possibleConstructorReturn(_this2, _ret2);
 	  }
 
-	  return _BackAnchor;
-	}(_Anchor);
+	  _createClass(_BackAnchor, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props2 = this.props;
+	      var href = _props2.href;
+	      var className = _props2.className;
+	      var style = _props2.style;
+	      var children = _props2.children;
+	      var referrer = _props2.referrer;
+	      var backupHref = _props2.backupHref;
 
+	      var renderHref = href === _BackAnchor.AUTO_ROUTE ? referrer || backupHref : href;
+
+	      return _react2.default.createElement(
+	        'a',
+	        {
+	          href: renderHref,
+	          className: className,
+	          style: style,
+	          onClick: this.handleClick
+	        },
+	        children
+	      );
+	    }
+	  }]);
+
+	  return _BackAnchor;
+	}(_react2.default.Component);
+
+	_BackAnchor.propTypes = {
+	  href: T.string,
+	  backupHref: T.string,
+	  noop: T.bool,
+	  className: T.string,
+	  style: T.object,
+	  referrer: T.string,
+	  navigateToPage: T.func
+	};
+	_BackAnchor.defaultProps = {
+	  href: '#',
+	  backupHref: '#',
+	  noop: false,
+	  referrer: '',
+	  navigateToPage: function navigateToPage() {}
+	};
+	_BackAnchor.AUTO_ROUTE = '__backanchor-auto-route';
 	;
 
 	var anchorSelector = (0, _reselect.createSelector)(function (state) {
 	  return state.platform.history;
 	}, function (state) {
 	  return state.platform.currentPageIndex;
-	}, function (urlHistory, currentIndex) {
-	  return { urlHistory: urlHistory, currentIndex: currentIndex };
+	}, function (state) {
+	  return state.platform.currentPage.referrer;
+	}, function (urlHistory, currentIndex, referrer) {
+	  return { urlHistory: urlHistory, currentIndex: currentIndex, referrer: referrer };
 	});
 
 	var anchorDispatcher = function anchorDispatcher(dispatch) {
@@ -230,6 +280,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Anchor = exports.Anchor = (0, _reactRedux.connect)(null, anchorDispatcher)(_Anchor);
 	var BackAnchor = exports.BackAnchor = (0, _reactRedux.connect)(anchorSelector, anchorDispatcher)(_BackAnchor);
+	BackAnchor.AUTO_ROUTE = _BackAnchor.AUTO_ROUTE;
 
 	// ****** Form
 	var getValues = function getValues(form) {
@@ -267,8 +318,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {});
 	};
 
-	var _Form = exports._Form = function (_React$Component2) {
-	  _inherits(_Form, _React$Component2);
+	var _Form = exports._Form = function (_React$Component3) {
+	  _inherits(_Form, _React$Component3);
 
 	  function _Form() {
 	    var _Object$getPrototypeO3;
@@ -292,12 +343,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_Form, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props2 = this.props;
-	      var className = _props2.className;
-	      var action = _props2.action;
-	      var method = _props2.method;
-	      var style = _props2.style;
-	      var children = _props2.children;
+	      var _props3 = this.props;
+	      var className = _props3.className;
+	      var action = _props3.action;
+	      var method = _props3.method;
+	      var style = _props3.style;
+	      var children = _props3.children;
 
 
 	      return _react2.default.createElement(
@@ -342,8 +393,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// ****** UrlSync
 
-	var _UrlSync = exports._UrlSync = function (_React$Component3) {
-	  _inherits(_UrlSync, _React$Component3);
+	var _UrlSync = exports._UrlSync = function (_React$Component4) {
+	  _inherits(_UrlSync, _React$Component4);
 
 	  function _UrlSync() {
 	    _classCallCheck(this, _UrlSync);

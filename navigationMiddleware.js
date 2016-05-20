@@ -95,6 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var queryParams = _action$payload.queryParams;
 	            var hashParams = _action$payload.hashParams;
 	            var bodyParams = _action$payload.bodyParams;
+	            var referrer = _action$payload.referrer;
 	            var dispatch = store.dispatch;
 	            var getState = store.getState;
 	            var _iteratorNormalCompletion = true;
@@ -122,7 +123,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    dispatch(actions.setPage(pathName, {
 	                      urlParams: urlParams,
 	                      queryParams: queryParams,
-	                      hashParams: hashParams
+	                      hashParams: hashParams,
+	                      referrer: referrer
 	                    }));
 	                  }
 
