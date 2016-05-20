@@ -182,11 +182,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	      e.stopPropagation();
 	      e.preventDefault();
 
-	      var urlHistory = _this2.props.urlHistory;
+	      var _this2$props = _this2.props;
+	      var urlHistory = _this2$props.urlHistory;
+	      var currentIndex = _this2$props.currentIndex;
+
 	      var url = _this2.props.href.split('?')[0];
 	      var queryParams = (0, _pageUtils.extractQuery)(_this2.props.href);
 
-	      if ((0, _shouldGoBack2.default)(urlHistory, url, queryParams)) {
+	      if ((0, _shouldGoBack2.default)(urlHistory, currentIndex, url, queryParams)) {
 	        history.back();
 	      } else {
 	        _this2.props.navigateToPage(url, queryParams);
@@ -201,8 +204,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var anchorSelector = (0, _reselect.createSelector)(function (state) {
 	  return state.platform.history;
-	}, function (urlHistory) {
-	  return { urlHistory: urlHistory };
+	}, function (state) {
+	  return state.platform.currentPageIndex;
+	}, function (urlHistory, currentIndex) {
+	  return { urlHistory: urlHistory, currentIndex: currentIndex };
 	});
 
 	var anchorDispatcher = function anchorDispatcher(dispatch) {

@@ -64,12 +64,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lang = __webpack_require__(13);
 
-	function shouldGoBack(urlHistory, url, queryParams) {
+	function shouldGoBack(urlHistory, currentIndex, url, queryParams) {
 	  var existsHistoryAPI = typeof history !== 'undefined' && history.back && history.state;
-	  var existsUrlHistory = urlHistory && urlHistory.length > 1;
+	  var existsUrlHistory = urlHistory && urlHistory.length > 1 && urlHistory.length > currentIndex;
 
 	  if (existsHistoryAPI && existsUrlHistory) {
-	    var prevHist = urlHistory[urlHistory.length - 2];
+	    var prevHist = urlHistory[currentIndex - 1];
 
 	    if ((0, _lang.isEqual)(prevHist.url, url) && (0, _lang.isEqual)(prevHist.queryParams, queryParams)) {
 	      return true;
