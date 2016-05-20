@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_325__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_318__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _merge = __webpack_require__(325);
+	var _merge = __webpack_require__(318);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -133,10 +133,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 325:
+/***/ 318:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_325__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_318__;
 
 /***/ }
 

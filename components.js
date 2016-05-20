@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"));
+		module.exports = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-redux", "lodash/lang", "./actions.js", "./query.js", "./router.js", "reselect"], factory);
+		define(["react", "react-redux", "lodash/lang", "./actions.js", "./query.js", "./router.js", "reselect", "./shouldGoBack.js"], factory);
 	else if(typeof exports === 'object')
-		exports["components.js"] = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"));
+		exports["components.js"] = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
 	else
-		root["components.js"] = factory(root["react"], root["react-redux"], root["lodash/lang"], root["./actions.js"], root["./query.js"], root["./router.js"], root["reselect"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
+		root["components.js"] = factory(root["react"], root["react-redux"], root["lodash/lang"], root["./actions.js"], root["./query.js"], root["./router.js"], root["reselect"], root["./shouldGoBack.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_321__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,8 +50,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80,6 +81,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _router = __webpack_require__(16);
 
 	var _query = __webpack_require__(15);
+
+	var _shouldGoBack = __webpack_require__(321);
+
+	var _shouldGoBack2 = _interopRequireDefault(_shouldGoBack);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -181,16 +186,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var urlHistory = _this2.props.urlHistory;
 	      var url = _this2.props.href.split('?')[0];
 	      var queryParams = (0, _query.extractQuery)(_this2.props.href);
-	      var existsHistoryAPI = typeof history !== 'undefined' && history.back && history.state;
-	      var existsUrlHistory = urlHistory && urlHistory.length > 1;
 
-	      if (existsHistoryAPI && existsUrlHistory) {
-	        var prevHist = urlHistory[urlHistory.length - 2];
-	        if ((0, _lang.isEqual)(prevHist.url, url) && (0, _lang.isEqual)(prevHist.queryParams, queryParams)) {
-	          history.back();
-	        } else {
-	          _this2.props.navigateToPage(url, queryParams);
-	        }
+	      if ((0, _shouldGoBack2.default)(urlHistory, url, queryParams)) {
+	        history.back();
 	      } else {
 	        _this2.props.navigateToPage(url, queryParams);
 	      }
@@ -352,7 +350,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        for (var i = _this5.props.history.length - 1; i >= 0; i--) {
 	          var hist = _this5.props.history[i];
-	          if (hist.url === pathname && (0, _lang.isEqual)(hist.query, currentQuery)) {
+	          if (hist.url === pathname && (0, _lang.isEqual)(hist.queryParams, currentQuery)) {
 	            pageIndex = i;
 	            break;
 	          }
@@ -435,58 +433,63 @@ return /******/ (function(modules) { // webpackBootstrap
 	var UrlSync = exports.UrlSync = (0, _reactRedux.connect)(urlSelector, urlDispatcher)(_UrlSync);
 
 /***/ },
-/* 1 */,
-/* 2 */
+
+/***/ 2:
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-/* 3 */,
-/* 4 */,
-/* 5 */
+
+/***/ 5:
 /***/ function(module, exports) {
 
 	module.exports = require("react-redux");
 
 /***/ },
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */
+
+/***/ 13:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");
 
 /***/ },
-/* 14 */
+
+/***/ 14:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ },
-/* 15 */
+
+/***/ 15:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
-/* 16 */
+
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
 
 /***/ },
-/* 17 */
+
+/***/ 17:
 /***/ function(module, exports) {
 
 	module.exports = require("reselect");
 
+/***/ },
+
+/***/ 321:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_321__;
+
 /***/ }
-/******/ ])
+
+/******/ })
 });
 ;

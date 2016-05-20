@@ -7,7 +7,7 @@
 		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./Client.js"), require("./components.js"), require("./merge.js"), require("./url.js"), require("./Server.js"));
 	else
 		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./Client.js"], root["./components.js"], root["./merge.js"], root["./url.js"], root["./Server.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_323__, __WEBPACK_EXTERNAL_MODULE_324__, __WEBPACK_EXTERNAL_MODULE_325__, __WEBPACK_EXTERNAL_MODULE_326__, __WEBPACK_EXTERNAL_MODULE_327__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_316__, __WEBPACK_EXTERNAL_MODULE_317__, __WEBPACK_EXTERNAL_MODULE_318__, __WEBPACK_EXTERNAL_MODULE_319__, __WEBPACK_EXTERNAL_MODULE_320__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -66,15 +66,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var actions = _interopRequireWildcard(_actions);
 
-	var _Client = __webpack_require__(323);
+	var _Client = __webpack_require__(316);
 
 	var _Client2 = _interopRequireDefault(_Client);
 
-	var _components = __webpack_require__(324);
+	var _components = __webpack_require__(317);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _merge = __webpack_require__(325);
+	var _merge = __webpack_require__(318);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _navigationMiddleware2 = _interopRequireDefault(_navigationMiddleware);
 
-	var _url = __webpack_require__(326);
+	var _url = __webpack_require__(319);
 
 	var _url2 = _interopRequireDefault(_url);
 
@@ -94,7 +94,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _Server = __webpack_require__(327);
+	var _Server = __webpack_require__(320);
 
 	var _Server2 = _interopRequireDefault(_Server);
 
@@ -153,38 +153,38 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 323:
+/***/ 316:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_316__;
 
 /***/ },
 
-/***/ 324:
+/***/ 317:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_324__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_317__;
 
 /***/ },
 
-/***/ 325:
+/***/ 318:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_325__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_318__;
 
 /***/ },
 
-/***/ 326:
+/***/ 319:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_326__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_319__;
 
 /***/ },
 
-/***/ 327:
+/***/ 320:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_327__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_320__;
 
 /***/ }
 
