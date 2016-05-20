@@ -97,6 +97,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var T = _react2.default.PropTypes;
 
+	var isNewTabClick = function isNewTabClick(e) {
+	  return e.metaKey || e.ctrlKey || e.button === 1 || e.button === 4;
+	};
+
 	// ****** Anchor
 
 	var _Anchor = exports._Anchor = function (_React$Component) {
@@ -114,6 +118,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(_Anchor)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleClick = function (e) {
+	      if (isNewTabClick(e)) {
+	        return;
+	      }
 	      e.stopPropagation();
 	      e.preventDefault();
 
@@ -179,6 +186,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 
 	    return _ret2 = (_temp2 = (_this2 = _possibleConstructorReturn(this, (_Object$getPrototypeO2 = Object.getPrototypeOf(_BackAnchor)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.handleClick = function (e) {
+	      if (isNewTabClick(e)) {
+	        return;
+	      }
 	      e.stopPropagation();
 	      e.preventDefault();
 
