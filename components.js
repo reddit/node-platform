@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
+		module.exports = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-redux", "lodash/lang", "./actions.js", "./query.js", "./router.js", "reselect", "./shouldGoBack.js"], factory);
+		define(["react", "react-redux", "lodash/lang", "./actions.js", "./pageUtils.js", "./router.js", "reselect", "./shouldGoBack.js"], factory);
 	else if(typeof exports === 'object')
-		exports["components.js"] = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
+		exports["components.js"] = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
 	else
-		root["components.js"] = factory(root["react"], root["react-redux"], root["lodash/lang"], root["./actions.js"], root["./query.js"], root["./router.js"], root["reselect"], root["./shouldGoBack.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_321__) {
+		root["components.js"] = factory(root["react"], root["react-redux"], root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./router.js"], root["reselect"], root["./shouldGoBack.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,9 +50,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -80,9 +79,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _router = __webpack_require__(16);
 
-	var _query = __webpack_require__(15);
+	var _pageUtils = __webpack_require__(15);
 
-	var _shouldGoBack = __webpack_require__(321);
+	var _shouldGoBack = __webpack_require__(18);
 
 	var _shouldGoBack2 = _interopRequireDefault(_shouldGoBack);
 
@@ -119,7 +118,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      e.preventDefault();
 
 	      var url = _this.props.href.split('?')[0];
-	      var queryParams = (0, _query.extractQuery)(_this.props.href);
+	      var queryParams = (0, _pageUtils.extractQuery)(_this.props.href);
 
 	      _this.props.navigateToPage(url, queryParams);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -185,7 +184,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var urlHistory = _this2.props.urlHistory;
 	      var url = _this2.props.href.split('?')[0];
-	      var queryParams = (0, _query.extractQuery)(_this2.props.href);
+	      var queryParams = (0, _pageUtils.extractQuery)(_this2.props.href);
 
 	      if ((0, _shouldGoBack2.default)(urlHistory, url, queryParams)) {
 	        history.back();
@@ -344,7 +343,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var handlePopstate = function handlePopstate() {
 	        var pathname = self.location.pathname;
-	        var currentQuery = (0, _query.extractQuery)(self.location.search);
+	        var currentQuery = (0, _pageUtils.extractQuery)(self.location.search);
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
 
@@ -370,7 +369,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'componentWillUpdate',
 	    value: function componentWillUpdate(nextProps) {
-	      var currentQuery = (0, _query.extractQuery)(self.location.search);
+	      var currentQuery = (0, _pageUtils.extractQuery)(self.location.search);
 	      var pageIndex = nextProps.pageIndex;
 	      var history = nextProps.history;
 
@@ -382,7 +381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (self.location.pathname !== newUrl || !(0, _lang.isEqual)(currentQuery, newQuery)) {
 	        if (self.history && self.history.pushState) {
 	          var newHref = newUrl;
-	          if (!(0, _lang.isEmpty)(newQuery)) newHref += (0, _query.createQuery)(newQuery);
+	          if (!(0, _lang.isEmpty)(newQuery)) newHref += (0, _pageUtils.createQuery)(newQuery);
 	          self.history.pushState({}, '', newHref);
 	        } else {
 	          self.location = newUrl;
@@ -433,63 +432,64 @@ return /******/ (function(modules) { // webpackBootstrap
 	var UrlSync = exports.UrlSync = (0, _reactRedux.connect)(urlSelector, urlDispatcher)(_UrlSync);
 
 /***/ },
-
-/***/ 2:
+/* 1 */,
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = require("react");
 
 /***/ },
-
-/***/ 5:
+/* 3 */,
+/* 4 */,
+/* 5 */
 /***/ function(module, exports) {
 
 	module.exports = require("react-redux");
 
 /***/ },
-
-/***/ 13:
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");
 
 /***/ },
-
-/***/ 14:
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
 
 /***/ },
-
-/***/ 15:
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
-
-/***/ 16:
+/* 16 */
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
 
 /***/ },
-
-/***/ 17:
+/* 17 */
 /***/ function(module, exports) {
 
 	module.exports = require("reselect");
 
 /***/ },
-
-/***/ 321:
+/* 18 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_321__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
 
 /***/ }
-
-/******/ })
+/******/ ])
 });
 ;

@@ -1,12 +1,12 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"));
+		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "lodash/lang", "./actions.js", "./query.js", "./router.js"], factory);
+		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "lodash/lang", "./actions.js", "./pageUtils.js", "./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./query.js"), require("./router.js"));
+		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
 	else
-		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["lodash/lang"], root["./actions.js"], root["./query.js"], root["./router.js"]);
+		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./router.js"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -100,7 +100,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _query = __webpack_require__(15);
+	var _pageUtils = __webpack_require__(15);
 
 	var _router = __webpack_require__(16);
 
@@ -202,7 +202,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (currentUrl) {
 	                  newUrl = currentUrl;
 
-	                  if (!(0, _lang.isEmpty)(currentQuery)) newUrl += (0, _query.createQuery)(currentQuery);
+	                  if (!(0, _lang.isEmpty)(currentQuery)) newUrl += (0, _pageUtils.createQuery)(currentQuery);
 	                  ctx.redirect(newUrl);
 	                } else {
 	                  ctx.redirect('/');

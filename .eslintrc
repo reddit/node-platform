@@ -78,7 +78,7 @@
     "no-underscore-dangle": 0,
     "quotes": [2, "single"],
     "semi": [2, "always"],
-    "space-after-keywords": [2, "always"],
+    "keyword-spacing": [2, "always"],
     "space-before-blocks": [2, "always"],
     "space-before-function-parentheses": [0, "never"],
     "space-in-brackets": [0, "never"],
