@@ -107,9 +107,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	var createQuery = exports.createQuery = function createQuery(dict) {
-	  var qs = Object.keys(dict).map(function (k) {
+	  var qs = Object.keys(dict).filter(function (k) {
+	    return typeof dict[k] !== 'undefined';
+	  }).map(function (k) {
 	    return k + '=' + dict[k];
 	  }).join('&');
+
 	  return '?' + qs;
 	};
 
