@@ -97,13 +97,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
 
-	        return (0, _merge2.default)(state, {
+	        return _extends({}, state, {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: [{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }],
+	          history: relevantHistory.concat({ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }),
 	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
-	        }, {
-	          emptyDict: 'replace',
-	          array: 'concat'
 	        });
 	      }
 	    case actions.GOTO_PAGE_INDEX:
