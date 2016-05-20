@@ -315,8 +315,15 @@ export default function(state={}, action={}) {
     default: return state;
   }
 }
-
 ```
+
+`merge` can also take options which let the method know how to deal with arrays and empty dictionaries.
+
+`merge(state, diff, options={ emptyDict, array })`
+
+0. `emptyDict`: One of `strict`, `skip`, or `replace`. Defaults to `strict`. `strict` will merge in the new dictionary, which will cause the object reference to change. `skip` will ignore empty dictionaries (thus not changing the object reference in the original). `replace` will swap out the old dictionary with the empty one.
+
+0. `array`: One of `replace` or `concat`. Defaults to `replace`. `replace` will swap out the old array with the new one. `concat` will produce a new array with values from both arrays, with values from the original taking precedence.
 
 **plugins**
 

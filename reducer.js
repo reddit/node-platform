@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("./actions.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["./actions.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_324__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_317__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -61,9 +61,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _merge = __webpack_require__(324);
+	var _merge = __webpack_require__(317);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -97,10 +95,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
 
-	        return _extends({}, state, {
+	        return (0, _merge2.default)(state, {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: relevantHistory.concat([{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }]),
+	          history: [{ url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }],
 	          currentPage: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams }
+	        }, {
+	          emptyDict: 'replace',
+	          array: 'concat'
 	        });
 	      }
 	    case actions.GOTO_PAGE_INDEX:
@@ -111,6 +112,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return (0, _merge2.default)(state, {
 	          currentPageIndex: pageIndex,
 	          currentPage: state.history[pageIndex]
+	        }, {
+	          emptyDict: 'replace'
 	        });
 	      }
 	    case actions.SET_SHELL:
@@ -133,10 +136,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 324:
+/***/ 317:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_324__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_317__;
 
 /***/ }
 

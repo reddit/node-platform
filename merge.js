@@ -68,13 +68,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _lang = __webpack_require__(13);
 
 	function merge(state, stateDiff) {
+	  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
 	  var newState = _extends({}, state);
 
+	  var _options$emptyDict = options.emptyDict;
+	  var emptyDict = _options$emptyDict === undefined ? 'strict' : _options$emptyDict;
+	  var _options$array = options.array;
+	  var array = _options$array === undefined ? 'replace' : _options$array;
+
+
 	  Object.keys(stateDiff).forEach(function (key) {
-	    if ((0, _lang.isPlainObject)(newState[key]) && (0, _lang.isPlainObject)(stateDiff[key])) {
-	      newState[key] = merge(newState[key], stateDiff[key]);
+	    var oldVal = newState[key];
+	    var newVal = stateDiff[key];
+	    var newValIsEmpty = (0, _lang.isEmpty)(newVal);
+
+	    if ((0, _lang.isPlainObject)(oldVal) && (0, _lang.isPlainObject)(newVal)) {
+	      if (newValIsEmpty && emptyDict === 'skip') {
+	        newState[key] = oldVal;
+	      } else if (newValIsEmpty && emptyDict === 'replace') {
+	        newState[key] = newVal;
+	      } else {
+	        newState[key] = merge(oldVal, newVal);
+	      }
+	    } else if (Array.isArray(oldVal) && Array.isArray(newVal)) {
+	      if (array === 'concat') {
+	        newState[key] = oldVal.concat(newVal);
+	      } else {
+	        newState[key] = newVal;
+	      }
 	    } else {
-	      newState[key] = stateDiff[key];
+	      newState[key] = newVal;
 	    }
 	  });
 
