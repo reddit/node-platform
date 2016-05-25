@@ -102,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var value = _cur$split2[1];
 
 
-	    return _extends({}, prev, _defineProperty({}, key, value));
+	    return _extends({}, prev, _defineProperty({}, key, decodeURIComponent(value)));
 	  }, {});
 	};
 
@@ -110,7 +110,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var qs = Object.keys(dict).filter(function (k) {
 	    return typeof dict[k] !== 'undefined';
 	  }).map(function (k) {
-	    return k + '=' + dict[k];
+	    return k + '=' + encodeURIComponent(dict[k]);
 	  }).join('&');
 
 	  return '?' + qs;
