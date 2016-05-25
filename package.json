@@ -5,6 +5,8 @@
   "main": "platform.js",
   "scripts": {
     "lint": "eslint lib",
+    "build": "node compile.js",
+    "watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
