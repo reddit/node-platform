@@ -121,6 +121,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (isNewTabClick(e)) {
 	        return;
 	      }
+
+	      _this.props.onClick(e);
+	      if (e.defaultPrevented) {
+	        return;
+	      }
+
 	      e.stopPropagation();
 	      e.preventDefault();
 
@@ -162,12 +168,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  noop: T.bool,
 	  className: T.string,
 	  style: T.object,
-	  navigateToPage: T.func
+	  navigateToPage: T.func,
+	  onClick: T.func
 	};
 	_Anchor.defaultProps = {
 	  href: '#',
 	  noop: false,
-	  navigateToPage: function navigateToPage() {}
+	  navigateToPage: function navigateToPage() {},
+	  onClick: function onClick() {}
 	};
 	;
 
@@ -189,6 +197,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      if (isNewTabClick(e)) {
 	        return;
 	      }
+
+	      console.log(_this2.props.onClick);
+	      _this2.props.onClick(e);
+	      if (e.defaultPrevented) {
+	        return;
+	      }
+
 	      e.stopPropagation();
 	      e.preventDefault();
 
@@ -248,14 +263,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  className: T.string,
 	  style: T.object,
 	  referrer: T.string,
-	  navigateToPage: T.func
+	  navigateToPage: T.func,
+	  onClick: T.func
 	};
 	_BackAnchor.defaultProps = {
 	  href: '#',
 	  backupHref: '#',
 	  noop: false,
 	  referrer: '',
-	  navigateToPage: function navigateToPage() {}
+	  navigateToPage: function navigateToPage() {},
+	  onClick: function onClick() {}
 	};
 	_BackAnchor.AUTO_ROUTE = '__backanchor-auto-route';
 	;
