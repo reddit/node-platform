@@ -1,0 +1,18 @@
+#!/bin/bash
+# Runs tests before pushing to master or staging
+
+BRANCH=`git rev-parse --abbrev-ref HEAD`
+PUSH_COMMAND=`ps -ocommand= -p $PPID`
+PROTECTED_BRANCHES="^(master|staging)"
+
+if [[ "$BRANCH" =~ $PROTECTED_BRANCHES ]]; then
+  eval npm test
+  ret_code=$?
+
+  if [ $ret_code != 0 ]; then
+    printf "Tests fail; aborting. " $ret_code
+    exit $ret_code
+  fi
+fi
+
+npm run lint

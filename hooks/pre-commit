@@ -1,0 +1,30 @@
+#!/bin/sh
+# Redirect output to stderr.
+exec 1>&2
+# enable user input
+exec < /dev/tty
+
+# CHECK
+if read -p "Do you want to run the linter? (y/n)" yn
+then
+  echo $yn | grep ^[Yy]$
+  if [ $? -eq 0 ]
+  then
+    CHANGED_FILES=`git diff --staged --name-only | grep \.js* | tr -s '\n' ' '`
+
+    echo $CHANGED_FILES | xargs ./node_modules/.bin/eslint --plugin babel --ext .js,.jsx
+  fi
+fi
+
+
+if read -p "Do you want to build? (y/n)" yn
+then
+  echo $yn | grep ^[Yy]$
+  if [ $? -eq 0 ]
+  then
+    npm run build
+    git add *.js
+  fi
+fi
+
+exit 0;
