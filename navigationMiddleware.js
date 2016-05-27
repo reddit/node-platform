@@ -7,7 +7,7 @@
 		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("./router.js"), require("path-to-regexp"));
 	else
 		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["./router.js"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_323__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_322__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -67,13 +67,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
-	var _pathToRegexp = __webpack_require__(323);
+	var _pathToRegexp = __webpack_require__(322);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
-	var _router = __webpack_require__(16);
+	var _router = __webpack_require__(15);
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -88,7 +88,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return function (store) {
 	      return function (next) {
 	        return function (action) {
-	          if (action.type == actions.NAVIGATE_TO_URL) {
+	          if (action.type === actions.NAVIGATE_TO_URL) {
 	            var _action$payload = action.payload;
 	            var method = _action$payload.method;
 	            var pathName = _action$payload.pathName;
@@ -156,8 +156,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	            }
 
-	            ;
-
 	            return next(new Error('No route found for ' + method + ' ' + pathName));
 	          }
 
@@ -170,21 +168,21 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 13:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ },
 
-/***/ 16:
+/***/ 15:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ },
 
-/***/ 323:
+/***/ 322:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"), require("./router.js"));
+		module.exports = factory(require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js", "./router.js"], factory);
+		define(["./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["actions.js"] = factory(require("./actions.js"), require("./router.js"));
+		exports["actions.js"] = factory(require("./router.js"));
 	else
-		root["actions.js"] = factory(root["./actions.js"], root["./router.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__) {
+		root["actions.js"] = factory(root["./router.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_15__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,13 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.activateClient = exports.reroutePage = exports.setShell = exports.navigateToUrl = exports.gotoPageIndex = exports.setPage = exports.REROUTE_PAGE = exports.SET_SHELL = exports.NAVIGATE_TO_URL = exports.GOTO_PAGE_INDEX = exports.SET_PAGE = undefined;
 
-	var _router = __webpack_require__(16);
-
-	var _actions = __webpack_require__(14);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _router = __webpack_require__(15);
 
 	function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
@@ -208,17 +202,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 15:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
-
-/***/ },
-
-/***/ 16:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
 
 /***/ }
 

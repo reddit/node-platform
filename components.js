@@ -7,7 +7,7 @@
 		exports["components.js"] = factory(require("react"), require("react-redux"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"), require("reselect"), require("./shouldGoBack.js"));
 	else
 		root["components.js"] = factory(root["react"], root["react-redux"], root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./router.js"], root["reselect"], root["./shouldGoBack.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_18__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -69,19 +69,19 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactRedux = __webpack_require__(5);
 
-	var _reselect = __webpack_require__(17);
+	var _reselect = __webpack_require__(16);
 
-	var _lang = __webpack_require__(13);
+	var _lang = __webpack_require__(12);
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var navigationActions = _interopRequireWildcard(_actions);
 
-	var _router = __webpack_require__(16);
+	var _router = __webpack_require__(15);
 
-	var _pageUtils = __webpack_require__(15);
+	var _pageUtils = __webpack_require__(14);
 
-	var _shouldGoBack = __webpack_require__(18);
+	var _shouldGoBack = __webpack_require__(17);
 
 	var _shouldGoBack2 = _interopRequireDefault(_shouldGoBack);
 
@@ -177,7 +177,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  navigateToPage: function navigateToPage() {},
 	  onClick: function onClick() {}
 	};
-	;
 
 	var _BackAnchor = exports._BackAnchor = function (_React$Component2) {
 	  _inherits(_BackAnchor, _React$Component2);
@@ -274,7 +273,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  onClick: function onClick() {}
 	};
 	_BackAnchor.AUTO_ROUTE = '__backanchor-auto-route';
-	;
+
 
 	var anchorSelector = (0, _reselect.createSelector)(function (state) {
 	  return state.platform.history;
@@ -309,8 +308,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	      switch (el.type) {
 	        case 'checkbox':
 	          {
-	            if (!values[el.name]) values[el.name] = [];
-	            if (el.value) values[el.name].push(el.value);
+	            if (!values[el.name]) {
+	              values[el.name] = [];
+	            }
+	            if (el.value) {
+	              values[el.name].push(el.value);
+	            }
 	            break;
 	          }
 	        case 'select-multiple':
@@ -318,10 +321,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	            values[el.name] = Array.from(el.options).map(function (o) {
 	              return o.value;
 	            });
+	            break;
 	          }
 	        case 'radio':
 	          {
-	            if (el.checked) values[el.name] = el.value;
+	            if (el.checked) {
+	              values[el.name] = el.value;
+	            }
+	            break;
 	          }
 	        default:
 	          {
@@ -458,12 +465,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var page = history[pageIndex];
 	      var newUrl = page.url;
 	      var newQuery = page.queryParams;
-	      var newHash = page.hashParams;
 
 	      if (self.location.pathname !== newUrl || !(0, _lang.isEqual)(currentQuery, newQuery)) {
 	        if (self.history && self.history.pushState) {
 	          var newHref = newUrl;
-	          if (!(0, _lang.isEmpty)(newQuery)) newHref += (0, _pageUtils.createQuery)(newQuery);
+	          if (!(0, _lang.isEmpty)(newQuery)) {
+	            newHref += (0, _pageUtils.createQuery)(newQuery);
+	          }
 	          self.history.pushState({}, '', newHref);
 	        } else {
 	          self.location = newUrl;
@@ -490,7 +498,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  gotoPageIndex: function gotoPageIndex() {},
 	  navigateToPage: function navigateToPage() {}
 	};
-	;
+
 
 	var urlSelector = (0, _reselect.createSelector)(function (state) {
 	  return state.platform.currentPageIndex;
@@ -535,11 +543,16 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */,
 /* 10 */,
 /* 11 */,
-/* 12 */,
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ },
 /* 14 */
@@ -557,19 +570,13 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 16 */
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+	module.exports = require("reselect");
 
 /***/ },
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = require("reselect");
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_18__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_17__;
 
 /***/ }
 /******/ ])

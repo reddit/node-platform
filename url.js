@@ -7,7 +7,7 @@
 		exports["url.js"] = factory(require("react"), require("react-redux"), require("reselect"), require("path-to-regexp"));
 	else
 		root["url.js"] = factory(root["react"], root["react-redux"], root["reselect"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_17__, __WEBPACK_EXTERNAL_MODULE_323__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_322__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -70,9 +70,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reactRedux = __webpack_require__(5);
 
-	var _reselect = __webpack_require__(17);
+	var _reselect = __webpack_require__(16);
 
-	var _pathToRegexp = __webpack_require__(323);
+	var _pathToRegexp = __webpack_require__(322);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -198,9 +198,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      if (resultPage) {
 	        return _react2.default.cloneElement(resultPage, { pageProperties: currentPage });
-	      } else {
-	        return false;
 	      }
+
+	      return false;
 	    }
 	  }]);
 
@@ -237,14 +237,14 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 17:
+/***/ 16:
 /***/ function(module, exports) {
 
 	module.exports = require("reselect");
 
 /***/ },
 
-/***/ 323:
+/***/ 322:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

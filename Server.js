@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
+		module.exports = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
 	else if(typeof define === 'function' && define.amd)
-		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "koa", "koa-router", "koa-bodyparser", "koa-static", "lodash/object", "lodash/lang", "./actions.js", "./pageUtils.js", "./router.js"], factory);
+		define(["@r/middleware", "redux", "./navigationMiddleware.js", "./reducer.js", "koa", "koa-router", "koa-bodyparser", "lodash/object", "lodash/lang", "./actions.js", "./pageUtils.js", "./router.js"], factory);
 	else if(typeof exports === 'object')
-		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("koa-static"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
+		exports["Server.js"] = factory(require("@r/middleware"), require("redux"), require("./navigationMiddleware.js"), require("./reducer.js"), require("koa"), require("koa-router"), require("koa-bodyparser"), require("lodash/object"), require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./router.js"));
 	else
-		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["koa-static"], root["lodash/object"], root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./router.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_16__) {
+		root["Server.js"] = factory(root["@r/middleware"], root["redux"], root["./navigationMiddleware.js"], root["./reducer.js"], root["koa"], root["koa-router"], root["koa-bodyparser"], root["lodash/object"], root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./router.js"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_9__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_11__, __WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -78,15 +78,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _koaBodyparser2 = _interopRequireDefault(_koaBodyparser);
 
-	var _koaStatic = __webpack_require__(11);
-
-	var _koaStatic2 = _interopRequireDefault(_koaStatic);
-
 	var _redux = __webpack_require__(4);
 
-	var _object = __webpack_require__(12);
+	var _object = __webpack_require__(11);
 
-	var _lang = __webpack_require__(13);
+	var _lang = __webpack_require__(12);
 
 	var _navigationMiddleware = __webpack_require__(6);
 
@@ -96,13 +92,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _pageUtils = __webpack_require__(15);
+	var _pageUtils = __webpack_require__(14);
 
-	var _router = __webpack_require__(16);
+	var _router = __webpack_require__(15);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -146,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
 	      var nav, well, thunk, r, store, state, currentUrl, currentQuery, newUrl;
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
@@ -176,7 +172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  }, _callee, undefined);
 	                }));
 
-	                return function (_x3, _x4, _x5) {
+	                return function (_x2, _x3, _x4) {
 	                  return ref.apply(this, arguments);
 	                };
 	              }());
@@ -203,7 +199,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                if (currentUrl) {
 	                  newUrl = currentUrl;
 
-	                  if (!(0, _lang.isEmpty)(currentQuery)) newUrl += (0, _pageUtils.createQuery)(currentQuery);
+	                  if (!(0, _lang.isEmpty)(currentQuery)) {
+	                    newUrl += (0, _pageUtils.createQuery)(currentQuery);
+	                  }
 	                  ctx.redirect(newUrl);
 	                } else {
 	                  ctx.redirect('/');
@@ -220,7 +218,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, _callee2, undefined);
 	    }));
 
-	    return function handleRoute(_x, _x2) {
+	    return function handleRoute(_x) {
 	      return ref.apply(this, arguments);
 	    };
 	  }();
@@ -346,19 +344,19 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 11 */
 /***/ function(module, exports) {
 
-	module.exports = require("koa-static");
+	module.exports = require("lodash/object");
 
 /***/ },
 /* 12 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/object");
+	module.exports = require("lodash/lang");
 
 /***/ },
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = require("lodash/lang");
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ },
 /* 14 */
@@ -371,12 +369,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
-
-/***/ },
-/* 16 */
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
 
 /***/ }
 /******/ ])

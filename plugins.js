@@ -7,7 +7,7 @@
 		exports["plugins.js"] = factory(require("./actions.js"));
 	else
 		root["plugins.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.dispatchInitialShell = undefined;
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
@@ -95,10 +95,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 13:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ }
 

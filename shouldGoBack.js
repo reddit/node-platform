@@ -7,7 +7,7 @@
 		exports["shouldGoBack.js"] = factory(require("lodash/lang"));
 	else
 		root["shouldGoBack.js"] = factory(root["lodash/lang"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_13__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_12__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,7 +62,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = shouldGoBack;
 
-	var _lang = __webpack_require__(13);
+	var _lang = __webpack_require__(12);
 
 	function shouldGoBack(urlHistory, currentIndex, url, queryParams) {
 	  var existsHistoryAPI = typeof history !== 'undefined' && history.back && history.state;
@@ -81,7 +81,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 12:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");

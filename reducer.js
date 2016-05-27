@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_324__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_323__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -63,15 +63,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _lang = __webpack_require__(13);
+	var _lang = __webpack_require__(12);
 
-	var _merge = __webpack_require__(324);
+	var _merge = __webpack_require__(323);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
-	var _pageUtils = __webpack_require__(15);
+	var _pageUtils = __webpack_require__(14);
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var actions = _interopRequireWildcard(_actions);
 
@@ -140,10 +140,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 13:
+/***/ 12:
 /***/ function(module, exports) {
 
 	module.exports = require("lodash/lang");
+
+/***/ },
+
+/***/ 13:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ },
 
@@ -154,17 +161,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 15:
+/***/ 323:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
-
-/***/ },
-
-/***/ 324:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_324__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
 
 /***/ }
 

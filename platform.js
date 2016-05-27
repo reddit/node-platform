@@ -7,7 +7,7 @@
 		exports["platform.js"] = factory(require("./navigationMiddleware.js"), require("./reducer.js"), require("./actions.js"), require("./router.js"), require("./merge.js"), require("./Client.js"), require("./components.js"), require("./url.js"), require("./Server.js"));
 	else
 		root["platform.js"] = factory(root["./navigationMiddleware.js"], root["./reducer.js"], root["./actions.js"], root["./router.js"], root["./merge.js"], root["./Client.js"], root["./components.js"], root["./url.js"], root["./Server.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_16__, __WEBPACK_EXTERNAL_MODULE_324__, __WEBPACK_EXTERNAL_MODULE_325__, __WEBPACK_EXTERNAL_MODULE_326__, __WEBPACK_EXTERNAL_MODULE_327__, __WEBPACK_EXTERNAL_MODULE_328__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_323__, __WEBPACK_EXTERNAL_MODULE_324__, __WEBPACK_EXTERNAL_MODULE_325__, __WEBPACK_EXTERNAL_MODULE_326__, __WEBPACK_EXTERNAL_MODULE_327__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -62,19 +62,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.Server = exports.router = exports.reducer = exports.url = exports.navigationMiddleware = exports.merge = exports.components = exports.Client = exports.actions = undefined;
 
-	var _actions = __webpack_require__(14);
+	var _actions = __webpack_require__(13);
 
 	var actions = _interopRequireWildcard(_actions);
 
-	var _Client = __webpack_require__(325);
+	var _Client = __webpack_require__(324);
 
 	var _Client2 = _interopRequireDefault(_Client);
 
-	var _components = __webpack_require__(326);
+	var _components = __webpack_require__(325);
 
 	var _components2 = _interopRequireDefault(_components);
 
-	var _merge = __webpack_require__(324);
+	var _merge = __webpack_require__(323);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -82,7 +82,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _navigationMiddleware2 = _interopRequireDefault(_navigationMiddleware);
 
-	var _url = __webpack_require__(327);
+	var _url = __webpack_require__(326);
 
 	var _url2 = _interopRequireDefault(_url);
 
@@ -90,11 +90,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _reducer2 = _interopRequireDefault(_reducer);
 
-	var _router = __webpack_require__(16);
+	var _router = __webpack_require__(15);
 
 	var _router2 = _interopRequireDefault(_router);
 
-	var _Server = __webpack_require__(328);
+	var _Server = __webpack_require__(327);
 
 	var _Server2 = _interopRequireDefault(_Server);
 
@@ -139,17 +139,24 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 14:
+/***/ 13:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_13__;
 
 /***/ },
 
-/***/ 16:
+/***/ 15:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_16__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_15__;
+
+/***/ },
+
+/***/ 323:
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
 
 /***/ },
 
@@ -178,13 +185,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_327__;
-
-/***/ },
-
-/***/ 328:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_328__;
 
 /***/ }
 

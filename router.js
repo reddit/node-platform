@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("./actions.js"));
+		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define(["./actions.js"], factory);
+		define([], factory);
 	else if(typeof exports === 'object')
-		exports["router.js"] = factory(require("./actions.js"));
+		exports["router.js"] = factory();
 	else
-		root["router.js"] = factory(root["./actions.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_14__) {
+		root["router.js"] = factory();
+})(this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -50,23 +50,15 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ function(module, exports, __webpack_require__) {
+/******/ ([
+/* 0 */
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.BaseHandler = exports.METHODS = undefined;
-
-	var _actions = __webpack_require__(14);
-
-	var actions = _interopRequireWildcard(_actions);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -78,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  DELETE: 'delete'
 	};
 
-	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams, dispatch, getState) {
+	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams) {
 	  _classCallCheck(this, BaseHandler);
 
 	  this.originalUrl = originalUrl;
@@ -88,22 +80,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.bodyParams = bodyParams;
 	};
 
-	;
-
 	exports.default = {
 	  METHODS: METHODS,
 	  BaseHandler: BaseHandler
 	};
 
-/***/ },
-
-/***/ 14:
-/***/ function(module, exports) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_14__;
-
 /***/ }
-
-/******/ })
+/******/ ])
 });
 ;
