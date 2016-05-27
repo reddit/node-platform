@@ -1,6 +1,6 @@
 {
   "name": "@r/platform",
-  "version": "0.4.3",
+  "version": "0.5.0",
   "description": "A set of tools to enable easy universal rendering and page navigation on a React + Redux stack",
   "main": "platform.js",
   "scripts": {
