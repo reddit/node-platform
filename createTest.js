@@ -144,6 +144,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	  var getStore = function getStore() {
+	    var initialState = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
 	    var well = _middleware.PromiseWell.create();
 	    var thunk = _middleware.Thunker.create();
 	    var nav = _navigationMiddleware2.default.create(routes);
@@ -153,7 +155,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    var storeMiddleware = middleware.concat([nav, thunk, well.middleware]);
-	    var store = (0, _redux.createStore)(storeReducers, {}, _redux.applyMiddleware.apply(undefined, _toConsumableArray(storeMiddleware)));
+	    var store = (0, _redux.createStore)(storeReducers, initialState, _redux.applyMiddleware.apply(undefined, _toConsumableArray(storeMiddleware)));
 
 	    var StoreWrapper = function (_React$Component) {
 	      _inherits(StoreWrapper, _React$Component);
