@@ -89,9 +89,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var hashParams = _ref$hashParams === undefined ? {} : _ref$hashParams;
 	  var _ref$referrer = _ref.referrer;
 	  var referrer = _ref$referrer === undefined ? '' : _ref$referrer;
+	  var _ref$name = _ref.name;
+	  var name = _ref$name === undefined ? '' : _ref$name;
 	  return {
 	    type: SET_PAGE,
-	    payload: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, referrer: referrer }
+	    payload: { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, referrer: referrer, name: name }
 	  };
 	};
 
@@ -115,7 +117,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var referrer = _ref2$referrer === undefined ? '' : _ref2$referrer;
 	  return {
 	    type: NAVIGATE_TO_URL,
-	    payload: { method: method, pathName: pathName, queryParams: queryParams, hashParams: hashParams, bodyParams: bodyParams, referrer: referrer }
+	    payload: {
+	      method: method,
+	      pathName: pathName,
+	      queryParams: queryParams,
+	      hashParams: hashParams,
+	      bodyParams: bodyParams,
+	      referrer: referrer
+	    }
 	  };
 	};
 

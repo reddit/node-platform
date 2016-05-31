@@ -106,10 +106,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	              var _loop = function _loop() {
 	                var route = _step.value;
 
-	                var _route = _slicedToArray(route, 2);
+	                var _route = _slicedToArray(route, 3);
 
 	                var url = _route[0];
 	                var handler = _route[1];
+	                var name = _route[2];
 
 	                var reg = (0, _pathToRegexp2.default)(url);
 	                var result = reg.exec(pathName);
@@ -120,15 +121,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  }, {});
 
 	                  if (method === _router.METHODS.GET) {
+	                    console.log('dispatching with name', name);
 	                    dispatch(actions.setPage(pathName, {
 	                      urlParams: urlParams,
 	                      queryParams: queryParams,
 	                      hashParams: hashParams,
-	                      referrer: referrer
+	                      referrer: referrer,
+	                      name: name
 	                    }));
 	                  }
 
-	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
+	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState, name);
 
 	                  return {
 	                    v: next(h[method].bind(h))

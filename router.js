@@ -78,7 +78,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  DELETE: 'delete'
 	};
 
-	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams, dispatch, getState) {
+	var BaseHandler = exports.BaseHandler = function BaseHandler(originalUrl, urlParams, queryParams, hashParams, bodyParams, dispatch, getState, name) {
 	  _classCallCheck(this, BaseHandler);
 
 	  this.originalUrl = originalUrl;
@@ -86,6 +86,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  this.queryParams = queryParams;
 	  this.hashParams = hashParams;
 	  this.bodyParams = bodyParams;
+	  this.name = name;
 	};
 
 	;
