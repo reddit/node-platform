@@ -198,7 +198,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return;
 	      }
 
-	      console.log(_this2.props.onClick);
 	      _this2.props.onClick(e);
 	      if (e.defaultPrevented) {
 	        return;
