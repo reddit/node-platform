@@ -60,12 +60,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.parseRoute = undefined;
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
 	var _pathToRegexp = __webpack_require__(322);
 
@@ -83,6 +84,46 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+	var parseRoute = exports.parseRoute = function parseRoute(url, routes) {
+	  var route = void 0;
+
+	  var _iteratorNormalCompletion = true;
+	  var _didIteratorError = false;
+	  var _iteratorError = undefined;
+
+	  try {
+	    for (var _iterator = routes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	      route = _step.value;
+	      var _route = route;
+
+	      var _route2 = _slicedToArray(_route, 2);
+
+	      var _url = _route2[0];
+	      var handler = _route2[1];
+
+	      var reg = (0, _pathToRegexp2.default)(_url);
+	      var result = reg.exec(_url);
+
+	      if (result) {
+	        return { handler: handler, reg: reg, result: result };
+	      }
+	    }
+	  } catch (err) {
+	    _didIteratorError = true;
+	    _iteratorError = err;
+	  } finally {
+	    try {
+	      if (!_iteratorNormalCompletion && _iterator.return) {
+	        _iterator.return();
+	      }
+	    } finally {
+	      if (_didIteratorError) {
+	        throw _iteratorError;
+	      }
+	    }
+	  }
+	};
+
 	exports.default = {
 	  create: function create(routes) {
 	    return function (store) {
@@ -98,62 +139,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var referrer = _action$payload.referrer;
 	            var dispatch = store.dispatch;
 	            var getState = store.getState;
-	            var _iteratorNormalCompletion = true;
-	            var _didIteratorError = false;
-	            var _iteratorError = undefined;
 
-	            try {
-	              var _loop = function _loop() {
-	                var route = _step.value;
 
-	                var _route = _slicedToArray(route, 2);
+	            var route = parseRoute(pathName, routes);
 
-	                var url = _route[0];
-	                var handler = _route[1];
+	            if (route) {
+	              var _ret = function () {
+	                var handler = route.handler;
+	                var reg = route.reg;
+	                var result = route.result;
 
-	                var reg = (0, _pathToRegexp2.default)(url);
-	                var result = reg.exec(pathName);
+	                var urlParams = reg.keys.reduce(function (prev, cur, index) {
+	                  return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
+	                }, {});
 
-	                if (result) {
-	                  var urlParams = reg.keys.reduce(function (prev, cur, index) {
-	                    return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
-	                  }, {});
-
-	                  if (method === _router.METHODS.GET) {
-	                    dispatch(actions.setPage(pathName, {
-	                      urlParams: urlParams,
-	                      queryParams: queryParams,
-	                      hashParams: hashParams,
-	                      referrer: referrer
-	                    }));
-	                  }
-
-	                  var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
-
-	                  return {
-	                    v: next(h[method].bind(h))
-	                  };
+	                if (method === _router.METHODS.GET) {
+	                  dispatch(actions.setPage(pathName, {
+	                    urlParams: urlParams,
+	                    queryParams: queryParams,
+	                    hashParams: hashParams,
+	                    referrer: referrer
+	                  }));
 	                }
-	              };
 
-	              for (var _iterator = routes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	                var _ret = _loop();
+	                var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
 
-	                if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-	              }
-	            } catch (err) {
-	              _didIteratorError = true;
-	              _iteratorError = err;
-	            } finally {
-	              try {
-	                if (!_iteratorNormalCompletion && _iterator.return) {
-	                  _iterator.return();
-	                }
-	              } finally {
-	                if (_didIteratorError) {
-	                  throw _iteratorError;
-	                }
-	              }
+	                return {
+	                  v: next(h[method].bind(h))
+	                };
+	              }();
+
+	              if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 	            }
 
 	            return next(new Error('No route found for ' + method + ' ' + pathName));
