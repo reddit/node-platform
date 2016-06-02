@@ -85,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-	function parseRoute(url, routes) {
+	function parseRoute(path, routes) {
 	  var route = void 0;
 
 	  var _iteratorNormalCompletion = true;
@@ -99,11 +99,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var _route2 = _slicedToArray(_route, 2);
 
-	      var _url = _route2[0];
+	      var url = _route2[0];
 	      var handler = _route2[1];
 
-	      var reg = (0, _pathToRegexp2.default)(_url);
-	      var result = reg.exec(_url);
+	      var reg = (0, _pathToRegexp2.default)(url);
+	      var result = reg.exec(path);
 
 	      if (result) {
 	        return { handler: handler, reg: reg, result: result };
@@ -123,7 +123,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    }
 	  }
-	};
+	}
 
 	exports.default = {
 	  create: function create(routes) {
@@ -140,7 +140,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var referrer = _action$payload.referrer;
 	            var dispatch = store.dispatch;
 	            var getState = store.getState;
-
 
 	            var route = parseRoute(pathName, routes);
 
