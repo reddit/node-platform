@@ -89,11 +89,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else if (newValIsEmpty && emptyDict === 'replace') {
 	        newState[key] = newVal;
 	      } else {
-	        newState[key] = merge(oldVal, newVal);
+	        newState[key] = merge(oldVal, newVal, options);
 	      }
 	    } else if (Array.isArray(oldVal) && Array.isArray(newVal)) {
 	      if (array === 'concat') {
-	        newState[key] = oldVal.concat(newVal);
+	        if (!newVal.length) {
+	          newState[key] = oldVal;
+	        } else {
+	          newState[key] = oldVal.concat(newVal);
+	        }
 	      } else {
 	        newState[key] = newVal;
 	      }
