@@ -69,14 +69,25 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function merge(state, stateDiff) {
 	  var options = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-
-	  var newState = _extends({}, state);
-
 	  var _options$emptyDict = options.emptyDict;
 	  var emptyDict = _options$emptyDict === undefined ? 'strict' : _options$emptyDict;
 	  var _options$array = options.array;
 	  var array = _options$array === undefined ? 'replace' : _options$array;
 
+	  // Empty state diffs get special handling. In 'replace' mode they should be
+	  // overwriting the current state. In 'skip' mode, we should be 'skipping'
+	  // the merge of any objects, and return the current state. In 'strict' mode (default)
+	  // we should still be creating a new object.
+
+	  if (!Object.keys(stateDiff).length) {
+	    if (emptyDict === 'replace') {
+	      return stateDiff;
+	    } else if (emptyDict === 'skip') {
+	      return state;
+	    }
+	  }
+
+	  var newState = _extends({}, state);
 
 	  Object.keys(stateDiff).forEach(function (key) {
 	    var oldVal = newState[key];

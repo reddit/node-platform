@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_323__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_316__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lang = __webpack_require__(12);
 
-	var _merge = __webpack_require__(323);
+	var _merge = __webpack_require__(316);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -161,10 +161,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 323:
+/***/ 316:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_316__;
 
 /***/ }
 
