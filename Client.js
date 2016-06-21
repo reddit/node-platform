@@ -116,7 +116,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var reds = (0, _redux.combineReducers)(_extends({}, reducers, { platform: _reducer2.default }));
 	  var wares = reduxMiddleware.concat([nav, thunk, well.middleware]);
 
-	  if (debug) {
+	  if (debug && !window.devToolsExtension) {
 	    wares.push(_middleware.Logger);
 	  }
 
