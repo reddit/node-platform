@@ -237,6 +237,28 @@ export default class Foo extends React.Component {
 
 @r/platform also includes a `<BackAnchor/>` component. The `<BackAnchor/>` checks to see if the linked url is the previous url in history. If it is, it calls `history.back()` (if the history API exists) instead of adding the destination to the browser's history. This makes links that say 'back' actually go back.
 
+If those don't suite your needs, @r/platform also provides `<LinkHijacker />`. Helpful for when you need to use `dangerouslySetInnerHTML`, this component will ensure clicking on links will navigate without a new page load. It follows relative links by default, and can be customized via a RegExp api to extract paths from arbitrary urls.
+
+```es6
+import React from 'react';
+import { LinkHijacker } from '@r/platform/components';
+
+export default class Foo extends React.Component {
+  render() {
+    return (
+      <div className='Foo'>
+        <LinkHijacker>
+          <div
+            className='Foo__content'
+            dangerouslySetInnerHTML={ { __html: this.props.htmlContent } }
+          />
+        </LinkHijacker>
+      </div>
+    );
+  }
+}
+```
+
 @r/platform exports a pre-connected form as well:
 
 ```es6

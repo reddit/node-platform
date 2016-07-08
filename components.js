@@ -314,6 +314,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	// This is useful in situations where you have content thats created
 	// outside of your app's react templates (e.g., user generated content or pages
 	// stored in a wiki).
+	// It purposefully doesn't render any markup and attaches its handlers to the child
+	// element you pass in, allowing full control of the markup.
 
 	var _LinkHijacker = exports._LinkHijacker = function (_React$Component3) {
 	  _inherits(_LinkHijacker, _React$Component3);
@@ -329,7 +331,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	      args[_key3] = arguments[_key3];
 	    }
 
-	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(_LinkHijacker)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.handleClick = function (e) {
+	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(_LinkHijacker)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.onClick = function (e) {
+	      // let the content node's click handler run first and allow it call
+	      // preventDefault if desired.
+	      var child = _this3.props.children;
+
+	      if (child && child.props.onClick) {
+	        child.props.onClick(e);
+	        if (e.defaultPrevented) {
+	          return;
+	        }
+	      }
+
 	      var $link = findLinkParent(e.target);
 	      if (!$link) {
 	        return;
@@ -344,7 +357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return;
 	      }
 
-	      _this3.props.onClick(path, e, $link);
+	      _this3.props.onLinkClick(path, e, $link);
 	      if (e.defaultPrevented) {
 	        return;
 	      }
@@ -385,25 +398,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      // allows pass through of className, style, and dangerouslySetInnerHTML
-	      // props to match the react api
-	      var _props3 = this.props;
-	      var className = _props3.className;
-	      var style = _props3.style;
-	      var dangerouslySetInnerHTML = _props3.dangerouslySetInnerHTML;
-	      var children = _props3.children;
+	      var child = this.props.children;
 
 
-	      return _react2.default.createElement(
-	        'div',
-	        {
-	          style: style,
-	          className: className,
-	          dangerouslySetInnerHTML: dangerouslySetInnerHTML,
-	          onClick: this.handleClick
-	        },
-	        children
-	      );
+	      return _react2.default.cloneElement(_react2.default.Children.only(child), {
+	        onClick: this.onClick
+	      });
 	    }
 	  }]);
 
@@ -411,19 +411,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	}(_react2.default.Component);
 
 	_LinkHijacker.propTypes = {
-	  className: T.string,
-	  style: T.object,
+	  children: T.element.isRequired,
+	  onLinkClick: T.func, // you can use a normal onclick handler attached
+	  // to your content node. Or, if you'd like to only run a click handler
+	  // when a an a tag within this element tree has been clicked,
+	  //  you can use `onLinkClick`
 	  urlRegexp: T.instanceOf(RegExp), // a regexp used to validate a url for
 	  // navigating to. It is expected that the regexp will handle capturing
 	  // the proper path we want to navigate to, in the first match. (match[1]);
 	  // (note: non-capturing groups might be helpful in doing so).
-	  navigateToPage: T.func,
-	  onClick: T.func,
-	  dangerouslySetInnerHTML: T.object
-	};
+	  navigateToPage: T.func.isRequired };
 	_LinkHijacker.defaultProps = {
 	  navigateToPage: function navigateToPage() {},
-	  onClick: function onClick() {}
+	  onLinkClick: function onLinkClick() {}
 	};
 	var LinkHijacker = exports.LinkHijacker = (0, _reactRedux.connect)(null, anchorDispatcher)(_LinkHijacker);
 
@@ -496,12 +496,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_Form, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props4 = this.props;
-	      var className = _props4.className;
-	      var action = _props4.action;
-	      var method = _props4.method;
-	      var style = _props4.style;
-	      var children = _props4.children;
+	      var _props3 = this.props;
+	      var className = _props3.className;
+	      var action = _props3.action;
+	      var method = _props3.method;
+	      var style = _props3.style;
+	      var children = _props3.children;
 
 
 	      return _react2.default.createElement(
