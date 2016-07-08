@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.LinkHijacker = exports._LinkHijacker = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
+	exports.UrlSync = exports._UrlSync = exports.JSForm = exports._JSForm = exports.Form = exports._Form = exports.LinkHijacker = exports._LinkHijacker = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -370,7 +370,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      _this3.props.navigateToPage(url, queryParams);
 	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
-	  }
+	  } // intended to supplied by connect
+
 
 	  _createClass(_LinkHijacker, [{
 	    key: 'extractValidPath',
@@ -544,10 +545,58 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Form = exports.Form = (0, _reactRedux.connect)(null, formDispatcher)(_Form);
 
+	var _JSForm = exports._JSForm = function (_React$Component5) {
+	  _inherits(_JSForm, _React$Component5);
+
+	  function _JSForm() {
+	    var _Object$getPrototypeO5;
+
+	    var _temp5, _this5, _ret5;
+
+	    _classCallCheck(this, _JSForm);
+
+	    for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+	      args[_key5] = arguments[_key5];
+	    }
+
+	    return _ret5 = (_temp5 = (_this5 = _possibleConstructorReturn(this, (_Object$getPrototypeO5 = Object.getPrototypeOf(_JSForm)).call.apply(_Object$getPrototypeO5, [this].concat(args))), _this5), _this5.handleSubmit = function (e) {
+	      e.preventDefault();
+	      var form = e.target;
+	      _this5.props.onSubmit(getValues(form));
+	    }, _temp5), _possibleConstructorReturn(_this5, _ret5);
+	  }
+
+	  _createClass(_JSForm, [{
+	    key: 'render',
+	    value: function render() {
+	      var _props4 = this.props;
+	      var className = _props4.className;
+	      var style = _props4.style;
+	      var children = _props4.children;
+
+
+	      return _react2.default.createElement(
+	        'form',
+	        { className: className, style: style, onSubmit: this.handleSubmit },
+	        children
+	      );
+	    }
+	  }]);
+
+	  return _JSForm;
+	}(_react2.default.Component);
+
+	_JSForm.propTypes = {
+	  onSubmit: T.func.isRequired,
+	  className: T.string,
+	  style: T.object
+	};
+	var JSForm = exports.JSForm = (0, _reactRedux.connect)()(_JSForm);
+
 	// ****** UrlSync
 
-	var _UrlSync = exports._UrlSync = function (_React$Component5) {
-	  _inherits(_UrlSync, _React$Component5);
+	var _UrlSync = exports._UrlSync = function (_React$Component6) {
+	  _inherits(_UrlSync, _React$Component6);
 
 	  function _UrlSync() {
 	    _classCallCheck(this, _UrlSync);
@@ -558,7 +607,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_UrlSync, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this6 = this;
+	      var _this7 = this;
 
 	      var handlePopstate = function handlePopstate() {
 	        var pathname = self.location.pathname;
@@ -566,8 +615,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
 
-	        for (var i = _this6.props.history.length - 1; i >= 0; i--) {
-	          var hist = _this6.props.history[i];
+	        for (var i = _this7.props.history.length - 1; i >= 0; i--) {
+	          var hist = _this7.props.history[i];
 	          if (hist.url === pathname && (0, _lang.isEqual)(hist.queryParams, currentQuery)) {
 	            pageIndex = i;
 	            break;
@@ -575,10 +624,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pageIndex > -1) {
-	          _this6.props.gotoPageIndex(pageIndex);
+	          _this7.props.gotoPageIndex(pageIndex);
 	        } else {
 	          // can't find the url, just navigate
-	          _this6.props.navigateToPage(pathname, currentQuery, currentHash);
+	          _this7.props.navigateToPage(pathname, currentQuery, currentHash);
 	        }
 	      };
 
