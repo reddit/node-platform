@@ -142,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
+	    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
 	      var nav, well, thunk, r, store, state, currentUrl, currentQuery, newUrl;
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
@@ -156,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	              store.dispatch(function () {
-	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
+	                var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
 	                  return regeneratorRuntime.wrap(function _callee$(_context) {
 	                    while (1) {
 	                      switch (_context.prev = _context.next) {
@@ -173,7 +173,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }));
 
 	                return function (_x2, _x3, _x4) {
-	                  return ref.apply(this, arguments);
+	                  return _ref2.apply(this, arguments);
 	                };
 	              }());
 
@@ -219,7 +219,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function handleRoute(_x) {
-	      return ref.apply(this, arguments);
+	      return _ref.apply(this, arguments);
 	    };
 	  }();
 

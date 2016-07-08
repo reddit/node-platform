@@ -119,7 +119,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var reroutePage = exports.reroutePage = function reroutePage() {
 	  return function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
+	    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
 	      var currentPage;
 	      return regeneratorRuntime.wrap(function _callee$(_context) {
 	        while (1) {
@@ -144,14 +144,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function (_x3, _x4) {
-	      return ref.apply(this, arguments);
+	      return _ref3.apply(this, arguments);
 	    };
 	  }();
 	};
 
 	var activateClient = exports.activateClient = function activateClient() {
 	  return function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
+	    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
 	      var _getState, platform;
 
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -182,7 +182,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function (_x5, _x6) {
-	      return ref.apply(this, arguments);
+	      return _ref4.apply(this, arguments);
 	    };
 	  }();
 	};

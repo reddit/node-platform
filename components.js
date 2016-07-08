@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
+	exports.UrlSync = exports._UrlSync = exports.Form = exports._Form = exports.LinkHijacker = exports._LinkHijacker = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -99,6 +99,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var isNewTabClick = function isNewTabClick(e) {
 	  return e.metaKey || e.ctrlKey || e.button === 1 || e.button === 4;
+	};
+
+	var findLinkParent = function findLinkParent(el) {
+	  if (el.tagName === 'A') {
+	    return el;
+	  }
+
+	  if (el.parentNode) {
+	    return findLinkParent(el.parentNode);
+	  }
 	};
 
 	// ****** Anchor
@@ -297,6 +307,126 @@ return /******/ (function(modules) { // webpackBootstrap
 	var BackAnchor = exports.BackAnchor = (0, _reactRedux.connect)(anchorSelector, anchorDispatcher)(_BackAnchor);
 	BackAnchor.AUTO_ROUTE = _BackAnchor.AUTO_ROUTE;
 
+	// ****** LinkJacker
+
+	// _LinkHijacker is a component used to explicitly hijack all link clicks
+	// in a given area and transform them into calls to navigationActions.navigateToUrl.
+	// This is useful in situations where you have content thats created
+	// outside of your app's react templates (e.g., user generated content or pages
+	// stored in a wiki).
+
+	var _LinkHijacker = exports._LinkHijacker = function (_React$Component3) {
+	  _inherits(_LinkHijacker, _React$Component3);
+
+	  function _LinkHijacker() {
+	    var _Object$getPrototypeO3;
+
+	    var _temp3, _this3, _ret3;
+
+	    _classCallCheck(this, _LinkHijacker);
+
+	    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	      args[_key3] = arguments[_key3];
+	    }
+
+	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(_LinkHijacker)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.handleClick = function (e) {
+	      var $link = findLinkParent(e.target);
+	      if (!$link) {
+	        return;
+	      }
+
+	      if (isNewTabClick(e)) {
+	        return;
+	      }
+
+	      var path = _this3.extractValidPath($link);
+	      if (!path) {
+	        return;
+	      }
+
+	      _this3.props.onClick(path, e, $link);
+	      if (e.defaultPrevented) {
+	        return;
+	      }
+
+	      e.stopPropagation();
+	      e.preventDefault();
+
+	      var url = path.split('?')[0];
+	      var queryParams = (0, _pageUtils.extractQuery)(path);
+
+	      _this3.props.navigateToPage(url, queryParams);
+	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
+	  }
+
+	  _createClass(_LinkHijacker, [{
+	    key: 'extractValidPath',
+	    value: function extractValidPath($link) {
+	      var href = $link.getAttribute('href');
+	      if (!href) {
+	        return;
+	      }
+
+	      // if its a relative link, use it without validation
+	      if (href.indexOf('//') === -1) {
+	        return href;
+	      }
+
+	      // if we have a regexp to validate and extract paths, return it
+	      var urlRegexp = this.props.urlRegexp;
+
+	      if (urlRegexp) {
+	        var match = href.match(urlRegexp);
+	        if (match && match[1]) {
+	          return match[1];
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      // allows pass through of className, style, and dangerouslySetInnerHTML
+	      // props to match the react api
+	      var _props3 = this.props;
+	      var className = _props3.className;
+	      var style = _props3.style;
+	      var dangerouslySetInnerHTML = _props3.dangerouslySetInnerHTML;
+	      var children = _props3.children;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        {
+	          style: style,
+	          className: className,
+	          dangerouslySetInnerHTML: dangerouslySetInnerHTML,
+	          onClick: this.handleClick
+	        },
+	        children
+	      );
+	    }
+	  }]);
+
+	  return _LinkHijacker;
+	}(_react2.default.Component);
+
+	_LinkHijacker.propTypes = {
+	  className: T.string,
+	  style: T.object,
+	  urlRegexp: T.instanceOf(RegExp), // a regexp used to validate a url for
+	  // navigating to. It is expected that the regexp will handle capturing
+	  // the proper path we want to navigate to, in the first match. (match[1]);
+	  // (note: non-capturing groups might be helpful in doing so).
+	  navigateToPage: T.func,
+	  onClick: T.func,
+	  dangerouslySetInnerHTML: T.object
+	};
+	_LinkHijacker.defaultProps = {
+	  navigateToPage: function navigateToPage() {},
+	  onClick: function onClick() {}
+	};
+	var LinkHijacker = exports.LinkHijacker = (0, _reactRedux.connect)(null, anchorDispatcher)(_LinkHijacker);
+
 	// ****** Form
 	var getValues = function getValues(form) {
 	  if (!form || form.nodeName.toLowerCase() !== 'form') {
@@ -341,37 +471,37 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {});
 	};
 
-	var _Form = exports._Form = function (_React$Component3) {
-	  _inherits(_Form, _React$Component3);
+	var _Form = exports._Form = function (_React$Component4) {
+	  _inherits(_Form, _React$Component4);
 
 	  function _Form() {
-	    var _Object$getPrototypeO3;
+	    var _Object$getPrototypeO4;
 
-	    var _temp3, _this3, _ret3;
+	    var _temp4, _this4, _ret4;
 
 	    _classCallCheck(this, _Form);
 
-	    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-	      args[_key3] = arguments[_key3];
+	    for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+	      args[_key4] = arguments[_key4];
 	    }
 
-	    return _ret3 = (_temp3 = (_this3 = _possibleConstructorReturn(this, (_Object$getPrototypeO3 = Object.getPrototypeOf(_Form)).call.apply(_Object$getPrototypeO3, [this].concat(args))), _this3), _this3.handleSubmit = function (e) {
+	    return _ret4 = (_temp4 = (_this4 = _possibleConstructorReturn(this, (_Object$getPrototypeO4 = Object.getPrototypeOf(_Form)).call.apply(_Object$getPrototypeO4, [this].concat(args))), _this4), _this4.handleSubmit = function (e) {
 	      e.preventDefault();
 
 	      var form = e.target;
-	      _this3.props.onSubmit(_this3.props.action, _this3.props.method, getValues(form));
-	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
+	      _this4.props.onSubmit(_this4.props.action, _this4.props.method, getValues(form));
+	    }, _temp4), _possibleConstructorReturn(_this4, _ret4);
 	  }
 
 	  _createClass(_Form, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props3 = this.props;
-	      var className = _props3.className;
-	      var action = _props3.action;
-	      var method = _props3.method;
-	      var style = _props3.style;
-	      var children = _props3.children;
+	      var _props4 = this.props;
+	      var className = _props4.className;
+	      var action = _props4.action;
+	      var method = _props4.method;
+	      var style = _props4.style;
+	      var children = _props4.children;
 
 
 	      return _react2.default.createElement(
@@ -393,7 +523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	_Form.propTypes = {
 	  action: T.string.isRequired,
-	  method: T.oneOf([_router.METHODS.POST, _router.METHODS.PUT, _router.METHODS.DELETE, _router.METHODS.PATCH]),
+	  method: T.oneOf([_router.METHODS.POST, _router.METHODS.GET]),
 	  className: T.string,
 	  style: T.object,
 	  onSubmit: T.func
@@ -416,8 +546,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// ****** UrlSync
 
-	var _UrlSync = exports._UrlSync = function (_React$Component4) {
-	  _inherits(_UrlSync, _React$Component4);
+	var _UrlSync = exports._UrlSync = function (_React$Component5) {
+	  _inherits(_UrlSync, _React$Component5);
 
 	  function _UrlSync() {
 	    _classCallCheck(this, _UrlSync);
@@ -428,7 +558,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  _createClass(_UrlSync, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this5 = this;
+	      var _this6 = this;
 
 	      var handlePopstate = function handlePopstate() {
 	        var pathname = self.location.pathname;
@@ -436,8 +566,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
 
-	        for (var i = _this5.props.history.length - 1; i >= 0; i--) {
-	          var hist = _this5.props.history[i];
+	        for (var i = _this6.props.history.length - 1; i >= 0; i--) {
+	          var hist = _this6.props.history[i];
 	          if (hist.url === pathname && (0, _lang.isEqual)(hist.queryParams, currentQuery)) {
 	            pageIndex = i;
 	            break;
@@ -445,10 +575,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pageIndex > -1) {
-	          _this5.props.gotoPageIndex(pageIndex);
+	          _this6.props.gotoPageIndex(pageIndex);
 	        } else {
 	          // can't find the url, just navigate
-	          _this5.props.navigateToPage(pathname, currentQuery, currentHash);
+	          _this6.props.navigateToPage(pathname, currentQuery, currentHash);
 	        }
 	      };
 
