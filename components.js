@@ -59,7 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.UrlSync = exports._UrlSync = exports.JSForm = exports._JSForm = exports.Form = exports._Form = exports.LinkHijacker = exports._LinkHijacker = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
+	exports.UrlSync = exports._UrlSync = exports.JSForm = exports.Form = exports._Form = exports.LinkHijacker = exports._LinkHijacker = exports.BackAnchor = exports.Anchor = exports._BackAnchor = exports._Anchor = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -545,28 +545,28 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var Form = exports.Form = (0, _reactRedux.connect)(null, formDispatcher)(_Form);
 
-	var _JSForm = exports._JSForm = function (_React$Component5) {
-	  _inherits(_JSForm, _React$Component5);
+	var JSForm = exports.JSForm = function (_React$Component5) {
+	  _inherits(JSForm, _React$Component5);
 
-	  function _JSForm() {
+	  function JSForm() {
 	    var _Object$getPrototypeO5;
 
 	    var _temp5, _this5, _ret5;
 
-	    _classCallCheck(this, _JSForm);
+	    _classCallCheck(this, JSForm);
 
 	    for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
 	      args[_key5] = arguments[_key5];
 	    }
 
-	    return _ret5 = (_temp5 = (_this5 = _possibleConstructorReturn(this, (_Object$getPrototypeO5 = Object.getPrototypeOf(_JSForm)).call.apply(_Object$getPrototypeO5, [this].concat(args))), _this5), _this5.handleSubmit = function (e) {
+	    return _ret5 = (_temp5 = (_this5 = _possibleConstructorReturn(this, (_Object$getPrototypeO5 = Object.getPrototypeOf(JSForm)).call.apply(_Object$getPrototypeO5, [this].concat(args))), _this5), _this5.handleSubmit = function (e) {
 	      e.preventDefault();
 	      var form = e.target;
 	      _this5.props.onSubmit(getValues(form));
 	    }, _temp5), _possibleConstructorReturn(_this5, _ret5);
 	  }
 
-	  _createClass(_JSForm, [{
+	  _createClass(JSForm, [{
 	    key: 'render',
 	    value: function render() {
 	      var _props4 = this.props;
@@ -583,17 +583,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }]);
 
-	  return _JSForm;
+	  return JSForm;
 	}(_react2.default.Component);
 
-	_JSForm.propTypes = {
+	// ****** UrlSync
+
+
+	JSForm.propTypes = {
 	  onSubmit: T.func.isRequired,
 	  className: T.string,
 	  style: T.object
 	};
-	var JSForm = exports.JSForm = (0, _reactRedux.connect)()(_JSForm);
-
-	// ****** UrlSync
 
 	var _UrlSync = exports._UrlSync = function (_React$Component6) {
 	  _inherits(_UrlSync, _React$Component6);
