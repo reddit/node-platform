@@ -370,8 +370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      _this3.props.navigateToPage(url, queryParams);
 	    }, _temp3), _possibleConstructorReturn(_this3, _ret3);
-	  } // intended to supplied by connect
-
+	  }
 
 	  _createClass(_LinkHijacker, [{
 	    key: 'extractValidPath',
@@ -614,9 +613,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var currentQuery = (0, _pageUtils.extractQuery)(self.location.search);
 	        var currentHash = {}; // TODO: address how hashes are displayed
 	        var pageIndex = -1;
+	        var hist = {};
 
 	        for (var i = _this7.props.history.length - 1; i >= 0; i--) {
-	          var hist = _this7.props.history[i];
+	          hist = _this7.props.history[i];
 	          if (hist.url === pathname && (0, _lang.isEqual)(hist.queryParams, currentQuery)) {
 	            pageIndex = i;
 	            break;
@@ -624,7 +624,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        if (pageIndex > -1) {
-	          _this7.props.gotoPageIndex(pageIndex);
+	          var _hist = hist;
+	          var url = _hist.url;
+	          var queryParams = _hist.queryParams;
+	          var hashParams = _hist.hashParams;
+	          var urlParams = _hist.urlParams;
+	          var referrer = _hist.referrer;
+
+	          _this7.props.gotoPageIndex(pageIndex, url, { queryParams: queryParams, hashParams: hashParams, urlParams: urlParams, referrer: referrer });
 	        } else {
 	          // can't find the url, just navigate
 	          _this7.props.navigateToPage(pathname, currentQuery, currentHash);
@@ -689,8 +696,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var urlDispatcher = function urlDispatcher(dispatch) {
 	  return {
-	    gotoPageIndex: function gotoPageIndex(index) {
-	      return dispatch(navigationActions.gotoPageIndex(index));
+	    gotoPageIndex: function gotoPageIndex(index, url, data) {
+	      return dispatch(navigationActions.gotoPageIndex(index, url, data));
 	    },
 	    navigateToPage: function navigateToPage(url, queryParams, hashParams) {
 	      return dispatch(navigationActions.navigateToUrl(_router.METHODS.GET, url, { queryParams: queryParams, hashParams: hashParams }));

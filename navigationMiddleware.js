@@ -7,7 +7,7 @@
 		exports["navigationMiddleware.js"] = factory(require("./actions.js"), require("./router.js"), require("path-to-regexp"));
 	else
 		root["navigationMiddleware.js"] = factory(root["./actions.js"], root["./router.js"], root["path-to-regexp"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_322__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_15__, __WEBPACK_EXTERNAL_MODULE_321__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -69,7 +69,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.parseRoute = parseRoute;
 
-	var _pathToRegexp = __webpack_require__(322);
+	var _pathToRegexp = __webpack_require__(321);
 
 	var _pathToRegexp2 = _interopRequireDefault(_pathToRegexp);
 
@@ -125,54 +125,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }
 	}
 
+	var findAndCallHandler = function findAndCallHandler(store, routes, shouldSetPage, data) {
+	  var method = data.method;
+	  var pathName = data.pathName;
+	  var queryParams = data.queryParams;
+	  var hashParams = data.hashParams;
+	  var bodyParams = data.bodyParams;
+	  var referrer = data.referrer;
+	  var dispatch = store.dispatch;
+	  var getState = store.getState;
+
+	  var route = parseRoute(pathName, routes);
+
+	  if (route) {
+	    var _ret = function () {
+	      var handler = route.handler;
+	      var reg = route.reg;
+	      var result = route.result;
+
+	      var urlParams = reg.keys.reduce(function (prev, cur, index) {
+	        return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
+	      }, {});
+
+	      if (shouldSetPage && method === _router.METHODS.GET) {
+	        dispatch(actions.setPage(pathName, {
+	          urlParams: urlParams,
+	          queryParams: queryParams,
+	          hashParams: hashParams,
+	          referrer: referrer
+	        }));
+	      }
+
+	      var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
+
+	      return {
+	        v: h[method].bind(h)
+	      };
+	    }();
+
+	    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	  }
+
+	  return new Error('No route found for ' + method + ' ' + pathName);
+	};
+
 	exports.default = {
 	  create: function create(routes) {
 	    return function (store) {
 	      return function (next) {
 	        return function (action) {
 	          if (action.type === actions.NAVIGATE_TO_URL) {
-	            var _action$payload = action.payload;
-	            var method = _action$payload.method;
-	            var pathName = _action$payload.pathName;
-	            var queryParams = _action$payload.queryParams;
-	            var hashParams = _action$payload.hashParams;
-	            var bodyParams = _action$payload.bodyParams;
-	            var referrer = _action$payload.referrer;
-	            var dispatch = store.dispatch;
-	            var getState = store.getState;
+	            next(action);
+	            return next(findAndCallHandler(store, routes, true, action.payload));
+	          }
 
-	            var route = parseRoute(pathName, routes);
-
-	            if (route) {
-	              var _ret = function () {
-	                var handler = route.handler;
-	                var reg = route.reg;
-	                var result = route.result;
-
-	                var urlParams = reg.keys.reduce(function (prev, cur, index) {
-	                  return _extends({}, prev, _defineProperty({}, cur.name, result[index + 1]));
-	                }, {});
-
-	                if (method === _router.METHODS.GET) {
-	                  dispatch(actions.setPage(pathName, {
-	                    urlParams: urlParams,
-	                    queryParams: queryParams,
-	                    hashParams: hashParams,
-	                    referrer: referrer
-	                  }));
-	                }
-
-	                var h = new handler(pathName, urlParams, queryParams, hashParams, bodyParams, dispatch, getState);
-
-	                return {
-	                  v: next(h[method].bind(h))
-	                };
-	              }();
-
-	              if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
-	            }
-
-	            return next(new Error('No route found for ' + method + ' ' + pathName));
+	          if (action.type === actions.GOTO_PAGE_INDEX) {
+	            next(action);
+	            return next(findAndCallHandler(store, routes, false, _extends({}, action.payload, {
+	              method: _router.METHODS.GET
+	            })));
 	          }
 
 	          return next(action);
@@ -198,7 +209,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 322:
+/***/ 321:
 /***/ function(module, exports) {
 
 	module.exports = require("path-to-regexp");

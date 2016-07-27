@@ -89,24 +89,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	};
 
-	var gotoPageIndex = exports.gotoPageIndex = function gotoPageIndex(pageIndex) {
-	  return {
-	    type: GOTO_PAGE_INDEX,
-	    payload: { pageIndex: pageIndex }
-	  };
-	};
-
-	var navigateToUrl = exports.navigateToUrl = function navigateToUrl(method, pathName) {
+	var gotoPageIndex = exports.gotoPageIndex = function gotoPageIndex(pageIndex, pathName) {
 	  var _ref2 = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
 
 	  var _ref2$queryParams = _ref2.queryParams;
 	  var queryParams = _ref2$queryParams === undefined ? {} : _ref2$queryParams;
 	  var _ref2$hashParams = _ref2.hashParams;
 	  var hashParams = _ref2$hashParams === undefined ? {} : _ref2$hashParams;
-	  var _ref2$bodyParams = _ref2.bodyParams;
-	  var bodyParams = _ref2$bodyParams === undefined ? {} : _ref2$bodyParams;
 	  var _ref2$referrer = _ref2.referrer;
 	  var referrer = _ref2$referrer === undefined ? '' : _ref2$referrer;
+	  return {
+	    type: GOTO_PAGE_INDEX,
+	    payload: { pageIndex: pageIndex, pathName: pathName, queryParams: queryParams, hashParams: hashParams, referrer: referrer }
+	  };
+	};
+
+	var navigateToUrl = exports.navigateToUrl = function navigateToUrl(method, pathName) {
+	  var _ref3 = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+
+	  var _ref3$queryParams = _ref3.queryParams;
+	  var queryParams = _ref3$queryParams === undefined ? {} : _ref3$queryParams;
+	  var _ref3$hashParams = _ref3.hashParams;
+	  var hashParams = _ref3$hashParams === undefined ? {} : _ref3$hashParams;
+	  var _ref3$bodyParams = _ref3.bodyParams;
+	  var bodyParams = _ref3$bodyParams === undefined ? {} : _ref3$bodyParams;
+	  var _ref3$referrer = _ref3.referrer;
+	  var referrer = _ref3$referrer === undefined ? '' : _ref3$referrer;
 	  return {
 	    type: NAVIGATE_TO_URL,
 	    payload: { method: method, pathName: pathName, queryParams: queryParams, hashParams: hashParams, bodyParams: bodyParams, referrer: referrer }
@@ -119,7 +127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var reroutePage = exports.reroutePage = function reroutePage() {
 	  return function () {
-	    var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
+	    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
 	      var currentPage;
 	      return regeneratorRuntime.wrap(function _callee$(_context) {
 	        while (1) {
@@ -143,15 +151,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, _callee, undefined);
 	    }));
 
-	    return function (_x3, _x4) {
-	      return _ref3.apply(this, arguments);
+	    return function (_x4, _x5) {
+	      return _ref4.apply(this, arguments);
 	    };
 	  }();
 	};
 
 	var activateClient = exports.activateClient = function activateClient() {
 	  return function () {
-	    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
+	    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
 	      var _getState, platform;
 
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -181,8 +189,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, _callee2, undefined);
 	    }));
 
-	    return function (_x5, _x6) {
-	      return _ref4.apply(this, arguments);
+	    return function (_x6, _x7) {
+	      return _ref5.apply(this, arguments);
 	    };
 	  }();
 	};
