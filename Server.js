@@ -223,6 +223,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  }();
 
+	  // set up server routes before setting up shared routes
+	  getServerRouter(router);
+
 	  var _iteratorNormalCompletion = true;
 	  var _didIteratorError = false;
 	  var _iteratorError = undefined;
@@ -262,6 +265,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	      }
 	    }
+
+	    // hook up all the middleware to the koa instance
 	  } catch (err) {
 	    _didIteratorError = true;
 	    _iteratorError = err;
@@ -277,7 +282,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  }
 
-	  getServerRouter(router);
 	  preRouteServerMiddleware.forEach(function (m) {
 	    return server.use(m);
 	  });

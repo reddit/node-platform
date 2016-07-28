@@ -174,19 +174,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return function (store) {
 	      return function (next) {
 	        return function (action) {
-	          if (action.type === actions.NAVIGATE_TO_URL) {
-	            next(action);
-	            return next(findAndCallHandler(store, routes, true, action.payload));
+	          switch (action.type) {
+	            case actions.NAVIGATE_TO_URL:
+	              {
+	                next(action);
+	                return next(findAndCallHandler(store, routes, true, action.payload));
+	              }
+	            case actions.GOTO_PAGE_INDEX:
+	              {
+	                next(action);
+	                return next(findAndCallHandler(store, routes, false, _extends({}, action.payload, {
+	                  method: _router.METHODS.GET
+	                })));
+	              }
+	            default:
+	              return next(action);
 	          }
-
-	          if (action.type === actions.GOTO_PAGE_INDEX) {
-	            next(action);
-	            return next(findAndCallHandler(store, routes, false, _extends({}, action.payload, {
-	              method: _router.METHODS.GET
-	            })));
-	          }
-
-	          return next(action);
 	        };
 	      };
 	    };
