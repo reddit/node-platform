@@ -441,7 +441,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (!values[el.name]) {
 	              values[el.name] = [];
 	            }
-	            if (el.value) {
+	            if (el.checked) {
 	              values[el.name].push(el.value);
 	            }
 	            break;
