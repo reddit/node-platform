@@ -208,6 +208,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	              } else {
 	                ctx.body = template(state, store);
+	                ctx.status = state.platform.currentPage.status;
 	              }
 
 	              next();

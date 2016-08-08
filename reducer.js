@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_322__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_323__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lang = __webpack_require__(12);
 
-	var _merge = __webpack_require__(322);
+	var _merge = __webpack_require__(323);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -79,6 +79,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var DEFAULT = {
 	  currentPageIndex: -1,
 	  history: [],
@@ -91,32 +93,40 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var action = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
 	  switch (action.type) {
+	    case actions.SET_STATUS:
+	      {
+	        var pageData = (0, _merge2.default)(state.currentPage, { status: action.status });
+	        var history = [].concat(_toConsumableArray(state.history));
+	        history[state.currentPageIndex] = pageData;
+
+	        return _extends({}, state, { history: history, currentPage: pageData });
+	      }
+
 	    case actions.SET_PAGE:
 	      {
+	        var referrerFromHistory = !(0, _lang.isEmpty)(state.currentPage) ? (0, _pageUtils.urlFromPage)(state.currentPage) : '';
+
 	        var _action$payload = action.payload;
 	        var url = _action$payload.url;
 	        var urlParams = _action$payload.urlParams;
 	        var queryParams = _action$payload.queryParams;
 	        var hashParams = _action$payload.hashParams;
-	        var referrer = _action$payload.referrer;
+	        var _action$payload$refer = _action$payload.referrer;
+	        var referrer = _action$payload$refer === undefined ? referrerFromHistory : _action$payload$refer;
+	        var _action$payload$statu = _action$payload.status;
+	        var status = _action$payload$statu === undefined ? 200 : _action$payload$statu;
+
 
 	        var relevantHistory = state.history.slice(0, state.currentPageIndex + 1);
-	        var referrerFromHistory = !(0, _lang.isEmpty)(state.currentPage) ? (0, _pageUtils.urlFromPage)(state.currentPage) : '';
-
-	        var pageData = {
-	          url: url,
-	          urlParams: urlParams,
-	          queryParams: queryParams,
-	          hashParams: hashParams,
-	          referrer: referrer || referrerFromHistory
-	        };
+	        var _pageData = { url: url, urlParams: urlParams, queryParams: queryParams, hashParams: hashParams, referrer: referrer, status: status };
 
 	        return _extends({}, state, {
 	          currentPageIndex: state.currentPageIndex + 1,
-	          history: relevantHistory.concat([pageData]),
-	          currentPage: pageData
+	          history: relevantHistory.concat([_pageData]),
+	          currentPage: _pageData
 	        });
 	      }
+
 	    case actions.GOTO_PAGE_INDEX:
 	      {
 	        var pageIndex = action.payload.pageIndex;
@@ -127,12 +137,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	          currentPage: state.history[pageIndex]
 	        });
 	      }
+
 	    case actions.SET_SHELL:
 	      {
 	        return (0, _merge2.default)(state, {
 	          shell: action.shell
 	        });
 	      }
+
 	    default:
 	      return state;
 	  }
@@ -161,10 +173,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 322:
+/***/ 323:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_322__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
 
 /***/ }
 
