@@ -142,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx) {
+	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
 	      var nav, well, thunk, r, store, state, currentUrl, currentQuery, newUrl;
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
@@ -156,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	              store.dispatch(function () {
-	                var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
+	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
 	                  return regeneratorRuntime.wrap(function _callee$(_context) {
 	                    while (1) {
 	                      switch (_context.prev = _context.next) {
@@ -172,8 +172,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	                  }, _callee, undefined);
 	                }));
 
-	                return function (_x2, _x3, _x4) {
-	                  return _ref2.apply(this, arguments);
+	                return function (_x3, _x4, _x5) {
+	                  return ref.apply(this, arguments);
 	                };
 	              }());
 
@@ -210,7 +210,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                ctx.body = template(state, store);
 	              }
 
-	            case 13:
+	              next();
+
+	            case 14:
 	            case 'end':
 	              return _context2.stop();
 	          }
@@ -218,8 +220,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }, _callee2, undefined);
 	    }));
 
-	    return function handleRoute(_x) {
-	      return _ref.apply(this, arguments);
+	    return function handleRoute(_x, _x2) {
+	      return ref.apply(this, arguments);
 	    };
 	  }();
 
