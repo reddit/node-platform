@@ -19,39 +19,39 @@ npm install koa@2.0.0 koa-bodyparser@3.0.0 koa-router@7.0.1 koa-static@3.0.0 rea
 import Server from '@r/platform/Server';
 
 const server = Server({
-  reducers={},                            // Reducers for the Redux store.
+  reducers: {},                      // Reducers for the Redux store.
 
-  routes=[],                              // A list of lists that maps
-                                          // routes to handlers. For example:
-                                          //
-                                          // [
-                                          //   ['/', Frontpage],
-                                          //   ['/r/:subredditName', Subreddit],
-                                          // ]
+  routes: [],                        // A list of lists that maps
+                                     // routes to handlers. For example:
+                                     //
+                                     // [
+                                     //   ['/', Frontpage],
+                                     //   ['/r/:subredditName', Subreddit],
+                                     // ]
 
-  template=function(data) {...},          // a template function that returns a
-                                          // string (likely an HTML string).
+  template: (data) => { /* ... */ }, // a template function that returns a
+                                     // string (likely an HTML string).
 
-  port=8888,                              // OPTIONAL. port for your server.
+  port: 8888,                        // OPTIONAL. port for your server.
 
-  preRouteServerMiddleware=[],            // OPTIONAL. Koa middleware to run
-                                          // before a route is handled
+  preRouteServerMiddleware: [],      // OPTIONAL. Koa middleware to run
+                                     // before a route is handled
 
-  postRouteServerMiddleware=[],           // OPTIONAL. Koa middleware to run
-                                          // after a route is handled
+  postRouteServerMiddleware: [],     // OPTIONAL. Koa middleware to run
+                                     // after a route is handled
 
-  reduxMiddleware=[],                     // OPTIONAL. Additional Redux
-                                          // middleware. Middleware defined here
-                                          // will run before r/platform's
-                                          // middleware runs.
+  reduxMiddleware: [],               // OPTIONAL. Additional Redux
+                                     // middleware. Middleware defined here
+                                     // will run before r/platform's
+                                     // middleware runs.
 
-  dispatchBeforeNavigation=async (koaCtx, dispatch, getState, utils) => {},
-                                          // OPTIONAL. Dispatch additional
-                                          // actions before the navigation
-                                          // fires.
+  dispatchBeforeNavigation: async (koaCtx, dispatch, getState, utils) => {},
+                                     // OPTIONAL. Dispatch additional
+                                     // actions before the navigation
+                                     // fires.
 
-  getServerRouter=(router) => {},         // OPTIONAL. Return the Koa router if
-                                          // needed.
+  getServerRouter: (router) => {}    // OPTIONAL. Return the Koa router if
+                                     // needed.
 });
 
 // start the server
@@ -64,36 +64,36 @@ server();
 import Client from '@r/platform/Client';
 
 const client = Client({
-  reducers={},                    // Reducers for the Redux store.
+  reducers: {},                        // Reducers for the Redux store.
 
-  routes=[],                      // A list of lists that maps
-                                  // routes to handlers. For example:
-                                  //
-                                  // [
-                                  //   ['/', Frontpage],
-                                  //   ['/r/:subredditName', Subreddit],
-                                  // ]
+  routes: [],                          // A list of lists that maps
+                                       // routes to handlers. For example:
+                                       //
+                                       // [
+                                       //   ['/', Frontpage],
+                                       //   ['/r/:subredditName', Subreddit],
+                                       // ]
 
-  appComponent=<div/>             // The React component that
-                                  // represents the app.
+  appComponent: <div/>,                // The React component that
+                                       // represents the app.
 
-  container='container',          // OPTIONAL. Id of the DOM element
-                                  // the Client App will be rendered into.
+  container: 'container',              // OPTIONAL. Id of the DOM element
+                                       // the Client App will be rendered into.
 
-  dataVar='___r',                 // OPTIONAL. A key on the 'window' object
-                                  // where the data will be written into.
+  dataVar: '___r',                     // OPTIONAL. A key on the 'window' object
+                                       // where the data will be written into.
 
-  modifyData=function(data) {...} // OPTIONAL. A function that mutates the
-                                  // data object before it is loaded
-                                  // into the client side store.
+  modifyData: (data) => { /* ... */ }, // OPTIONAL. A function that mutates the
+                                       // data object before it is loaded
+                                       // into the client side store.
 
-  reduxMiddleware=[],             // OPTIONAL. Additional Redux middleware.
-                                  // Middleware defined here will run
-                                  // before r/platform's middleware runs.
+  reduxMiddleware: [],                 // OPTIONAL. Additional Redux middleware.
+                                       // Middleware defined here will run
+                                       // before r/platform's middleware runs.
 
-  debug=false,                    // OPTIONAL. Setting debug to true will
-                                  // cause redux actions to be logged
-                                  // in the console.
+  debug: false                         // OPTIONAL. Setting debug to true will
+                                       // cause redux actions to be logged
+                                       // in the console.
 });
 
 // run the client
