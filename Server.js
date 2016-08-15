@@ -142,7 +142,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var router = new _koaRouter2.default();
 
 	  var handleRoute = function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
+	    var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(ctx, next) {
 	      var nav, well, thunk, r, store, state, currentUrl, currentQuery, newUrl;
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
 	        while (1) {
@@ -153,10 +153,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	              thunk = _middleware.Thunker.create();
 	              r = (0, _redux.combineReducers)(_extends({}, reducers, { platform: _reducer2.default }));
 	              store = (0, _redux.createStore)(r, {}, _redux.applyMiddleware.apply(undefined, _toConsumableArray(reduxMiddleware).concat([nav, thunk, well.middleware])));
-
-
-	              store.dispatch(function () {
-	                var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
+	              _context2.next = 7;
+	              return store.dispatch(function () {
+	                var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState, utils) {
 	                  return regeneratorRuntime.wrap(function _callee$(_context) {
 	                    while (1) {
 	                      switch (_context.prev = _context.next) {
@@ -173,9 +172,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }));
 
 	                return function (_x3, _x4, _x5) {
-	                  return ref.apply(this, arguments);
+	                  return _ref2.apply(this, arguments);
 	                };
 	              }());
+
+	            case 7:
 
 	              store.dispatch(_actions2.default.navigateToUrl(ctx.request.method.toLowerCase(), ctx.path, {
 	                queryParams: ctx.request.query,
@@ -183,10 +184,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	                referrer: ctx.headers.referer
 	              }));
 
-	              _context2.next = 9;
+	              _context2.next = 10;
 	              return well.onComplete();
 
-	            case 9:
+	            case 10:
 	              state = store.getState();
 
 	              // check for redirects
@@ -213,7 +214,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	              next();
 
-	            case 14:
+	            case 15:
 	            case 'end':
 	              return _context2.stop();
 	          }
@@ -222,7 +223,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function handleRoute(_x, _x2) {
-	      return ref.apply(this, arguments);
+	      return _ref.apply(this, arguments);
 	    };
 	  }();
 

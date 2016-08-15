@@ -128,7 +128,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var reroutePage = exports.reroutePage = function reroutePage() {
 	  return function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
+	    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(dispatch, getState) {
 	      var currentPage;
 	      return regeneratorRuntime.wrap(function _callee$(_context) {
 	        while (1) {
@@ -153,14 +153,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function (_x4, _x5) {
-	      return ref.apply(this, arguments);
+	      return _ref4.apply(this, arguments);
 	    };
 	  }();
 	};
 
 	var activateClient = exports.activateClient = function activateClient() {
 	  return function () {
-	    var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
+	    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(dispatch, getState) {
 	      var _getState, platform;
 
 	      return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -191,13 +191,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }));
 
 	    return function (_x6, _x7) {
-	      return ref.apply(this, arguments);
+	      return _ref5.apply(this, arguments);
 	    };
 	  }();
 	};
 
 	var setStatus = exports.setStatus = function setStatus(status) {
-	  return { type: SET_STATUS, status: status };
+	  return {
+	    type: SET_STATUS,
+	    payload: { status: status }
+	  };
 	};
 
 	exports.default = {

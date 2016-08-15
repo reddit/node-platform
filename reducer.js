@@ -7,7 +7,7 @@
 		exports["reducer.js"] = factory(require("lodash/lang"), require("./actions.js"), require("./pageUtils.js"), require("./merge.js"));
 	else
 		root["reducer.js"] = factory(root["lodash/lang"], root["./actions.js"], root["./pageUtils.js"], root["./merge.js"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_323__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_12__, __WEBPACK_EXTERNAL_MODULE_13__, __WEBPACK_EXTERNAL_MODULE_14__, __WEBPACK_EXTERNAL_MODULE_322__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _lang = __webpack_require__(12);
 
-	var _merge = __webpack_require__(323);
+	var _merge = __webpack_require__(322);
 
 	var _merge2 = _interopRequireDefault(_merge);
 
@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  switch (action.type) {
 	    case actions.SET_STATUS:
 	      {
-	        var pageData = (0, _merge2.default)(state.currentPage, { status: action.status });
+	        var pageData = (0, _merge2.default)(state.currentPage, { status: action.payload.status });
 	        var history = [].concat(_toConsumableArray(state.history));
 	        history[state.currentPageIndex] = pageData;
 
@@ -173,10 +173,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 323:
+/***/ 322:
 /***/ function(module, exports) {
 
-	module.exports = __WEBPACK_EXTERNAL_MODULE_323__;
+	module.exports = __WEBPACK_EXTERNAL_MODULE_322__;
 
 /***/ }
 
