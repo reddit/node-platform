@@ -1,6 +1,10 @@
 # r/platform
 A set of tools to enable easy universal rendering and page navigation on a React + Redux stack.
 
+## Change Log
+#### v0.14.0
+Removed the `postRouteServerMiddleware` configuration option. Middleware will now end with the route handler being fired.
+
 ## Installation
 Currently, just use NPM.
 ```
@@ -36,9 +40,6 @@ const server = Server({
 
   preRouteServerMiddleware: [],      // OPTIONAL. Koa middleware to run
                                      // before a route is handled
-
-  postRouteServerMiddleware: [],     // OPTIONAL. Koa middleware to run
-                                     // after a route is handled
 
   reduxMiddleware: [],               // OPTIONAL. Additional Redux
                                      // middleware. Middleware defined here

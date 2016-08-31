@@ -111,8 +111,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var port = _config$port === undefined ? 8888 : _config$port;
 	  var _config$preRouteServe = config.preRouteServerMiddleware;
 	  var preRouteServerMiddleware = _config$preRouteServe === undefined ? [] : _config$preRouteServe;
-	  var _config$postRouteServ = config.postRouteServerMiddleware;
-	  var postRouteServerMiddleware = _config$postRouteServ === undefined ? [] : _config$postRouteServ;
 	  var _config$reduxMiddlewa = config.reduxMiddleware;
 	  var reduxMiddleware = _config$reduxMiddlewa === undefined ? [] : _config$reduxMiddlewa;
 	  var _config$reducers = config.reducers;
@@ -212,9 +210,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                ctx.status = state.platform.currentPage.status;
 	              }
 
-	              next();
-
-	            case 15:
+	            case 14:
 	            case 'end':
 	              return _context2.stop();
 	          }
@@ -292,9 +288,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  server.use(bodyparser);
 	  server.use(router.routes());
 	  server.use(router.allowedMethods());
-	  postRouteServerMiddleware.forEach(function (m) {
-	    return server.use(m);
-	  });
 
 	  return function () {
 	    server.listen(port, function () {
