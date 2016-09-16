@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint lib",
     "build": "node compile.js",
-    "watch": "npm run build -- --watch"
+    "watch": "npm run build -- --watch",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",

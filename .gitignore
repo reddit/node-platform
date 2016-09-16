@@ -1,2 +1,17 @@
 node_modules
 npm-debug*
+
+actions.js
+Client.js
+components.js
+createTest.js
+merge.js
+navigationMiddleware.js
+pageUtils.js
+plugins.js
+reducer.js
+router.js
+Server.js
+shouldGoBack.js
+url.js
+platform.js
