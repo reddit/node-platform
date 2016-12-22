@@ -13,7 +13,7 @@ npm install -S @r/platform
 
 You also need to install its peer dependencies. For example:
 ```
-npm install koa@2.0.0 koa-bodyparser@3.0.0 koa-router@7.0.1 koa-static@3.0.0 react@15.0.1 react-redux@4.4.5 react-dom@15.0.0-rc.2 redux@3.4.0 reselect@2.4.0 lodash@4.11.1 @r/middleware@0.5.1
+npm install koa@2.0.0 koa-bodyparser@3.0.0 koa-router@7.0.1 koa-static@3.0.0 react@15.0.1 react-redux@4.4.5 react-dom@15.0.1 redux@3.4.0 reselect@2.4.0 lodash@4.11.1 @r/middleware@0.8.1 babel-core@6.21.0
 ```
 
 ## Usage
